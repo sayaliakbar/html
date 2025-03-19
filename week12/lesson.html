@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 12: Progressive Web Applications (PWAs)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #333;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #0066cc;
+      }
+      pre,
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      pre {
+        padding: 15px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+      .important {
+        background-color: #ffecb3;
+        padding: 15px;
+        border-left: 4px solid #ffab00;
+        margin: 15px 0;
+      }
+      .note {
+        background-color: #e3f2fd;
+        padding: 15px;
+        border-left: 4px solid #2196f3;
+        margin: 15px 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      .example {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+      }
+      .steps {
+        counter-reset: step;
+        padding-left: 0;
+      }
+      .steps li {
+        list-style-type: none;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 10px;
+      }
+      .steps li:before {
+        content: counter(step);
+        counter-increment: step;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #0066cc;
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 12: Progressive Web Applications (PWAs)</h1>
+
+    <section>
+      <h2>Introduction to Progressive Web Applications</h2>
+      <p>
+        Progressive Web Applications (PWAs) are web applications that use modern
+        web capabilities to deliver app-like experiences to users. They combine
+        the best of the web and native applications, offering features like:
+      </p>
+
+      <ul>
+        <li>
+          <strong>Installability</strong> - Users can add the app to their home
+          screen
+        </li>
+        <li>
+          <strong>Offline functionality</strong> - Apps work with limited or no
+          internet connection
+        </li>
+        <li>
+          <strong>Push notifications</strong> - Apps can send notifications even
+          when closed
+        </li>
+        <li>
+          <strong>Responsive design</strong> - Works across all device sizes and
+          orientations
+        </li>
+        <li>
+          <strong>App-like experience</strong> - Full-screen mode without
+          browser UI
+        </li>
+      </ul>
+
+      <div class="important">
+        <p>
+          <strong>Why PWAs Matter</strong>: PWAs bridge the gap between web and
+          native apps, combining the reach of the web with the capabilities of
+          native applications, all while avoiding the friction of app store
+          installations.
+        </p>
+      </div>
+
+      <h3>Core Components of PWAs</h3>
+      <ol>
+        <li>
+          <strong>Service Workers</strong>: JavaScript files that run separately
+          from the main browser thread, enabling features like offline support
+          and background tasks
+        </li>
+        <li>
+          <strong>Web App Manifest</strong>: A JSON file that provides
+          information about the application (name, icons, etc.) needed for
+          installation
+        </li>
+        <li>
+          <strong>HTTPS</strong>: PWAs require secure contexts to use many
+          modern APIs
+        </li>
+      </ol>
+
+      <h3>PWA Checklist</h3>
+      <p>A modern PWA should strive to be:</p>
+      <ul>
+        <li>
+          <strong>Fast</strong>: Loads quickly and responds to user interactions
+          immediately
+        </li>
+        <li>
+          <strong>Reliable</strong>: Works regardless of network conditions
+        </li>
+        <li>
+          <strong>Engaging</strong>: Feels like a natural app on the device
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Service Workers</h2>
+      <p>
+        Service workers are JavaScript files that run separately from the main
+        browser thread, acting as network proxies between your application and
+        the network. This enables powerful features like:
+      </p>
+
+      <ul>
+        <li>Offline functionality through caching</li>
+        <li>Background sync</li>
+        <li>Push notifications</li>
+        <li>Interception and modification of network requests</li>
+      </ul>
+
+      <h3>Service Worker Lifecycle</h3>
+      <p>
+        Understanding the service worker lifecycle is crucial for proper
+        implementation:
+      </p>
+
+      <ol class="steps">
+        <li>
+          <strong>Registration</strong>: The application registers the service
+          worker
+        </li>
+        <li>
+          <strong>Installation</strong>: The browser installs the service worker
+          (often used for caching resources)
+        </li>
+        <li>
+          <strong>Activation</strong>: The service worker takes control (may
+          need to wait for existing pages to close)
+        </li>
+        <li>
+          <strong>Idle</strong>: The service worker becomes idle until an event
+          occurs
+        </li>
+        <li>
+          <strong>Termination</strong>: The browser may terminate idle service
+          workers to conserve memory
+        </li>
+      </ol>
+
+      <h3>Registering a Service Worker</h3>
+      <pre>
+// Check if service workers are supported
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(error => {
+        console.error('Service Worker registration failed:', error);
+      });
+  });
+}</pre
+      >
+
+      <h3>Basic Service Worker Events</h3>
+      <pre>
+// Install event - typically used to cache static assets
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open('my-cache-v1').then(cache => {
+      return cache.addAll([
+        '/',
+        '/index.html',
+        '/styles/main.css',
+        '/scripts/main.js',
+        '/images/logo.png'
+      ]);
+    })
+  );
+});
+
+// Activate event - typically used for cleanup of old caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames
+          .filter(cacheName => cacheName !== 'my-cache-v1')
+          .map(cacheName => caches.delete(cacheName))
+      );
+    })
+  );
+});
+
+// Fetch event - intercepts network requests
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});</pre
+      >
+
+      <div class="note">
+        <p>
+          <strong>Note:</strong> Service workers can only be used on pages
+          served over HTTPS (or localhost for development).
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Caching Strategies</h2>
+      <p>
+        Caching strategies determine how your service worker handles requests
+        and caches responses. The right strategy depends on the type of resource
+        and the user experience you want to deliver.
+      </p>
+
+      <h3>Common Caching Strategies</h3>
+
+      <table>
+        <tr>
+          <th>Strategy</th>
+          <th>Description</th>
+          <th>Best For</th>
+        </tr>
+        <tr>
+          <td>Cache First</td>
+          <td>Check cache first, fall back to network if not found</td>
+          <td>
+            Static assets that rarely change (images, fonts, CSS/JS after
+            versioning)
+          </td>
+        </tr>
+        <tr>
+          <td>Network First</td>
+          <td>Try network, fall back to cache if offline</td>
+          <td>
+            HTML and frequently updated resources where fresh content is
+            preferred
+          </td>
+        </tr>
+        <tr>
+          <td>Stale While Revalidate</td>
+          <td>
+            Return cached version immediately, then update cache in background
+          </td>
+          <td>
+            Resources where performance is critical but freshness is still
+            important
+          </td>
+        </tr>
+        <tr>
+          <td>Network Only</td>
+          <td>Always use network, never cache</td>
+          <td>
+            Resources that always need the freshest data (e.g., API calls for
+            realtime data)
+          </td>
+        </tr>
+        <tr>
+          <td>Cache Only</td>
+          <td>Always use cache, never go to network</td>
+          <td>
+            Resources that are pre-cached and never change (e.g., app shell)
+          </td>
+        </tr>
+      </table>
+
+      <h3>Implementation Examples</h3>
+
+      <h4>Cache First Strategy</h4>
+      <pre>
+function cacheFirst(request) {
+  return caches.match(request)
+    .then(cachedResponse => {
+      // Return cached response if available
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      
+      // Otherwise fetch from network
+      return fetch(request)
+        .then(networkResponse => {
+          // Clone the response before using it
+          const responseToCache = networkResponse.clone();
+          
+          // Cache the network response
+          caches.open('my-cache-v1')
+            .then(cache => {
+              cache.put(request, responseToCache);
+            });
+            
+          return networkResponse;
+        });
+    });
+}</pre
+      >
+
+      <h4>Network First Strategy</h4>
+      <pre>
+function networkFirst(request) {
+  return fetch(request)
+    .then(networkResponse => {
+      // Clone the response before using it
+      const responseToCache = networkResponse.clone();
+      
+      // Cache the successful network response
+      caches.open('my-cache-v1')
+        .then(cache => {
+          cache.put(request, responseToCache);
+        });
+        
+      return networkResponse;
+    })
+    .catch(() => {
+      // If network fails, attempt to get from cache
+      return caches.match(request)
+        .then(cachedResponse => {
+          return cachedResponse || caches.match('/offline.html');
+        });
+    });
+}</pre
+      >
+
+      <div class="important">
+        <p>
+          Choose your caching strategy carefully based on each resource type.
+          Using the wrong strategy can lead to outdated content or unnecessary
+          network requests.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Web App Manifest</h2>
+      <p>
+        The Web App Manifest is a JSON file that provides information about your
+        web application to the browser and the device. It's essential for making
+        your PWA installable and configuring how it appears when installed.
+      </p>
+
+      <h3>Creating a Manifest File</h3>
+      <p>
+        Create a file named <code>manifest.json</code> in your project's root
+        directory:
+      </p>
+
+      <pre>
+{
+  "name": "My PWA Application",
+  "short_name": "MyPWA",
+  "description": "A progressive web application example",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196f3",
+  "icons": [
+    {
+      "src": "/images/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshots/screen1.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "portrait",
+  "categories": ["utilities", "productivity"]
+}</pre
+      >
+
+      <h3>Key Manifest Properties</h3>
+
+      <table>
+        <tr>
+          <th>Property</th>
+          <th>Description</th>
+          <th>Required?</th>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td>Full application name</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>short_name</td>
+          <td>Short version of name used on home screens</td>
+          <td>Recommended</td>
+        </tr>
+        <tr>
+          <td>start_url</td>
+          <td>URL that loads when app is launched</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>display</td>
+          <td>
+            Preferred display mode (standalone, fullscreen, minimal-ui, browser)
+          </td>
+          <td>Recommended</td>
+        </tr>
+        <tr>
+          <td>icons</td>
+          <td>Array of icon objects with src, sizes, and type</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>theme_color</td>
+          <td>Color for the browser/OS UI elements</td>
+          <td>Recommended</td>
+        </tr>
+        <tr>
+          <td>background_color</td>
+          <td>Background color during app load</td>
+          <td>Recommended</td>
+        </tr>
+      </table>
+
+      <h3>Linking the Manifest</h3>
+      <p>
+        Add the following line to the <code>&lt;head&gt;</code> of your HTML
+        files:
+      </p>
+      <pre>&lt;link rel="manifest" href="/manifest.json"&gt;</pre>
+
+      <h3>Additional Meta Tags for iOS Support</h3>
+      <p>
+        Since iOS doesn't fully support the Web App Manifest, add these meta
+        tags:
+      </p>
+      <pre>
+&lt;!-- iOS meta tags for PWA support --&gt;
+&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+&lt;meta name="apple-mobile-web-app-status-bar-style" content="black"&gt;
+&lt;meta name="apple-mobile-web-app-title" content="MyPWA"&gt;
+&lt;link rel="apple-touch-icon" href="/images/icons/icon-192x192.png"&gt;</pre
+      >
+
+      <div class="note">
+        <p>
+          Testing your manifest is easy with Chrome DevTools. Open the
+          Application panel and look under "Manifest" to see how your PWA will
+          appear when installed.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Push Notifications</h2>
+      <p>
+        Push notifications allow your web application to engage users with
+        timely updates even when they're not actively using your app.
+        Implementing push notifications involves:
+      </p>
+
+      <ol>
+        <li>Requesting permission from the user</li>
+        <li>Subscribing to push notifications</li>
+        <li>Sending notifications from your server</li>
+        <li>Handling notification events</li>
+      </ol>
+
+      <h3>Requesting Notification Permission</h3>
+      <pre>
+// Check if notifications are supported
+if ('Notification' in window) {
+  // Request permission
+  Notification.requestPermission()
+    .then(permission => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted!');
+        // Now you can show notifications
+      }
+    });
+}</pre
+      >
+
+      <h3>Creating a Basic Notification</h3>
+      <pre>
+function showNotification() {
+  const options = {
+    body: 'This is the notification body text',
+    icon: '/images/notification-icon.png',
+    badge: '/images/notification-badge.png',
+    vibrate: [100, 50, 100], // Vibration pattern
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: 1
+    },
+    actions: [
+      { action: 'explore', title: 'Explore now' },
+      { action: 'close', title: 'Close' }
+    ]
+  };
+  
+  // Show the notification
+  navigator.serviceWorker.ready
+    .then(registration => {
+      registration.showNotification('Notification Title', options);
+    });
+}</pre
+      >
+
+      <h3>Handling Notification Clicks in Service Worker</h3>
+      <pre>
+self.addEventListener('notificationclick', event => {
+  const notification = event.notification;
+  const action = event.action;
+  
+  notification.close();
+  
+  if (action === 'explore') {
+    clients.openWindow('/explore');
+  }
+});</pre
+      >
+
+      <h3>Push Notification Workflow</h3>
+      <ol class="steps">
+        <li>Subscribe to push service (typically using VAPID)</li>
+        <li>Send subscription to your server</li>
+        <li>Server stores subscription for later use</li>
+        <li>When needed, server sends push message to the push service</li>
+        <li>Push service delivers message to the user's device</li>
+        <li>Service worker handles the push event and shows a notification</li>
+      </ol>
+
+      <div class="important">
+        <p>
+          Always respect the user's preferences regarding notifications. Sending
+          too many or irrelevant notifications will likely cause users to revoke
+          permission.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Offline Functionality</h2>
+      <p>
+        Creating a meaningful offline experience is essential for PWAs. This
+        involves:
+      </p>
+
+      <ul>
+        <li>Detecting online/offline status</li>
+        <li>Caching essential resources</li>
+        <li>Providing useful feedback when offline</li>
+        <li>Implementing background sync for deferred operations</li>
+      </ul>
+
+      <h3>Detecting Network Status</h3>
+      <pre>
+// Check initial status
+updateOnlineStatus();
+
+// Add event listeners for status changes
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+
+function updateOnlineStatus() {
+  const status = navigator.onLine ? 'online' : 'offline';
+  console.log(`You are now ${status}`);
+  
+  // Update UI accordingly
+  if (status === 'offline') {
+    showOfflineMessage();
+  } else {
+    hideOfflineMessage();
+  }
+}</pre
+      >
+
+      <h3>Creating an Offline Page</h3>
+      <p>
+        An offline page provides feedback and functionality when users are
+        disconnected:
+      </p>
+      <pre>
+// In your service worker
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    // Try to get the resource from the network
+    fetch(event.request)
+      .catch(() => {
+        // If network fails, return the offline page for navigation requests
+        if (event.request.mode === 'navigate') {
+          return caches.match('/offline.html');
+        }
+        
+        // For other requests like images, try to get from cache
+        return caches.match(event.request);
+      })
+  );
+});</pre
+      >
+
+      <h3>Background Sync</h3>
+      <p>
+        Background sync allows you to defer actions until the user has stable
+        connectivity:
+      </p>
+      <pre>
+// Register a sync event from your web page
+if ('serviceWorker' in navigator && 'SyncManager' in window) {
+  navigator.serviceWorker.ready
+    .then(registration => {
+      // Store data to be sent in IndexedDB
+      return storeOutboxData(formData)
+        .then(() => {
+          // Register a sync and give it a tag
+          return registration.sync.register('outbox-sync');
+        });
+    })
+    .catch(err => console.log('Background sync registration failed:', err));
+}
+
+// Handle the sync event in the service worker
+self.addEventListener('sync', event => {
+  if (event.tag === 'outbox-sync') {
+    event.waitUntil(
+      syncOutboxData() // Function to retrieve data from IndexedDB and send it
+    );
+  }
+});</pre
+      >
+
+      <div class="note">
+        <p>
+          Testing offline functionality is easy using Chrome DevTools. In the
+          Network panel, check the "Offline" option to simulate disconnection.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Installation and App-Like Experience</h2>
+      <p>
+        One of the key features of PWAs is their ability to be installed on
+        users' devices, providing an app-like experience without the app store.
+      </p>
+
+      <h3>Installation Process</h3>
+      <p>
+        Modern browsers automatically show an install prompt when a site meets
+        PWA criteria:
+      </p>
+      <ul>
+        <li>Site is served over HTTPS</li>
+        <li>Has a valid Web App Manifest</li>
+        <li>Has a registered service worker</li>
+        <li>Meets additional engagement criteria (varies by browser)</li>
+      </ul>
+
+      <h3>Custom Install Button</h3>
+      <p>
+        To provide a better user experience, you can create a custom install
+        button:
+      </p>
+      <pre>
+let deferredPrompt;
+
+// Listen for the beforeinstallprompt event
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the default prompt from showing
+  e.preventDefault();
+  
+  // Save the event for later
+  deferredPrompt = e;
+  
+  // Show your custom install button
+  showInstallButton();
+});
+
+// When the user clicks your install button
+installButton.addEventListener('click', () => {
+  // Hide your button
+  hideInstallButton();
+  
+  // Show the prompt
+  deferredPrompt.prompt();
+  
+  // Wait for the user's response
+  deferredPrompt.userChoice.then((choiceResult) => {
+    if (choiceResult.outcome === 'accepted') {
+      console.log('User accepted the install prompt');
+    } else {
+      console.log('User dismissed the install prompt');
+    }
+    
+    // Clear the saved prompt
+    deferredPrompt = null;
+  });
+});</pre
+      >
+
+      <h3>Detecting if Already Installed</h3>
+      <pre>
+window.addEventListener('appinstalled', (event) => {
+  console.log('App was installed');
+  // Analytics tracking or UI updates
+});
+
+// Check if the app is already running as installed PWA
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log('App is running in standalone mode');
+  // Adjust UI for installed app experience
+}</pre
+      >
+
+      <div class="important">
+        <p>
+          Don't be too aggressive with installation prompts. Let users explore
+          your site first before suggesting installation.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>PWA Best Practices</h2>
+
+      <h3>Performance Optimization</h3>
+      <ul>
+        <li>
+          <strong>App Shell Architecture</strong>: Cache the minimal HTML, CSS,
+          and JavaScript needed for the UI
+        </li>
+        <li>
+          <strong>Critical CSS</strong>: Inline critical styles to avoid
+          render-blocking
+        </li>
+        <li>
+          <strong>Code Splitting</strong>: Only load what's necessary for the
+          current view
+        </li>
+        <li>
+          <strong>Resource Hints</strong>: Use preload, prefetch, and preconnect
+        </li>
+        <li><strong>Compression</strong>: Enable GZIP/Brotli on your server</li>
+        <li>
+          <strong>Image Optimization</strong>: Use appropriate formats, sizes,
+          and loading techniques
+        </li>
+      </ul>
+
+      <h3>Security</h3>
+      <ul>
+        <li><strong>HTTPS</strong>: Essential for PWAs and modern APIs</li>
+        <li>
+          <strong>Content Security Policy (CSP)</strong>: Prevent XSS attacks
+        </li>
+        <li><strong>CORS Settings</strong>: Secure cross-origin requests</li>
+        <li>
+          <strong>Subresource Integrity</strong>: Ensure resources haven't been
+          tampered with
+        </li>
+      </ul>
+
+      <h3>Testing and Debugging</h3>
+      <ul>
+        <li>
+          <strong>Lighthouse</strong>: Chrome's built-in auditing tool for PWAs
+        </li>
+        <li>
+          <strong>Chrome DevTools</strong>: Application panel for service
+          workers and storage
+        </li>
+        <li>
+          <strong>Workbox</strong>: Libraries to simplify service worker
+          development
+        </li>
+        <li>
+          <strong>Cross-Browser Testing</strong>: PWA support varies across
+          browsers
+        </li>
+      </ul>
+
+      <h3>Progressive Enhancement</h3>
+      <p>Always build with progressive enhancement in mind:</p>
+      <ol>
+        <li>Start with semantic HTML that works everywhere</li>
+        <li>Add CSS for styling and layout</li>
+        <li>Add JavaScript for enhanced functionality</li>
+        <li>Add PWA features as an additional enhancement</li>
+      </ol>
+
+      <div class="note">
+        <p>
+          Remember that not all browsers support all PWA features. Always
+          provide fallbacks for critical functionality.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Summary and Next Steps</h2>
+      <p>
+        In this lesson, we've covered the fundamentals of Progressive Web
+        Applications:
+      </p>
+
+      <ul>
+        <li>
+          Service workers for offline functionality and background processing
+        </li>
+        <li>
+          Caching strategies for optimal performance and offline experience
+        </li>
+        <li>Web App Manifest for installability</li>
+        <li>Push notifications for user engagement</li>
+        <li>Techniques for creating app-like experiences</li>
+        <li>Best practices for PWA development</li>
+      </ul>
+
+      <h3>Next Steps in Your PWA Journey</h3>
+      <ul>
+        <li>
+          Explore advanced APIs like Background Sync, Payment Request, and
+          Credentials Management
+        </li>
+        <li>
+          Learn about Workbox, a set of libraries for common service worker
+          tasks
+        </li>
+        <li>
+          Implement analytics to understand PWA usage and installation rates
+        </li>
+        <li>
+          Consider Trusted Web Activities (TWAs) for publishing to app stores
+        </li>
+        <li>Stay updated with new PWA capabilities through the Fugu project</li>
+      </ul>
+
+      <div class="important">
+        <p>
+          Progressive Web Apps represent the evolution of the web platform,
+          bringing native-like capabilities to web applications. By implementing
+          PWA features, you can create faster, more reliable, and more engaging
+          web experiences that work for all users, regardless of network
+          conditions or device capabilities.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© HTML Mastery Course. All rights reserved.</p>
+      <p><a href="../index.html">Back to Course Homepage</a></p>
+    </footer>
+  </body>
+</html>
