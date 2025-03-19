@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 9: Advanced HTML5 Features</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2 {
+        color: #2c3e50;
+      }
+      h3 {
+        color: #3498db;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .note {
+        background-color: #ffffcc;
+        border-left: 5px solid #ffeb3b;
+        padding: 10px;
+        margin: 20px 0;
+      }
+      .example {
+        background-color: #e3f2fd;
+        border-left: 5px solid #2196f3;
+        padding: 10px;
+        margin: 20px 0;
+      }
+      canvas {
+        border: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 9: Advanced HTML5 Features</h1>
+
+    <section>
+      <h2>Introduction</h2>
+      <p>
+        Welcome to Week 9! This week, we'll explore some of the more advanced
+        features introduced in HTML5 that enable interactive and dynamic web
+        applications. You'll learn about the Canvas API for drawing graphics,
+        SVG for vector graphics, Web Storage for client-side data persistence,
+        and the Geolocation API for location-aware applications.
+      </p>
+    </section>
+
+    <section>
+      <h2>Canvas Basics</h2>
+      <p>
+        The HTML5 Canvas element provides a drawing surface for creating and
+        manipulating graphics, animations, and other visual elements using
+        JavaScript.
+      </p>
+
+      <h3>Creating a Canvas Element</h3>
+      <p>
+        To create a canvas, you use the <code>&lt;canvas&gt;</code> element:
+      </p>
+
+      <pre><code>&lt;canvas id="myCanvas" width="400" height="300"&gt;
+  Your browser does not support the canvas element.
+&lt;/canvas&gt;</code></pre>
+
+      <p>
+        The content between the opening and closing tags is displayed only if
+        the browser doesn't support canvas.
+      </p>
+
+      <h3>Getting the Drawing Context</h3>
+      <p>
+        To draw on the canvas, you need to get a drawing context using
+        JavaScript:
+      </p>
+
+      <pre><code>const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');</code></pre>
+
+      <h3>Drawing Basic Shapes</h3>
+      <p>Once you have the context, you can draw shapes:</p>
+
+      <h4>Rectangles</h4>
+      <pre><code>// Filled rectangle
+ctx.fillStyle = 'blue';
+ctx.fillRect(10, 10, 100, 80);
+
+// Outlined rectangle
+ctx.strokeStyle = 'red';
+ctx.lineWidth = 3;
+ctx.strokeRect(150, 10, 100, 80);</code></pre>
+
+      <h4>Lines</h4>
+      <pre><code>ctx.beginPath();
+ctx.moveTo(10, 150);
+ctx.lineTo(110, 150);
+ctx.lineTo(110, 230);
+ctx.closePath(); // Closes the path by connecting to the starting point
+ctx.strokeStyle = 'green';
+ctx.stroke();</code></pre>
+
+      <h4>Circles and Arcs</h4>
+      <pre><code>ctx.beginPath();
+ctx.arc(200, 190, 40, 0, Math.PI * 2); // (x, y, radius, startAngle, endAngle)
+ctx.fillStyle = 'orange';
+ctx.fill();</code></pre>
+
+      <h3>Adding Text</h3>
+      <pre><code>ctx.font = '20px Arial';
+ctx.fillStyle = 'purple';
+ctx.fillText('Hello Canvas!', 150, 280);</code></pre>
+
+      <h3>Basic Animation</h3>
+      <p>
+        Animation on canvas is achieved by repeatedly clearing and redrawing:
+      </p>
+
+      <pre><code>let x = 0;
+function animate() {
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Draw at the current position
+  ctx.fillRect(x, 100, 50, 50);
+  
+  // Update position
+  x += 2;
+  if (x > canvas.width) {
+    x = -50;
+  }
+  
+  // Request next frame
+  requestAnimationFrame(animate);
+}
+
+animate(); // Start the animation</code></pre>
+
+      <div class="note">
+        <p>
+          <strong>Note:</strong> Always use
+          <code>requestAnimationFrame()</code> for animations instead of
+          <code>setTimeout</code> or <code>setInterval</code> for better
+          performance and battery usage.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>SVG Integration</h2>
+      <p>
+        Scalable Vector Graphics (SVG) is an XML-based markup language for
+        describing two-dimensional vector graphics. Unlike canvas, SVG elements
+        remain accessible in the DOM.
+      </p>
+
+      <h3>Inline SVG</h3>
+      <p>SVG can be included directly in your HTML:</p>
+
+      <pre><code>&lt;svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;circle cx="100" cy="100" r="80" stroke="blue" stroke-width="2" fill="lightblue" /&gt;
+  &lt;text x="100" y="110" text-anchor="middle" font-size="20" fill="darkblue"&gt;SVG&lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+
+      <h3>Basic SVG Elements</h3>
+      <ul>
+        <li><code>&lt;circle&gt;</code> - draws a circle</li>
+        <li><code>&lt;rect&gt;</code> - draws a rectangle</li>
+        <li><code>&lt;line&gt;</code> - draws a line</li>
+        <li><code>&lt;path&gt;</code> - draws complex paths</li>
+        <li><code>&lt;text&gt;</code> - adds text</li>
+        <li><code>&lt;g&gt;</code> - groups elements</li>
+      </ul>
+
+      <h3>Example: Rectangle and Circle</h3>
+      <pre><code>&lt;svg width="300" height="200"&gt;
+  &lt;rect x="10" y="10" width="100" height="80" stroke="black" fill="red" /&gt;
+  &lt;circle cx="200" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" /&gt;
+&lt;/svg&gt;</code></pre>
+
+      <h3>SVG vs. Canvas</h3>
+      <p><strong>SVG advantages:</strong></p>
+      <ul>
+        <li>Resolution-independent (scales without losing quality)</li>
+        <li>Elements remain in the DOM and can be manipulated</li>
+        <li>Better for accessibility</li>
+        <li>Event handlers can be attached to individual elements</li>
+      </ul>
+
+      <p><strong>Canvas advantages:</strong></p>
+      <ul>
+        <li>Better performance for intensive animations</li>
+        <li>Pixel-level manipulation</li>
+        <li>Simpler API for complex custom drawings</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Web Storage APIs</h2>
+      <p>
+        Web Storage provides mechanisms for storing data in the browser,
+        allowing web applications to store data locally.
+      </p>
+
+      <h3>localStorage vs. sessionStorage</h3>
+      <ul>
+        <li>
+          <strong>localStorage:</strong> Persists even after the browser is
+          closed and reopened
+        </li>
+        <li>
+          <strong>sessionStorage:</strong> Persists only for the duration of the
+          page session
+        </li>
+      </ul>
+
+      <h3>Basic Operations</h3>
+      <h4>Storing Data</h4>
+      <pre><code>// localStorage
+localStorage.setItem('username', 'johnsmith');
+localStorage.setItem('preferences', JSON.stringify({ theme: 'dark', fontSize: 16 }));
+
+// sessionStorage
+sessionStorage.setItem('tempData', 'This will be gone when the session ends');</code></pre>
+
+      <h4>Retrieving Data</h4>
+      <pre><code>// Get simple data
+const username = localStorage.getItem('username');
+
+// Get and parse JSON data
+const preferences = JSON.parse(localStorage.getItem('preferences'));</code></pre>
+
+      <h4>Removing Data</h4>
+      <pre><code>// Remove a specific item
+localStorage.removeItem('username');
+
+// Clear all stored data
+localStorage.clear();</code></pre>
+
+      <h3>Storage Event</h3>
+      <p>
+        The storage event fires when localStorage changes in another document:
+      </p>
+
+      <pre><code>window.addEventListener('storage', (event) => {
+  console.log('Storage changed:', event.key, event.newValue);
+});</code></pre>
+
+      <div class="note">
+        <p>
+          <strong>Note:</strong> localStorage has a storage limit (typically
+          5-10MB) and can only store strings. Complex objects must be serialized
+          using JSON.stringify() before storage.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Geolocation API</h2>
+      <p>
+        The Geolocation API allows web applications to access the user's
+        geographical location.
+      </p>
+
+      <h3>Requesting User Location</h3>
+      <pre><code>if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    // Success callback
+    (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+    },
+    // Error callback
+    (error) => {
+      console.error('Error getting location:', error.message);
+    },
+    // Options
+    {
+      enableHighAccuracy: true,   // Request high accuracy
+      timeout: 5000,              // Time to wait for a response (ms)
+      maximumAge: 0               // Don't use cached position
+    }
+  );
+} else {
+  console.error('Geolocation is not supported by this browser.');
+}</code></pre>
+
+      <h3>Continuous Location Updates</h3>
+      <pre><code>const watchId = navigator.geolocation.watchPosition(
+  (position) => {
+    // This will be called whenever position changes
+    console.log('Updated position:',
+      position.coords.latitude,
+      position.coords.longitude);
+  },
+  (error) => {
+    console.error('Error watching position:', error);
+  }
+);
+
+// Later, when you want to stop watching:
+navigator.geolocation.clearWatch(watchId);</code></pre>
+
+      <h3>Position Object Properties</h3>
+      <ul>
+        <li><code>coords.latitude</code> - Latitude in decimal degrees</li>
+        <li><code>coords.longitude</code> - Longitude in decimal degrees</li>
+        <li><code>coords.accuracy</code> - Accuracy of position in meters</li>
+        <li><code>coords.altitude</code> - Height in meters (if available)</li>
+        <li>
+          <code>coords.altitudeAccuracy</code> - Accuracy of altitude in meters
+          (if available)
+        </li>
+        <li>
+          <code>coords.heading</code> - Direction of travel in degrees (if
+          available)
+        </li>
+        <li>
+          <code>coords.speed</code> - Speed in meters per second (if available)
+        </li>
+        <li><code>timestamp</code> - When the position was acquired</li>
+      </ul>
+
+      <div class="note">
+        <p>
+          <strong>Privacy Note:</strong> Always request permission and explain
+          why your app needs location data. Provide fallbacks for users who deny
+          permission or use browsers that don't support geolocation.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Practical Applications</h2>
+
+      <h3>Interactive Data Visualization</h3>
+      <p>
+        Combining Canvas and SVG with Web Storage can create powerful
+        interactive dashboards that persist user preferences and data.
+      </p>
+
+      <h3>Location-Based Services</h3>
+      <p>The Geolocation API enables numerous location-aware applications:</p>
+      <ul>
+        <li>Finding nearby businesses or points of interest</li>
+        <li>Turn-by-turn navigation</li>
+        <li>Weather based on current location</li>
+        <li>Location-based games</li>
+      </ul>
+
+      <h3>Offline-Capable Applications</h3>
+      <p>
+        Web Storage allows applications to function even without an internet
+        connection by storing necessary data locally.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        Remember to complete this week's exercises and quiz to reinforce your
+        understanding of these advanced HTML5 features.
+      </p>
+    </footer>
+  </body>
+</html>
