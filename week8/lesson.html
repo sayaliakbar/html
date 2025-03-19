@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 8: Metadata and API Integration | HTML Mastery Course</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      pre {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .important {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 10px 15px;
+        margin: 20px 0;
+      }
+      .example {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 10px 15px;
+        margin: 20px 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Week 8: Metadata and API Integration</h1>
+      <p>
+        Welcome to Week 8, where we'll explore optimizing your HTML documents
+        with metadata and integrating external APIs.
+      </p>
+    </header>
+
+    <section id="document-metadata">
+      <h2>1. HTML Document Metadata</h2>
+
+      <p>
+        Metadata provides information about your web page that isn't directly
+        visible to users but is crucial for search engines, browsers, and other
+        web services.
+      </p>
+
+      <h3>Essential Meta Tags</h3>
+
+      <pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="A concise and accurate description of your page content"&gt;
+    &lt;meta name="keywords" content="relevant, keywords, for, your, content"&gt;
+    &lt;meta name="author" content="Your Name"&gt;
+    &lt;title&gt;Page Title - Very Important for SEO&lt;/title&gt;
+&lt;/head&gt;</code
+      ></pre>
+
+      <h3>Title Element</h3>
+
+      <p>The title element is one of the most important metadata elements:</p>
+      <ul>
+        <li>Displayed in browser tabs</li>
+        <li>Used as the headline in search engine results</li>
+        <li>Default name when bookmarking pages</li>
+        <li>Optimal length is 50-60 characters</li>
+      </ul>
+
+      <div class="important">
+        <p>
+          <strong>Important:</strong> Each page should have a unique,
+          descriptive title that includes your main keyword.
+        </p>
+      </div>
+
+      <h3>Description Meta Tag</h3>
+
+      <p>The description meta tag provides a summary of your page content:</p>
+      <ul>
+        <li>Often appears in search engine results below the title</li>
+        <li>Should be compelling and accurately describe your page</li>
+        <li>Optimal length is 150-160 characters</li>
+        <li>Should include relevant keywords naturally</li>
+      </ul>
+
+      <div class="example">
+        <p><strong>Example:</strong></p>
+        <code
+          >&lt;meta name="description" content="Learn HTML5 metadata best
+          practices to improve your website's SEO, social sharing, and search
+          engine visibility with our comprehensive guide."&gt;</code
+        >
+      </div>
+
+      <h3>Viewport Meta Tag</h3>
+
+      <p>Essential for responsive design:</p>
+      <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code
+      ></pre>
+      <p>
+        This instructs the browser to set the viewport width to the device width
+        and set the initial zoom level to 1.
+      </p>
+    </section>
+
+    <section id="social-media-metadata">
+      <h2>2. Social Media Metadata</h2>
+
+      <p>
+        Social media metadata helps control how your content appears when shared
+        on platforms like Facebook, Twitter, and LinkedIn.
+      </p>
+
+      <h3>Open Graph Protocol</h3>
+
+      <p>Developed by Facebook, now used by many platforms:</p>
+
+      <pre><code>&lt;meta property="og:title" content="Your Page Title"&gt;
+&lt;meta property="og:description" content="Description of your page content"&gt;
+&lt;meta property="og:image" content="https://yoursite.com/image.jpg"&gt;
+&lt;meta property="og:url" content="https://yoursite.com/page"&gt;
+&lt;meta property="og:type" content="website"&gt;</code
+      ></pre>
+
+      <p>
+        The <code>og:image</code> should ideally be 1200×630 pixels for optimal
+        display across platforms.
+      </p>
+
+      <h3>Twitter Card Metadata</h3>
+
+      <p>Specific to Twitter but enhances how links appear in tweets:</p>
+
+      <pre><code>&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:site" content="@yourusername"&gt;
+&lt;meta name="twitter:title" content="Your Page Title"&gt;
+&lt;meta name="twitter:description" content="Description of your page content"&gt;
+&lt;meta name="twitter:image" content="https://yoursite.com/image.jpg"&gt;</code
+      ></pre>
+
+      <div class="important">
+        <p>
+          <strong>Important:</strong> Always test your social media cards using
+          the platforms' validation tools before deploying.
+        </p>
+      </div>
+
+      <h4>Twitter Card Types:</h4>
+      <ul>
+        <li><code>summary</code>: Standard card with small image</li>
+        <li><code>summary_large_image</code>: Card with large image</li>
+        <li><code>app</code>: Card for mobile app promotion</li>
+        <li><code>player</code>: Card for video/audio content</li>
+      </ul>
+    </section>
+
+    <section id="structured-data">
+      <h2>3. Structured Data</h2>
+
+      <p>
+        Structured data helps search engines understand the content of your page
+        more clearly, enabling rich results in search listings.
+      </p>
+
+      <h3>Microdata</h3>
+
+      <p>
+        HTML attributes that annotate HTML elements with machine-readable tags:
+      </p>
+
+      <pre><code>&lt;div itemscope itemtype="https://schema.org/Product"&gt;
+    &lt;h1 itemprop="name"&gt;Premium Coffee Maker&lt;/h1&gt;
+    &lt;img itemprop="image" src="coffee-maker.jpg" alt="Coffee Maker"&gt;
+    &lt;p itemprop="description"&gt;A high-quality coffee maker with temperature control.&lt;/p&gt;
+    &lt;div itemprop="offers" itemscope itemtype="https://schema.org/Offer"&gt;
+        &lt;p&gt;Price: &lt;span itemprop="price"&gt;$89.99&lt;/span&gt;
+        &lt;meta itemprop="priceCurrency" content="USD"&gt;&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code
+      ></pre>
+
+      <h3>JSON-LD</h3>
+
+      <p>
+        JavaScript Object Notation for Linked Data, embedded in a script tag:
+      </p>
+
+      <pre><code>&lt;script type="application/ld+json"&gt;
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Premium Coffee Maker",
+    "image": "coffee-maker.jpg",
+    "description": "A high-quality coffee maker with temperature control.",
+    "offers": {
+        "@type": "Offer",
+        "price": "89.99",
+        "priceCurrency": "USD"
+    }
+}
+&lt;/script&gt;</code
+      ></pre>
+
+      <div class="example">
+        <p><strong>Example Use Cases:</strong></p>
+        <ul>
+          <li>Articles and blog posts</li>
+          <li>Local business information</li>
+          <li>Events</li>
+          <li>Products and reviews</li>
+          <li>Recipes</li>
+          <li>FAQ pages</li>
+        </ul>
+      </div>
+
+      <p>
+        Google and other search engines use structured data to create rich
+        search results, which can significantly increase click-through rates.
+      </p>
+
+      <div class="important">
+        <p>
+          <strong>Important:</strong> Always validate your structured data using
+          tools like Google's Structured Data Testing Tool or Schema.org
+          Validator.
+        </p>
+      </div>
+    </section>
+
+    <section id="api-integration">
+      <h2>4. API Integration</h2>
+
+      <p>
+        HTML pages can integrate with external APIs to embed dynamic content and
+        functionality.
+      </p>
+
+      <h3>Embedding Maps</h3>
+
+      <p>Using Google Maps API:</p>
+
+      <pre><code>&lt;iframe
+    width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Eiffel+Tower,Paris+France"
+&gt;&lt;/iframe&gt;</code
+      ></pre>
+
+      <h3>Social Media Widgets</h3>
+
+      <p>Embedding a Twitter feed:</p>
+
+      <pre><code>&lt;!-- Twitter timeline widget --&gt;
+&lt;a class="twitter-timeline" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw"&gt;Tweets by TwitterDev&lt;/a&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</code
+      ></pre>
+
+      <h3>Video Embeds</h3>
+
+      <p>Embedding YouTube videos:</p>
+
+      <pre><code>&lt;iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/VIDEO_ID" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen
+&gt;&lt;/iframe&gt;</code
+      ></pre>
+
+      <h3>Weather Widgets</h3>
+
+      <pre><code>&lt;!-- Example of a weather widget from a service like OpenWeatherMap --&gt;
+&lt;div id="weather-widget"&gt;&lt;/div&gt;
+&lt;script&gt;
+    // API call to get weather data and update the widget
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY')
+        .then(response =&gt; response.json())
+        .then(data =&gt; {
+            document.getElementById('weather-widget').innerHTML = 
+                `&lt;h3&gt;Weather in ${data.name}&lt;/h3&gt;
+                &lt;p&gt;Temperature: ${Math.round(data.main.temp - 273.15)}°C&lt;/p&gt;
+                &lt;p&gt;Condition: ${data.weather[0].description}&lt;/p&gt;`;
+        });
+&lt;/script&gt;</code
+      ></pre>
+
+      <div class="important">
+        <p><strong>Important:</strong> When integrating third-party APIs:</p>
+        <ul>
+          <li>Consider performance implications</li>
+          <li>Be aware of privacy concerns</li>
+          <li>Secure API keys properly</li>
+          <li>Check terms of service for usage restrictions</li>
+          <li>Implement error handling for when the API is unavailable</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="best-practices">
+      <h2>5. Best Practices Summary</h2>
+
+      <h3>Metadata Best Practices</h3>
+      <ul>
+        <li>Keep metadata concise, accurate, and relevant</li>
+        <li>Include a unique title and description for each page</li>
+        <li>Test social cards before publishing</li>
+        <li>Keep canonical URLs consistent</li>
+        <li>Use robots meta tags appropriately</li>
+      </ul>
+
+      <h3>API Integration Best Practices</h3>
+      <ul>
+        <li>Load third-party scripts asynchronously when possible</li>
+        <li>Provide fallback content for when APIs fail</li>
+        <li>Consider responsive design when embedding external content</li>
+        <li>
+          Respect user privacy when integrating tracking or analytics APIs
+        </li>
+        <li>Keep API keys and sensitive data server-side when possible</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>
+        Next, complete the exercises in the
+        <a href="./exercises/">exercises folder</a> to practice these concepts.
+      </p>
+      <p>
+        Then, apply what you've learned in the
+        <a href="./project/">Metadata-Enhanced Website project</a>.
+      </p>
+    </footer>
+  </body>
+</html>
