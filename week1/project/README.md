@@ -85,3 +85,11 @@ When you've completed your project:
 2. Make sure your file is saved as `project.html`
 3. Take a screenshot of your webpage in a browser
 4. Be prepared to discuss your design choices
+
+## Contact
+
+**Ali Akbar**
+
+- GitHub: [@sayaliakbar](https://github.com/sayaliakbar)
+- LinkedIn: [sayaliakbar](https://linkedin.com/in/sayaliakbar)
+- Instagram: [@ialiakbarhazara](https://instagram.com/ialiakbarhazara)
