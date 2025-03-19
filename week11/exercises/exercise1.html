@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1: Evaluating Accessibility Issues</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      .task {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4caf50;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .tip {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .example {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      .inaccessible {
+        background-color: #ffebee;
+        border-left: 4px solid #f44336;
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+        margin: 10px 0;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      .checklist {
+        list-style-type: none;
+        padding: 0;
+      }
+      .checklist li {
+        margin-bottom: 8px;
+      }
+      .checklist input[type="checkbox"] {
+        margin-right: 8px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 15px 0;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 1: Evaluating Accessibility Issues</h1>
+
+    <div class="task">
+      <h2>Introduction</h2>
+      <p>
+        In this exercise, you will practice identifying and evaluating common
+        accessibility issues. Learning to recognize these problems is the first
+        step toward creating more accessible websites.
+      </p>
+      <p>For each example below:</p>
+      <ol>
+        <li>Identify the accessibility issues</li>
+        <li>Explain why they are problematic</li>
+        <li>Suggest how to fix them</li>
+      </ol>
+    </div>
+
+    <div class="task">
+      <h2>Task 1: Image Accessibility</h2>
+      <p>Examine the following image implementation:</p>
+
+      <div class="inaccessible">
+        <img
+          src="https://via.placeholder.com/300x200"
+          width="300"
+          height="200"
+        />
+        <div class="caption">
+          Bar chart showing company growth from 2020-2023
+        </div>
+      </div>
+
+      <h3>Questions:</h3>
+      <ol>
+        <li>
+          What accessibility issues can you identify in this image
+          implementation?
+        </li>
+        <li>How would a screen reader user experience this content?</li>
+        <li>What changes would make this image accessible?</li>
+      </ol>
+
+      <h3>Your Analysis:</h3>
+      <textarea placeholder="Write your analysis here..."></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Remember that images need alternative text to be
+          accessible to screen reader users, and complex images like charts may
+          need additional description.
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 2: Form Accessibility</h2>
+      <p>Review this form implementation:</p>
+
+      <div class="inaccessible">
+        <form>
+          <div>Full name: <input type="text" /></div>
+          <div>Email: <input type="text" /></div>
+          <div>
+            <span style="color: red">*</span> Password:
+            <input type="password" />
+          </div>
+          <div>
+            <select>
+              <option value="">Select your country</option>
+              <option value="us">United States</option>
+              <option value="ca">Canada</option>
+              <option value="uk">United Kingdom</option>
+            </select>
+          </div>
+          <div><input type="checkbox" /> I agree to the terms</div>
+          <div>
+            <button style="background-color: green; color: white">
+              SUBMIT
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <h3>Questions:</h3>
+      <ol>
+        <li>What accessibility issues can you identify in this form?</li>
+        <li>
+          How would keyboard-only users and screen reader users experience this
+          form?
+        </li>
+        <li>What changes would make this form accessible?</li>
+      </ol>
+
+      <h3>Your Analysis:</h3>
+      <textarea placeholder="Write your analysis here..."></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Consider labeling, form controls, required field
+          indicators, input types, and focus states.
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 3: Color and Contrast</h2>
+      <p>Examine this example where color is used to convey information:</p>
+
+      <div class="inaccessible">
+        <style>
+          .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+          }
+          .active {
+            background-color: #4caf50;
+          }
+          .pending {
+            background-color: #ff9800;
+          }
+          .inactive {
+            background-color: #f44336;
+          }
+          .light-text {
+            color: #aaaaaa;
+          }
+        </style>
+
+        <h3 style="color: #8bc34a">Order Status</h3>
+        <p>Check the status of your orders below.</p>
+        <ul style="list-style-type: none; padding: 0">
+          <li><span class="status-indicator active"></span> Order #12345</li>
+          <li><span class="status-indicator pending"></span> Order #12346</li>
+          <li><span class="status-indicator inactive"></span> Order #12347</li>
+        </ul>
+        <p class="light-text">Updated 5 minutes ago</p>
+        <button
+          style="
+            background-color: #4caf50;
+            border: none;
+            padding: 5px 10px;
+            color: white;
+          "
+        >
+          Refresh
+        </button>
+      </div>
+
+      <h3>Questions:</h3>
+      <ol>
+        <li>
+          What accessibility issues related to color and contrast can you
+          identify?
+        </li>
+        <li>
+          How would users with color blindness or low vision experience this
+          content?
+        </li>
+        <li>What changes would improve the accessibility?</li>
+      </ol>
+
+      <h3>Your Analysis:</h3>
+      <textarea placeholder="Write your analysis here..."></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Remember WCAG guidelines recommend a contrast
+          ratio of at least 4.5:1 for normal text and 3:1 for large text. Also,
+          color should never be the only means of conveying information.
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 4: Document Structure</h2>
+      <p>Review this HTML structure:</p>
+
+      <div class="inaccessible">
+        <pre><code>&lt;div class="header"&gt;Site Title&lt;/div&gt;
+&lt;div class="nav"&gt;
+  &lt;div&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="main"&gt;
+  &lt;div class="title"&gt;Welcome to Our Website&lt;/div&gt;
+  
+  &lt;div class="content"&gt;
+    &lt;div class="heading"&gt;About Our Products&lt;/div&gt;
+    &lt;div&gt;We offer a wide range of products...&lt;/div&gt;
+    
+    &lt;div class="heading"&gt;Latest Releases&lt;/div&gt;
+    &lt;div&gt;Check out our newest items...&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="sidebar"&gt;
+    &lt;div class="heading"&gt;Recent Posts&lt;/div&gt;
+    &lt;div&gt;Post 1...&lt;/div&gt;
+    &lt;div&gt;Post 2...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="footer"&gt;Copyright 2023&lt;/div&gt;</code></pre>
+      </div>
+
+      <h3>Questions:</h3>
+      <ol>
+        <li>
+          What structural accessibility issues can you identify in this HTML?
+        </li>
+        <li>
+          How would screen reader users experience this document structure?
+        </li>
+        <li>What changes would improve the document's accessibility?</li>
+      </ol>
+
+      <h3>Your Analysis:</h3>
+      <textarea placeholder="Write your analysis here..."></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Consider semantic HTML elements, heading
+          hierarchy, and how the document would be navigated using assistive
+          technologies.
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 5: Accessibility Checklist</h2>
+      <p>
+        Review the checklist below and consider how you would evaluate a webpage
+        for these accessibility features:
+      </p>
+
+      <form>
+        <ul class="checklist">
+          <li>
+            <input type="checkbox" id="check1" /><label for="check1"
+              >All images have appropriate alternative text</label
+            >
+          </li>
+          <li>
+            <input type="checkbox" id="check2" /><label for="check2"
+              >Headings are used in correct hierarchical order (h1, h2,
+              etc.)</label
+            >
+          </li>
+          <li>
+            <input type="checkbox" id="check3" /><label for="check3"
+              >Color is not the only means of conveying information</label
+            >
+          </li>
+          <li>
+            <input type="checkbox" id="check4" /><label for="check4"
+              >Text has sufficient contrast with its background</label
+            >
+          </li>
+          <li>
+            <input type="checkbox" id="check5" /><label for="check5"
+              >Form fields have associated labels</label
+            >
+          </li>
+          <li>
+            <input type="checkbox" id="check6" /><label for="check6"
+              >Page can be navigated using keyboard alone</label
+            >
+          </li>
+          <li>
+            <input type="checkbox" id="check7" /><label for="check7"
+              >Focus indicators are visible</label
+            >
+          </li>
+          <li>
+            <input type="checkbox" id="check8" /><label for="check8"
+              >Page has proper document structure with semantic HTML</label
+            >
+          </li>
+          <li>
+            <input type="checkbox" id="check9" /><label for="check9"
+              >Interactive elements are accessible via keyboard</label
+            >
+          </li>
+          <li>
+            <input type="checkbox" id="check10" /><label for="check10"
+              >ARIA attributes are used correctly where needed</label
+            >
+          </li>
+        </ul>
+      </form>
+
+      <h3>Reflection:</h3>
+      <p>
+        What tools would you use to evaluate each of these checklist items? What
+        manual tests would you perform?
+      </p>
+      <textarea placeholder="Write your reflection here..."></textarea>
+    </div>
+
+    <div class="tip">
+      <h2>Additional Resources</h2>
+      <ul>
+        <li>
+          <a href="https://www.w3.org/WAI/standards-guidelines/wcag/"
+            >Web Content Accessibility Guidelines (WCAG)</a
+          >
+        </li>
+        <li>
+          <a href="https://wave.webaim.org/"
+            >WAVE Web Accessibility Evaluation Tool</a
+          >
+        </li>
+        <li>
+          <a href="https://webaim.org/resources/contrastchecker/"
+            >WebAIM Contrast Checker</a
+          >
+        </li>
+        <li>
+          <a href="https://www.w3.org/WAI/demos/bad/"
+            >Before and After Demonstration</a
+          >
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
