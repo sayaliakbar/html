@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3: Implementing Client-Side Storage</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      .container {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+      .task {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4caf50;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .tip {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 8px 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px 0;
+      }
+      button:hover {
+        background-color: #388e3c;
+      }
+      input,
+      textarea,
+      select {
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .saved-item {
+        background-color: #f1f1f1;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 4px;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      #color-preview {
+        height: 30px;
+        border: 1px solid #ddd;
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 3: Implementing Client-Side Storage</h1>
+
+    <div class="task">
+      <h2>Task 1: Basic localStorage Operations</h2>
+      <p>
+        Implement the following functions to store and retrieve a simple
+        username:
+      </p>
+
+      <div class="container">
+        <div>
+          <label for="username">Username:</label>
+          <input type="text" id="username" placeholder="Enter username" />
+        </div>
+        <div>
+          <button id="save-username">Save Username</button>
+          <button id="get-username">Get Saved Username</button>
+          <button id="clear-username">Clear Username</button>
+        </div>
+        <div>
+          <p>Saved username: <span id="saved-username">None</span></p>
+        </div>
+      </div>
+
+      <p>Complete the JavaScript functions:</p>
+      <pre><code>// Get references to DOM elements
+const usernameInput = document.getElementById('username');
+const saveBtn = document.getElementById('save-username');
+const getBtn = document.getElementById('get-username');
+const clearBtn = document.getElementById('clear-username');
+const savedUsernameSpan = document.getElementById('saved-username');
+
+// Save username to localStorage
+saveBtn.addEventListener('click', function() {
+  // Your code here
+});
+
+// Get username from localStorage
+getBtn.addEventListener('click', function() {
+  // Your code here
+});
+
+// Clear username from localStorage
+clearBtn.addEventListener('click', function() {
+  // Your code here
+});</code></pre>
+    </div>
+
+    <div class="task">
+      <h2>Task 2: Storing Complex Data</h2>
+      <p>
+        Create a user preferences system that stores multiple settings using
+        JSON:
+      </p>
+
+      <div class="container">
+        <h3>User Preferences</h3>
+        <div>
+          <label for="theme">Theme:</label>
+          <select id="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="blue">Blue</option>
+          </select>
+        </div>
+        <div>
+          <label for="font-size">Font Size (px):</label>
+          <input type="number" id="font-size" min="12" max="24" value="16" />
+        </div>
+        <div>
+          <label for="accent-color">Accent Color:</label>
+          <input type="color" id="accent-color" value="#4caf50" />
+          <div id="color-preview"></div>
+        </div>
+        <div>
+          <button id="save-prefs">Save Preferences</button>
+          <button id="load-prefs">Load Preferences</button>
+          <button id="reset-prefs">Reset to Defaults</button>
+        </div>
+      </div>
+
+      <p>Complete the JavaScript functions:</p>
+      <pre><code>// Get references to DOM elements
+const themeSelect = document.getElementById('theme');
+const fontSizeInput = document.getElementById('font-size');
+const accentColorInput = document.getElementById('accent-color');
+const colorPreview = document.getElementById('color-preview');
+const savePrefsBtn = document.getElementById('save-prefs');
+const loadPrefsBtn = document.getElementById('load-prefs');
+const resetPrefsBtn = document.getElementById('reset-prefs');
+
+// Update color preview when the input changes
+accentColorInput.addEventListener('input', function() {
+  colorPreview.style.backgroundColor = this.value;
+});
+
+// Save preferences to localStorage
+savePrefsBtn.addEventListener('click', function() {
+  // Your code here
+});
+
+// Load preferences from localStorage
+loadPrefsBtn.addEventListener('click', function() {
+  // Your code here
+});
+
+// Reset preferences to defaults
+resetPrefsBtn.addEventListener('click', function() {
+  // Your code here
+});</code></pre>
+    </div>
+
+    <div class="task">
+      <h2>Task 3: Todo List with sessionStorage</h2>
+      <p>
+        Create a simple todo list application that uses sessionStorage to
+        persist todos during the browser session:
+      </p>
+
+      <div class="container">
+        <h3>Todo List</h3>
+        <div>
+          <input type="text" id="todo-input" placeholder="Enter a new task" />
+          <button id="add-todo">Add Task</button>
+        </div>
+        <div>
+          <h4>Tasks:</h4>
+          <ul id="todo-list">
+            <!-- Todo items will be added here -->
+          </ul>
+        </div>
+        <div>
+          <button id="clear-todos">Clear All Tasks</button>
+        </div>
+      </div>
+
+      <p>Complete the JavaScript functions:</p>
+      <pre><code>// Get references to DOM elements
+const todoInput = document.getElementById('todo-input');
+const addTodoBtn = document.getElementById('add-todo');
+const todoList = document.getElementById('todo-list');
+const clearTodosBtn = document.getElementById('clear-todos');
+
+// Function to render todos from storage
+function renderTodos() {
+  // Your code here
+}
+
+// Function to add a new todo
+function addTodo() {
+  // Your code here
+}
+
+// Function to remove a todo
+function removeTodo(id) {
+  // Your code here
+}
+
+// Function to clear all todos
+function clearTodos() {
+  // Your code here
+}
+
+// Add event listeners
+addTodoBtn.addEventListener('click', addTodo);
+clearTodosBtn.addEventListener('click', clearTodos);
+
+// Initialize the todo list
+renderTodos();</code></pre>
+    </div>
+
+    <div class="tip">
+      <h3>Tips:</h3>
+      <ul>
+        <li>
+          Remember that localStorage only accepts string values, so use
+          <code>JSON.stringify()</code> for objects.
+        </li>
+        <li>
+          Use <code>JSON.parse()</code> to convert stored JSON strings back to
+          JavaScript objects.
+        </li>
+        <li>
+          Always check if data exists in storage before trying to parse it to
+          avoid errors.
+        </li>
+        <li>
+          For the todo list, consider using a timestamp or random ID to uniquely
+          identify each todo item.
+        </li>
+        <li>
+          Test your applications by closing and reopening the browser to confirm
+          persistent storage.
+        </li>
+      </ul>
+    </div>
+
+    <p>
+      When you've completed the exercises, test your implementations thoroughly
+      to ensure data is being stored and retrieved correctly.
+    </p>
+  </body>
+</html>
