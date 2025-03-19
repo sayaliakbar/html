@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1: Working with Specialized Input Types</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .task {
+        background-color: #f0f0f0;
+        padding: 15px;
+        border-left: 4px solid #333;
+        margin-bottom: 20px;
+      }
+      .hint {
+        background-color: #e6f7ff;
+        padding: 10px;
+        border-left: 4px solid #1890ff;
+        margin-top: 10px;
+      }
+      section {
+        margin-bottom: 30px;
+      }
+      form {
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      input,
+      select,
+      textarea {
+        margin-bottom: 15px;
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 1: Working with Specialized Input Types</h1>
+
+    <div class="task">
+      <h2>Task:</h2>
+      <p>
+        Create a new HTML file called "specialized-inputs.html" in the exercises
+        folder and implement a form that uses various HTML5 specialized input
+        types. Your form should:
+      </p>
+
+      <ol>
+        <li>Include at least 8 different HTML5 input types</li>
+        <li>Use appropriate labels for all form controls</li>
+        <li>Group related inputs using fieldsets and legends</li>
+        <li>Include submit and reset buttons</li>
+      </ol>
+
+      <div class="hint">
+        <h3>Hint:</h3>
+        <p>
+          HTML5 provides specialized input types like email, tel, date, time,
+          number, range, color, url, search, and more. Each offers unique user
+          interface features and built-in validation when supported by the
+          browser.
+        </p>
+      </div>
+    </div>
+
+    <h2>Expected Result</h2>
+    <p>
+      Your form should showcase different specialized input types, demonstrating
+      how each one provides a unique interface tailored to the type of data
+      being collected.
+    </p>
+
+    <h2>Solution Template</h2>
+    <p>If you're stuck, here's a template to start with:</p>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Specialized Input Types&lt;/title&gt;
+    &lt;style&gt;
+        /* Add some basic styling to make the form look better */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        fieldset {
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, output {
+            margin-bottom: 10px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;HTML5 Specialized Input Types&lt;/h1&gt;
+    
+    &lt;form&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;Personal Information&lt;/legend&gt;
+            
+            &lt;!-- Email input --&gt;
+            &lt;label for="email"&gt;Email Address:&lt;/label&gt;
+            &lt;input type="email" id="email" name="email" placeholder="you@example.com"&gt;
+            
+            &lt;!-- Add more input types here... --&gt;
+            
+        &lt;/fieldset&gt;
+        
+        &lt;fieldset&gt;
+            &lt;legend&gt;Preferences&lt;/legend&gt;
+            
+            &lt;!-- Add more specialized input types here... --&gt;
+            
+        &lt;/fieldset&gt;
+        
+        &lt;fieldset&gt;
+            &lt;legend&gt;Additional Information&lt;/legend&gt;
+            
+            &lt;!-- Add more specialized input types here... --&gt;
+            
+        &lt;/fieldset&gt;
+        
+        &lt;!-- Form buttons --&gt;
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+        &lt;button type="reset"&gt;Reset&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>Check Your Work</h2>
+    <p>After completing the exercise:</p>
+    <ol>
+      <li>Open your HTML file in a web browser</li>
+      <li>Test each input type to see how it functions</li>
+      <li>
+        Try different browsers to see how input types are rendered differently
+      </li>
+      <li>Verify that all inputs have proper labels</li>
+      <li>Check that related inputs are grouped with fieldsets</li>
+      <li>
+        Validate your HTML using the
+        <a href="https://validator.w3.org/#validate_by_upload"
+          >W3C Markup Validation Service</a
+        >
+      </li>
+    </ol>
+
+    <h2>Submission Guidelines</h2>
+    <p>When submitting your work, be prepared to:</p>
+    <ol>
+      <li>Explain your choice of input types for different data</li>
+      <li>Discuss browser compatibility considerations</li>
+      <li>Share any insights or challenges you encountered</li>
+    </ol>
+  </body>
+</html>
