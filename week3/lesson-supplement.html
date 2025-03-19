@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Methods and Attributes - Supplementary Material</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      .example {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-left: 5px solid #ddd;
+        margin: 15px 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td,
+      th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Understanding Form Methods and Attributes</h1>
+
+    <section>
+      <h2>Form Element Attributes</h2>
+      <p>
+        The <code>&lt;form&gt;</code> element accepts several important
+        attributes that control how the form data is processed:
+      </p>
+
+      <table>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><code>action</code></td>
+          <td>
+            Specifies where to send the form data when the form is submitted
+          </td>
+          <td><code>action="/submit-form"</code></td>
+        </tr>
+        <tr>
+          <td><code>method</code></td>
+          <td>Specifies the HTTP method to use when sending form data</td>
+          <td><code>method="post"</code></td>
+        </tr>
+        <tr>
+          <td><code>enctype</code></td>
+          <td>Specifies how form data should be encoded when submitted</td>
+          <td><code>enctype="multipart/form-data"</code></td>
+        </tr>
+        <tr>
+          <td><code>name</code></td>
+          <td>Specifies a name for the form</td>
+          <td><code>name="registration"</code></td>
+        </tr>
+        <tr>
+          <td><code>target</code></td>
+          <td>
+            Specifies where to display the response after submitting the form
+          </td>
+          <td><code>target="_blank"</code></td>
+        </tr>
+        <tr>
+          <td><code>autocomplete</code></td>
+          <td>Specifies whether a form should have autocomplete on or off</td>
+          <td><code>autocomplete="off"</code></td>
+        </tr>
+        <tr>
+          <td><code>novalidate</code></td>
+          <td>
+            Specifies that the form should not be validated when submitted
+          </td>
+          <td><code>novalidate</code></td>
+        </tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Understanding Form Methods</h2>
+
+      <h3>GET Method</h3>
+      <p>When using the GET method:</p>
+      <ul>
+        <li>Form data is appended to the URL as query string parameters</li>
+        <li>Data is visible in the browser's address bar</li>
+        <li>Limited amount of data can be sent (URL length restrictions)</li>
+        <li>Data can be bookmarked</li>
+        <li>Should never be used for sensitive information</li>
+      </ul>
+
+      <div class="example">
+        <h4>Example:</h4>
+        <code>&lt;form action="/search" method="get"&gt;</code>
+        <p>
+          When submitted with search term "html forms", the URL might look like:
+        </p>
+        <code>/search?query=html+forms</code>
+      </div>
+
+      <h3>POST Method</h3>
+      <p>When using the POST method:</p>
+      <ul>
+        <li>Form data is sent in the body of the HTTP request</li>
+        <li>Data is not visible in the URL</li>
+        <li>No size limitations on the amount of data</li>
+        <li>Cannot be bookmarked</li>
+        <li>
+          More suitable for sensitive information (though not secure without
+          HTTPS)
+        </li>
+      </ul>
+
+      <div class="example">
+        <h4>Example:</h4>
+        <code>&lt;form action="/login" method="post"&gt;</code>
+        <p>
+          When submitted, username and password are sent in the request body,
+          not in the URL.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>When to Use Each Method</h2>
+
+      <h3>Use GET when:</h3>
+      <ul>
+        <li>The form submission doesn't change any data (like searches)</li>
+        <li>You want users to be able to bookmark the result</li>
+        <li>The form contains only a small amount of non-sensitive data</li>
+      </ul>
+
+      <h3>Use POST when:</h3>
+      <ul>
+        <li>The form submission changes data on the server</li>
+        <li>
+          The form contains sensitive information (passwords, personal details)
+        </li>
+        <li>The form contains a large amount of data</li>
+        <li>The form includes file uploads</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Form Encoding Types</h2>
+      <p>
+        The <code>enctype</code> attribute specifies how form data should be
+        encoded when submitted:
+      </p>
+
+      <table>
+        <tr>
+          <th>Value</th>
+          <th>Description</th>
+          <th>Use Case</th>
+        </tr>
+        <tr>
+          <td><code>application/x-www-form-urlencoded</code></td>
+          <td>
+            Default encoding - spaces are converted to + symbols, special
+            characters are encoded
+          </td>
+          <td>Standard forms without file uploads</td>
+        </tr>
+        <tr>
+          <td><code>multipart/form-data</code></td>
+          <td>No characters are encoded, required when uploading files</td>
+          <td>Forms with file upload fields</td>
+        </tr>
+        <tr>
+          <td><code>text/plain</code></td>
+          <td>
+            Spaces are converted to + symbols, but no special character encoding
+          </td>
+          <td>Mainly for debugging, not recommended for production</td>
+        </tr>
+      </table>
+    </section>
+  </body>
+</html>
