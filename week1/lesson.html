@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 1: HTML Fundamentals</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+      .note {
+        background-color: #ffffd9;
+        border-left: 4px solid #e7dc8c;
+        padding: 10px;
+        margin: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 1: HTML Fundamentals</h1>
+
+    <section id="introduction">
+      <h2>Introduction to HTML</h2>
+      <p>
+        HTML (HyperText Markup Language) is the standard markup language used to
+        create web pages. It describes the structure of a web page semantically
+        using a series of elements.
+      </p>
+
+      <h3>What is HTML?</h3>
+      <p>
+        HTML consists of a series of elements that you use to enclose, or wrap,
+        different parts of the content to make it appear a certain way or act a
+        certain way. The enclosing tags can make a word or image hyperlink to
+        somewhere else, can italicize words, can make the font bigger or
+        smaller, and so on.
+      </p>
+
+      <h3>HTML Versus Other Technologies</h3>
+      <ul>
+        <li><strong>HTML</strong> - Structure of the content</li>
+        <li><strong>CSS</strong> - Presentation and styling</li>
+        <li><strong>JavaScript</strong> - Behavior and interactivity</li>
+      </ul>
+
+      <div class="note">
+        <p>HTML documents have the file extension .html or .htm</p>
+      </div>
+    </section>
+
+    <section id="document-structure">
+      <h2>Basic Document Structure</h2>
+
+      <p>Every HTML document follows a basic structure:</p>
+
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Content goes here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h3>Element Breakdown</h3>
+      <ul>
+        <li>
+          <code>&lt;!DOCTYPE html&gt;</code> - Declaration that tells the
+          browser this is an HTML5 document
+        </li>
+        <li>
+          <code>&lt;html&gt;</code> - The root element that contains all content
+        </li>
+        <li>
+          <code>&lt;head&gt;</code> - Contains meta-information about the
+          document
+        </li>
+        <li>
+          <code>&lt;meta&gt;</code> - Provides metadata such as character
+          encoding and viewport settings
+        </li>
+        <li>
+          <code>&lt;title&gt;</code> - Sets the title of the page (appears in
+          browser tab)
+        </li>
+        <li>
+          <code>&lt;body&gt;</code> - Contains all the visible content of the
+          page
+        </li>
+      </ul>
+
+      <div class="note">
+        <p>
+          The <code>lang</code> attribute in the HTML tag helps screen readers
+          and search engines understand the language of your content.
+        </p>
+      </div>
+    </section>
+
+    <section id="text-elements">
+      <h2>Text Elements</h2>
+
+      <h3>Headings</h3>
+      <p>
+        HTML provides six levels of headings, from <code>&lt;h1&gt;</code> (most
+        important) to <code>&lt;h6&gt;</code> (least important).
+      </p>
+
+      <pre><code>&lt;h1&gt;This is a Level 1 Heading&lt;/h1&gt;
+&lt;h2&gt;This is a Level 2 Heading&lt;/h2&gt;
+&lt;h3&gt;This is a Level 3 Heading&lt;/h3&gt;
+&lt;h4&gt;This is a Level 4 Heading&lt;/h4&gt;
+&lt;h5&gt;This is a Level 5 Heading&lt;/h5&gt;
+&lt;h6&gt;This is a Level 6 Heading&lt;/h6&gt;</code></pre>
+
+      <h3>Paragraphs</h3>
+      <p>
+        The <code>&lt;p&gt;</code> element is used to create paragraphs of text.
+      </p>
+
+      <pre><code>&lt;p&gt;This is a paragraph of text. HTML will automatically wrap the text and create a new line when needed.&lt;/p&gt;
+&lt;p&gt;This is a second paragraph. Notice how paragraphs are separated with a margin.&lt;/p&gt;</code></pre>
+
+      <h3>Line Breaks</h3>
+      <p>
+        To insert a line break without creating a new paragraph, use the
+        <code>&lt;br&gt;</code> element.
+      </p>
+
+      <pre><code>&lt;p&gt;This is a paragraph with a line break&lt;br&gt;right in the middle.&lt;/p&gt;</code></pre>
+
+      <h3>Horizontal Rule</h3>
+      <p>
+        The <code>&lt;hr&gt;</code> element creates a horizontal line, useful
+        for thematic breaks.
+      </p>
+
+      <pre><code>&lt;p&gt;This is above the line.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;This is below the line.&lt;/p&gt;</code></pre>
+    </section>
+
+    <section id="formatting">
+      <h2>Formatting Text</h2>
+
+      <p>HTML includes elements for formatting text:</p>
+
+      <h3>Bold and Italic</h3>
+      <pre><code>&lt;p&gt;This is &lt;strong&gt;bold text&lt;/strong&gt; and this is &lt;em&gt;italic text&lt;/em&gt;.&lt;/p&gt;</code></pre>
+
+      <h3>Subscript and Superscript</h3>
+      <pre><code>&lt;p&gt;This is a formula: H&lt;sub&gt;2&lt;/sub&gt;O and this is 2&lt;sup&gt;3&lt;/sup&gt; equals 8.&lt;/p&gt;</code></pre>
+
+      <h3>Other Formatting Elements</h3>
+      <ul>
+        <li><code>&lt;mark&gt;</code> - Highlighted text</li>
+        <li><code>&lt;del&gt;</code> - Deleted text</li>
+        <li><code>&lt;ins&gt;</code> - Inserted text</li>
+        <li><code>&lt;small&gt;</code> - Smaller text</li>
+        <li>
+          <code>&lt;pre&gt;</code> - Preformatted text (preserves spaces and
+          line breaks)
+        </li>
+      </ul>
+
+      <pre><code>&lt;p&gt;This is &lt;mark&gt;highlighted&lt;/mark&gt; text.&lt;/p&gt;
+&lt;p&gt;This is &lt;del&gt;deleted&lt;/del&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text.&lt;/p&gt;
+&lt;p&gt;This contains &lt;small&gt;smaller text&lt;/small&gt; within a paragraph.&lt;/p&gt;</code></pre>
+
+      <div class="note">
+        <p>
+          Semantic elements like <code>&lt;strong&gt;</code> and
+          <code>&lt;em&gt;</code> are preferred over <code>&lt;b&gt;</code> and
+          <code>&lt;i&gt;</code> as they convey meaning, not just appearance.
+        </p>
+      </div>
+    </section>
+
+    <section id="comments">
+      <h2>HTML Comments</h2>
+
+      <p>
+        HTML comments are not displayed in the browser but can be viewed in the
+        source code. They're useful for documenting your code.
+      </p>
+
+      <pre><code>&lt;!-- This is a comment --&gt;
+
+&lt;!-- 
+    This is a 
+    multi-line 
+    comment 
+--&gt;</code></pre>
+
+      <h3>Common Uses for Comments</h3>
+      <ul>
+        <li>Explaining complex code sections</li>
+        <li>Temporarily disabling code</li>
+        <li>Marking the beginning and end of content sections</li>
+        <li>Adding reminders or todos</li>
+      </ul>
+
+      <pre><code>&lt;!-- TODO: Add navigation menu here --&gt;
+&lt;!-- Start of header section --&gt;
+&lt;header&gt;
+    &lt;h1&gt;My Website&lt;/h1&gt;
+&lt;/header&gt;
+&lt;!-- End of header section --&gt;</code></pre>
+    </section>
+
+    <section id="practice">
+      <h2>Practice and Resources</h2>
+
+      <p>
+        The best way to learn HTML is by practicing. Complete the exercises in
+        the exercises folder and build the simple webpage project.
+      </p>
+
+      <h3>Additional Resources</h3>
+      <ul>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+            >MDN HTML Documentation</a
+          >
+        </li>
+        <li>
+          <a href="https://validator.w3.org/">W3C HTML Validator</a> - Check
+          your HTML for errors
+        </li>
+        <li>
+          <a href="https://www.w3schools.com/html/">W3Schools HTML Tutorial</a>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
