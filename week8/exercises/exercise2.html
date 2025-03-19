@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 2: Creating Social Media Cards</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .instructions {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .task {
+        background-color: #e9ecef;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      pre {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .preview {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 20px;
+        background-color: #fff;
+      }
+      .preview-facebook,
+      .preview-twitter {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        max-width: 500px;
+      }
+      .preview-image {
+        height: 260px;
+        background-color: #f0f2f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+        font-style: italic;
+      }
+      .preview-content {
+        padding: 10px 12px;
+      }
+      .preview-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      .preview-description {
+        font-size: 14px;
+        color: #444;
+        margin-bottom: 5px;
+      }
+      .preview-domain {
+        font-size: 12px;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 2: Creating Social Media Cards</h1>
+
+    <div class="instructions">
+      <h2>Instructions</h2>
+      <p>
+        In this exercise, you'll implement Open Graph and Twitter Card metadata
+        to optimize how your webpage appears when shared on social media
+        platforms.
+      </p>
+      <p>
+        You'll work with a product page for a fictional online store and add the
+        appropriate metadata to create engaging social media previews.
+      </p>
+    </div>
+
+    <div class="task">
+      <h2>Tasks</h2>
+      <ol>
+        <li>Create a new HTML file named "social-cards.html"</li>
+        <li>
+          Add the basic HTML structure with standard metadata (charset,
+          viewport, etc.)
+        </li>
+        <li>
+          Implement Open Graph metadata for Facebook and other platforms:
+          <ul>
+            <li>og:title - Create a compelling title for social media</li>
+            <li>
+              og:description - Write an engaging description (under 200
+              characters)
+            </li>
+            <li>
+              og:image - Specify an image URL (assume 1200×630px dimensions)
+            </li>
+            <li>og:url - Set the canonical URL for the product</li>
+            <li>og:type - Set the appropriate content type</li>
+            <li>og:site_name - Add your store's name</li>
+          </ul>
+        </li>
+        <li>
+          Implement Twitter Card metadata:
+          <ul>
+            <li>twitter:card - Choose the appropriate card type</li>
+            <li>twitter:title - Create a title for Twitter</li>
+            <li>twitter:description - Write a concise description</li>
+            <li>twitter:image - Specify the same or a different image</li>
+            <li>twitter:site - Add a Twitter username</li>
+          </ul>
+        </li>
+        <li>Add basic page content to showcase the product</li>
+      </ol>
+    </div>
+
+    <h2>Starting Template</h2>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Ultra Noise-Canceling Headphones | EcoTech Audio&lt;/title&gt;
+    
+    &lt;!-- Add your social media metadata here --&gt;
+    
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .product-image {
+            flex: 1;
+            background-color: #f5f5f5;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-details {
+            flex: 1;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;EcoTech Audio&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;a href="#"&gt;Home&lt;/a&gt; | 
+            &lt;a href="#"&gt;Products&lt;/a&gt; | 
+            &lt;a href="#"&gt;About&lt;/a&gt; | 
+            &lt;a href="#"&gt;Contact&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;section class="product"&gt;
+            &lt;div class="product-image"&gt;
+                [Product Image]
+            &lt;/div&gt;
+            &lt;div class="product-details"&gt;
+                &lt;h2&gt;Ultra Noise-Canceling Headphones&lt;/h2&gt;
+                &lt;p class="price"&gt;$299.99&lt;/p&gt;
+                &lt;p class="description"&gt;
+                    Experience incredible sound quality with our premium noise-canceling headphones. 
+                    Made with eco-friendly materials and delivering up to 40 hours of battery life, 
+                    these headphones offer the perfect blend of sustainability and high performance.
+                &lt;/p&gt;
+                &lt;ul class="features"&gt;
+                    &lt;li&gt;Industry-leading noise cancellation&lt;/li&gt;
+                    &lt;li&gt;Sustainable materials&lt;/li&gt;
+                    &lt;li&gt;40-hour battery life&lt;/li&gt;
+                    &lt;li&gt;Bluetooth 5.2 connectivity&lt;/li&gt;
+                    &lt;li&gt;Voice assistant compatible&lt;/li&gt;
+                &lt;/ul&gt;
+                &lt;button&gt;Add to Cart&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2025 EcoTech Audio. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>Example Solution</h2>
+    <p>
+      Here's a partial solution to help you get started with implementing social
+      media cards:
+    </p>
+
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Ultra Noise-Canceling Headphones | EcoTech Audio&lt;/title&gt;
+    
+    &lt;!-- Open Graph Metadata for Facebook, LinkedIn, etc. --&gt;
+    &lt;meta property="og:title" content="Eco-Friendly Premium Noise-Canceling Headphones" /&gt;
+    &lt;meta property="og:description" content="Experience 40 hours of immersive, crystal-clear audio with our sustainable headphones made from eco-friendly materials. Industry-leading noise cancellation." /&gt;
+    &lt;meta property="og:image" content="https://example.com/images/headphones-social.jpg" /&gt;
+    &lt;meta property="og:url" content="https://example.com/products/noise-canceling-headphones" /&gt;
+    &lt;meta property="og:type" content="product" /&gt;
+    &lt;meta property="og:site_name" content="EcoTech Audio" /&gt;
+    
+    &lt;!-- Twitter Card Metadata --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image" /&gt;
+    &lt;meta name="twitter:site" content="@ecotechaudio" /&gt;
+    &lt;!-- Add the remaining Twitter Card metadata here --&gt;
+
+    &lt;!-- Continue with the rest of the implementation --&gt;</code></pre>
+
+    <h2>Preview Example</h2>
+    <p>
+      When implemented correctly, your social media cards might look something
+      like this:
+    </p>
+
+    <div class="preview-facebook">
+      <div class="preview-image">[ Product Image: 1200x630px ]</div>
+      <div class="preview-content">
+        <div class="preview-title">
+          Eco-Friendly Premium Noise-Canceling Headphones
+        </div>
+        <div class="preview-description">
+          Experience 40 hours of immersive, crystal-clear audio with our
+          sustainable headphones made from eco-friendly materials.
+        </div>
+        <div class="preview-domain">example.com</div>
+      </div>
+    </div>
+
+    <h2>Submission</h2>
+    <p>
+      Save your completed file and test it using the Facebook Sharing Debugger
+      and Twitter Card Validator to ensure your metadata is correctly formatted.
+    </p>
+  </body>
+</html>
