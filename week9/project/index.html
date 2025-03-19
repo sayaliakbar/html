@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="dashboard-header">
+      <h1>Interactive Dashboard</h1>
+      <button id="settings-toggle" aria-label="Open Settings">
+        <svg class="icon">
+          <use xlink:href="assets/icons.svg#settings"></use>
+        </svg>
+      </button>
+    </header>
+
+    <main class="dashboard-container">
+      <!-- Chart Widget -->
+      <section class="widget" id="chart-widget">
+        <header class="widget-header">
+          <h2>Sales Analytics</h2>
+          <div class="widget-controls">
+            <button
+              class="chart-type-btn active"
+              data-type="bar"
+              aria-label="Bar Chart"
+            >
+              <svg class="icon">
+                <use xlink:href="assets/icons.svg#bar-chart"></use>
+              </svg>
+            </button>
+            <button
+              class="chart-type-btn"
+              data-type="line"
+              aria-label="Line Chart"
+            >
+              <svg class="icon">
+                <use xlink:href="assets/icons.svg#line-chart"></use>
+              </svg>
+            </button>
+            <button
+              class="chart-type-btn"
+              data-type="pie"
+              aria-label="Pie Chart"
+            >
+              <svg class="icon">
+                <use xlink:href="assets/icons.svg#pie-chart"></use>
+              </svg>
+            </button>
+          </div>
+        </header>
+        <div class="widget-body">
+          <canvas id="sales-chart" width="400" height="300"></canvas>
+        </div>
+      </section>
+
+      <!-- Weather Widget -->
+      <section class="widget" id="weather-widget">
+        <header class="widget-header">
+          <h2>Weather</h2>
+          <button id="refresh-weather" aria-label="Refresh Weather">
+            <svg class="icon">
+              <use xlink:href="assets/icons.svg#refresh"></use>
+            </svg>
+          </button>
+        </header>
+        <div class="widget-body">
+          <div id="weather-content">
+            <p>Click to get your local weather</p>
+            <button id="get-weather">
+              <svg class="icon">
+                <use xlink:href="assets/icons.svg#location"></use>
+              </svg>
+              Get Weather
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Widget -->
+      <section class="widget" id="stats-widget">
+        <header class="widget-header">
+          <h2>Statistics</h2>
+        </header>
+        <div class="widget-body">
+          <div class="stats-container">
+            <div class="stat-item">
+              <h3>Visitors</h3>
+              <p class="stat-value">1,234</p>
+            </div>
+            <div class="stat-item">
+              <h3>Conversion</h3>
+              <p class="stat-value">12.3%</p>
+            </div>
+            <div class="stat-item">
+              <h3>Revenue</h3>
+              <p class="stat-value">$9,876</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Settings Panel (Hidden by default) -->
+    <aside class="settings-panel" id="settings-panel">
+      <header class="settings-header">
+        <h2>Dashboard Settings</h2>
+        <button id="close-settings" aria-label="Close Settings">×</button>
+      </header>
+      <div class="settings-body">
+        <div class="setting-group">
+          <h3>Theme</h3>
+          <select id="theme-selector">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="colorful">Colorful</option>
+          </select>
+        </div>
+        <div class="setting-group">
+          <h3>Chart Animation Speed</h3>
+          <input
+            type="range"
+            id="animation-speed"
+            min="0"
+            max="2000"
+            step="100"
+            value="1000"
+          />
+        </div>
+        <div class="setting-group">
+          <h3>Show Statistics</h3>
+          <label class="toggle-switch">
+            <input type="checkbox" id="show-stats" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-group">
+          <button id="reset-settings">Reset to Defaults</button>
+        </div>
+      </div>
+    </aside>
+
+    <script src="js/charts.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
