@@ -3,145 +3,149 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exercise 1: Creating Different Types of Links</title>
+    <title>Exercise 1: Links and Anchors</title>
     <style>
       body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
-        max-width: 800px;
-        margin: 0 auto;
         padding: 20px;
       }
       .task {
-        background-color: #f0f0f0;
+        background-color: #f8f9fa;
         padding: 15px;
-        border-left: 4px solid #333;
         margin-bottom: 20px;
+        border-left: 4px solid #007bff;
+      }
+      h1,
+      h2 {
+        color: #333;
       }
       .hint {
-        background-color: #e6f7ff;
-        padding: 10px;
-        border-left: 4px solid #1890ff;
-        margin-top: 10px;
-      }
-      section {
-        margin-bottom: 30px;
+        color: #6c757d;
+        font-style: italic;
       }
     </style>
   </head>
   <body>
-    <h1>Exercise 1: Creating Different Types of Links</h1>
+    <h1>Exercise 1: Links and Anchors</h1>
 
     <div class="task">
-      <h2>Task:</h2>
+      <h2>Task 1: Absolute Links</h2>
       <p>
-        Create a new HTML file called "links.html" in the exercises folder and
-        implement the following types of links:
+        Create links to three different external websites. Make at least one of
+        them open in a new tab.
       </p>
-      <ol>
-        <li>An absolute link to a website you find useful for HTML learning</li>
-        <li>A relative link to the Week 1 lesson.html file</li>
-        <li>
-          An email link that opens an email to a fictional address:
-          "contact@example.com"
-        </li>
-        <li>A phone link to a fictional phone number</li>
-        <li>
-          Create at least 3 sections with IDs in your document and add bookmark
-          links to navigate between them
-        </li>
-        <li>
-          Add a link that opens in a new tab with the proper security attributes
-        </li>
-      </ol>
+      <!-- Add your code here -->
 
-      <div class="hint">
-        <h3>Hint:</h3>
-        <p>
-          Remember to use the appropriate attributes for each link type. For
-          links that open in a new tab, include
-          <code>target="_blank" rel="noopener noreferrer"</code> for security.
-        </p>
+      <p class="hint">Hint: Use target="_blank" to open a link in a new tab.</p>
+    </div>
+
+    <div class="task">
+      <h2>Task 2: Relative Links</h2>
+      <p>
+        Create a file called "about.html" in this same folder, then create a
+        link to it below.
+      </p>
+      <!-- Add your code here -->
+
+      <p>
+        Now, imagine you have a file in a subfolder called
+        "products/catalog.html" and create a link to it.
+      </p>
+      <!-- Add your code here -->
+
+      <p class="hint">
+        Hint: For subfolder links, include the folder path in your href.
+      </p>
+    </div>
+
+    <div class="task">
+      <h2>Task 3: Email and Phone Links</h2>
+      <p>
+        Create a link that opens the user's email client to send an email to
+        "contact@example.com" with the subject "Website Inquiry".
+      </p>
+      <!-- Add your code here -->
+
+      <p>
+        Create a link that allows mobile users to call the number +1234567890.
+      </p>
+      <!-- Add your code here -->
+
+      <p class="hint">
+        Hint: Use mailto: for email links and tel: for phone links.
+      </p>
+    </div>
+
+    <div class="task">
+      <h2>Task 4: Page Anchors</h2>
+      <p>
+        Create a table of contents at the top of the page with links to the
+        following sections:
+      </p>
+      <ul>
+        <li>Introduction</li>
+        <li>Chapter 1</li>
+        <li>Chapter 2</li>
+        <li>Summary</li>
+      </ul>
+      <!-- Add your table of contents here -->
+
+      <p class="hint">
+        Hint: Create sections with IDs below, then link to them from here.
+      </p>
+
+      <!-- Create the sections here, each with a unique ID -->
+
+      <!-- Introduction section -->
+      <div style="margin-top: 300px">
+        <!-- Add ID here -->
+        <h2>Introduction</h2>
+        <p>This is the introduction section of our document.</p>
+      </div>
+
+      <!-- Chapter 1 section -->
+      <div style="margin-top: 300px">
+        <!-- Add ID here -->
+        <h2>Chapter 1</h2>
+        <p>This is the content for chapter 1.</p>
+      </div>
+
+      <!-- Chapter 2 section -->
+      <div style="margin-top: 300px">
+        <!-- Add ID here -->
+        <h2>Chapter 2</h2>
+        <p>This is the content for chapter 2.</p>
+      </div>
+
+      <!-- Summary section -->
+      <div style="margin-top: 300px">
+        <!-- Add ID here -->
+        <h2>Summary</h2>
+        <p>This is the summary of our document.</p>
+
+        <!-- Add a "Back to Top" link here -->
       </div>
     </div>
 
-    <h2>Expected Result</h2>
-    <p>
-      Your page should include various types of working links that demonstrate
-      the different use cases for anchors in HTML.
-    </p>
+    <div class="task">
+      <h2>Task 5: Advanced Link Attributes</h2>
+      <p>
+        Create a link to download a file called "report.pdf". Add a title
+        attribute that shows a tooltip when hovering over the link.
+      </p>
+      <!-- Add your code here -->
 
-    <h2>Solution Template</h2>
-    <p>If you're stuck, here's a template to start with:</p>
-    <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;HTML Link Types&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Different Types of HTML Links&lt;/h1&gt;
-    
-    &lt;!-- Absolute link --&gt;
-    &lt;p&gt;
-        Learn more about HTML at 
-        &lt;!-- Add your absolute link here --&gt;
-    &lt;/p&gt;
-    
-    &lt;!-- Relative link --&gt;
-    &lt;p&gt;
-        Review the 
-        &lt;!-- Add your relative link here --&gt;
-    &lt;/p&gt;
-    
-    &lt;!-- Email link --&gt;
-    &lt;p&gt;
-        &lt;!-- Add your email link here --&gt;
-    &lt;/p&gt;
-    
-    &lt;!-- Phone link --&gt;
-    &lt;p&gt;
-        &lt;!-- Add your phone link here --&gt;
-    &lt;/p&gt;
-    
-    &lt;!-- Navigation menu for bookmarks --&gt;
-    &lt;nav&gt;
-        &lt;ul&gt;
-            &lt;li&gt;&lt;!-- Add your first bookmark link here --&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;!-- Add your second bookmark link here --&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;!-- Add your third bookmark link here --&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/nav&gt;
-    
-    &lt;!-- Section 1 with ID --&gt;
-    &lt;section id="section1"&gt;
-        &lt;h2&gt;Section 1&lt;/h2&gt;
-        &lt;p&gt;This is the first section content.&lt;/p&gt;
-    &lt;/section&gt;
-    
-    &lt;!-- Add more sections with IDs --&gt;
-    
-    &lt;!-- Link that opens in a new tab --&gt;
-    &lt;p&gt;
-        &lt;!-- Add your link with target="_blank" here --&gt;
-    &lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+      <p>
+        Create a link to a partner website (use any URL) that uses the
+        rel="nofollow" attribute.
+      </p>
+      <!-- Add your code here -->
 
-    <h2>Check Your Work</h2>
-    <p>After completing the exercise:</p>
-    <ol>
-      <li>Open your HTML file in a web browser</li>
-      <li>Test all links to ensure they work as expected</li>
-      <li>Verify that bookmark navigation works properly</li>
-      <li>Check that the new tab link opens correctly</li>
-      <li>
-        Validate your HTML using the
-        <a href="https://validator.w3.org/#validate_by_upload"
-          >W3C Markup Validation Service</a
-        >
-      </li>
-    </ol>
+      <p class="hint">
+        Hint: The download attribute tells browsers to download the resource
+        instead of navigating to it.
+      </p>
+    </div>
   </body>
 </html>
