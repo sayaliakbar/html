@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 5: HTML5 Semantic Elements</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+      .note {
+        background-color: #ffffd9;
+        border-left: 4px solid #e7dc8c;
+        padding: 10px;
+        margin: 15px 0;
+      }
+      .example {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 15px 0;
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 5: HTML5 Semantic Elements</h1>
+
+    <section id="introduction">
+      <h2>Introduction to Semantic Elements</h2>
+      <p>
+        HTML5 introduced several semantic elements that provide meaning to the
+        structure of a web page. These elements help improve accessibility, SEO,
+        and code readability.
+      </p>
+      <p>
+        Semantic elements clearly describe their meaning in a human- and
+        machine-readable way. Examples include <code>&lt;header&gt;</code>,
+        <code>&lt;footer&gt;</code>, <code>&lt;article&gt;</code>, and
+        <code>&lt;section&gt;</code>.
+      </p>
+    </section>
+
+    <section id="container-semantics">
+      <h2>Container Semantics</h2>
+      <h3>Header, Footer, Nav, and Main Elements</h3>
+      <p>
+        The <code>&lt;header&gt;</code> element represents introductory content,
+        typically a group of introductory or navigational aids.
+      </p>
+      <pre><code>&lt;header&gt;
+    &lt;h1&gt;Website Title&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+
+      <p>
+        The <code>&lt;footer&gt;</code> element represents a footer for its
+        nearest sectioning content or sectioning root element.
+      </p>
+      <pre><code>&lt;footer&gt;
+    &lt;p&gt;© 2025 My Website. All rights reserved.&lt;/p&gt;
+    &lt;p&gt;Contact: &lt;a href="mailto:info@example.com"&gt;info@example.com&lt;/a&gt;&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+
+      <p>
+        The <code>&lt;nav&gt;</code> element represents a section of a page that
+        links to other pages or to parts within the page.
+      </p>
+      <pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+
+      <p>
+        The <code>&lt;main&gt;</code> element represents the dominant content of
+        the <code>&lt;body&gt;</code> of a document. There should be only one
+        <code>&lt;main&gt;</code> element per document.
+      </p>
+      <pre><code>&lt;main&gt;
+    &lt;h2&gt;Main Content&lt;/h2&gt;
+    &lt;p&gt;This is the main content area.&lt;/p&gt;
+&lt;/main&gt;</code></pre>
+    </section>
+
+    <section id="content-semantics">
+      <h2>Content Semantics</h2>
+      <h3>Article, Section, and Aside Elements</h3>
+      <p>
+        The <code>&lt;article&gt;</code> element represents a self-contained
+        composition in a document, page, application, or site, which is intended
+        to be independently distributable or reusable.
+      </p>
+      <pre><code>&lt;article&gt;
+    &lt;h2&gt;Blog Post Title&lt;/h2&gt;
+    &lt;p&gt;Published on &lt;time datetime="2025-01-15"&gt;January 15, 2025&lt;/time&gt;&lt;/p&gt;
+    &lt;p&gt;Article content...&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+
+      <p>
+        The <code>&lt;section&gt;</code> element represents a standalone section
+        of content that could have its own heading.
+      </p>
+      <pre><code>&lt;section&gt;
+    &lt;h2&gt;Features&lt;/h2&gt;
+    &lt;p&gt;Content about features...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+
+      <p>
+        The <code>&lt;aside&gt;</code> element represents a portion of a
+        document whose content is only indirectly related to the document's main
+        content.
+      </p>
+      <pre><code>&lt;aside&gt;
+    &lt;h3&gt;Related Information&lt;/h3&gt;
+    &lt;p&gt;Sidebar content...&lt;/p&gt;
+&lt;/aside&gt;</code></pre>
+    </section>
+
+    <section id="specialized-semantics">
+      <h2>Specialized Semantic Elements</h2>
+      <h3>Figure, Time, and Address Elements</h3>
+      <p>
+        The <code>&lt;figure&gt;</code> element represents self-contained
+        content, potentially with an optional caption, which is specified using
+        the <code>&lt;figcaption&gt;</code> element.
+      </p>
+      <pre><code>&lt;figure&gt;
+    &lt;img src="image.jpg" alt="Description of the image"&gt;
+    &lt;figcaption&gt;Caption for the image&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+      <p>
+        The <code>&lt;time&gt;</code> element represents a specific period in
+        time.
+      </p>
+      <pre><code>&lt;time datetime="2025-01-15"&gt;January 15, 2025&lt;/time&gt;</code></pre>
+
+      <p>
+        The <code>&lt;address&gt;</code> element supplies contact information
+        for its nearest <code>&lt;article&gt;</code> or
+        <code>&lt;body&gt;</code> element ancestor.
+      </p>
+      <pre><code>&lt;address&gt;
+    &lt;p&gt;Contact us at &lt;a href="mailto:info@example.com"&gt;info@example.com&lt;/a&gt;&lt;/p&gt;
+&lt;/address&gt;</code></pre>
+    </section>
+
+    <section id="practice">
+      <h2>Practice and Resources</h2>
+
+      <p>
+        Complete the exercises in the exercises folder and build the Blog Layout
+        project to practice using semantic HTML elements.
+      </p>
+
+      <h3>Additional Resources</h3>
+      <ul>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines"
+            >MDN: Using HTML sections and outlines</a
+          >
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
+            >MDN: HTML elements reference</a
+          >
+        </li>
+        <li>
+          <a href="https://www.w3.org/WAI/tutorials/page-structure/"
+            >W3C: Page Structure Concepts</a
+          >
+        </li>
+        <li>
+          <a href="https://html.spec.whatwg.org/multipage/semantics.html"
+            >HTML Living Standard: Sections</a
+          >
+        </li>
+        <li>
+          <a href="https://web.dev/learn/html/semantic-html/"
+            >Web.dev: Semantic HTML</a
+          >
+        </li>
+      </ul>
+
+      <div class="note">
+        <p>
+          Remember that while HTML provides structure, CSS provides
+          presentation. Don't worry about how your semantic structure looks
+          initially—focus on getting the meaning right, then style with CSS
+          later.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
