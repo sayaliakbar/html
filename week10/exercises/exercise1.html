@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1: Implementing Basic Drag and Drop</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      .task {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4caf50;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .tip {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      .item {
+        width: 100px;
+        height: 50px;
+        background-color: #3498db;
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        margin: 10px;
+        cursor: move;
+        user-select: none;
+      }
+      .dropzone {
+        width: 300px;
+        height: 150px;
+        border: 2px dashed #ccc;
+        border-radius: 5px;
+        margin: 10px 0;
+        padding: 10px;
+        text-align: center;
+      }
+      .dropzone.active {
+        border-color: #3498db;
+        background-color: rgba(52, 152, 219, 0.1);
+      }
+      .item-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .dragging {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 1: Implementing Basic Drag and Drop</h1>
+
+    <div class="task">
+      <h2>Task 1: Simple Drag and Drop</h2>
+      <p>
+        Complete the code to allow dragging the items from the source container
+        to the drop zone:
+      </p>
+
+      <h3>Source:</h3>
+      <div class="item-container" id="source1">
+        <div class="item" id="item1" draggable="true">Item 1</div>
+        <div class="item" id="item2" draggable="true">Item 2</div>
+        <div class="item" id="item3" draggable="true">Item 3</div>
+      </div>
+
+      <h3>Destination:</h3>
+      <div class="dropzone" id="dropzone1">Drop items here</div>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get references to DOM elements
+const items1 = document.querySelectorAll('#source1 .item');
+const dropzone1 = document.getElementById('dropzone1');
+
+// Add dragstart event listener to each item
+items1.forEach(item => {
+  item.addEventListener('dragstart', event => {
+    // Your code here:
+    // 1. Store the dragged item's ID in dataTransfer
+    // 2. Add a class to show it's being dragged
+  });
+
+  item.addEventListener('dragend', event => {
+    // Your code here:
+    // Remove the dragging class
+  });
+});
+
+// Add the required event listeners to the drop zone
+// Your code here:
+// 1. Handle the dragover event (prevent default behavior)
+// 2. Handle the dragenter event (add active class)
+// 3. Handle the dragleave event (remove active class)
+// 4. Handle the drop event (get the ID and append the element)</code></pre>
+    </div>
+
+    <div class="task">
+      <h2>Task 2: Transferring Data</h2>
+      <p>
+        Create a shopping list where users can drag items to a cart. The items
+        should stay in the product list but create a copy in the cart:
+      </p>
+
+      <h3>Products:</h3>
+      <div class="item-container" id="products">
+        <div class="item" id="product1" draggable="true" data-price="29.99">
+          Headphones
+        </div>
+        <div class="item" id="product2" draggable="true" data-price="49.99">
+          Speaker
+        </div>
+        <div class="item" id="product3" draggable="true" data-price="19.99">
+          Mouse
+        </div>
+      </div>
+
+      <h3>Shopping Cart:</h3>
+      <div class="dropzone" id="cart">Drop products here to add to cart</div>
+      <div id="cart-total">Total: $0.00</div>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get references to DOM elements
+const products = document.querySelectorAll('#products .item');
+const cart = document.getElementById('cart');
+const cartTotal = document.getElementById('cart-total');
+let total = 0;
+
+// Add dragstart event listeners to products
+products.forEach(product => {
+  product.addEventListener('dragstart', event => {
+    // Your code here:
+    // 1. Store the product ID and price in dataTransfer
+    // 2. Set the drag effect to copy (so original stays in place)
+  });
+});
+
+// Add drag events to the shopping cart
+// Your code here:
+// 1. Handle dragover (prevent default)
+// 2. Handle drop:
+//    - Get product data from dataTransfer
+//    - Create a copy of the product
+//    - Add the copy to the cart
+//    - Update the total price</code></pre>
+    </div>
+
+    <div class="task">
+      <h2>Task 3: Reordering Elements</h2>
+      <p>
+        Make the task list below reorderable by implementing drag and drop to
+        change the order of tasks:
+      </p>
+
+      <h3>Task List:</h3>
+      <ul id="task-list">
+        <li class="item" draggable="true" id="task1">
+          Complete HTML assignment
+        </li>
+        <li class="item" draggable="true" id="task2">
+          Study for JavaScript exam
+        </li>
+        <li class="item" draggable="true" id="task3">
+          Prepare project presentation
+        </li>
+        <li class="item" draggable="true" id="task4">
+          Update portfolio website
+        </li>
+      </ul>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get references to DOM elements
+const taskList = document.getElementById('task-list');
+const tasks = document.querySelectorAll('#task-list .item');
+
+// Add dragstart event to all tasks
+tasks.forEach(task => {
+  task.addEventListener('dragstart', event => {
+    // Your code here:
+    // Store the task's ID and mark it as dragging
+  });
+
+  task.addEventListener('dragend', event => {
+    // Your code here:
+    // Remove dragging indicator
+  });
+});
+
+// The challenging part: make each task a drop target too!
+tasks.forEach(task => {
+  // Your code here:
+  // 1. Add dragover event (prevent default)
+  // 2. Add drop event to insert the dragged task before or after the drop target
+  //    depending on where on the element it was dropped
+  //    (hint: use event.offsetY and compare with target height)
+});</code></pre>
+    </div>
+
+    <div class="tip">
+      <h3>Tips:</h3>
+      <ul>
+        <li>
+          Always use <code>event.preventDefault()</code> in the dragover event
+          to allow dropping.
+        </li>
+        <li>
+          Use <code>event.dataTransfer.setData()</code> to pass information
+          during drag operations.
+        </li>
+        <li>
+          Consider adding visual feedback with CSS classes when elements are
+          being dragged or when hovering over drop targets.
+        </li>
+        <li>
+          For reordering tasks, use <code>insertBefore()</code> or
+          <code>appendChild()</code> to manipulate the DOM structure.
+        </li>
+        <li>
+          Remember that dropping an element doesn't automatically move it - you
+          need to manually update the DOM.
+        </li>
+      </ul>
+    </div>
+
+    <p>
+      When you've completed the exercises, test each task thoroughly to ensure
+      smooth drag and drop interactions.
+    </p>
+  </body>
+</html>
