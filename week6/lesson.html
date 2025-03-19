@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 6: Advanced Forms</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+      .note {
+        background-color: #ffffd9;
+        border-left: 4px solid #e7dc8c;
+        padding: 10px;
+        margin: 15px 0;
+      }
+      .warning {
+        background-color: #ffe6e6;
+        border-left: 4px solid #ff4d4d;
+        padding: 10px;
+        margin: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 6: Advanced Forms</h1>
+
+    <section id="html5-input-types">
+      <h2>HTML5 Input Types</h2>
+      <p>
+        HTML5 introduced several new input types that make it easier to collect
+        specific types of data:
+      </p>
+
+      <h3>Date and Time Inputs</h3>
+      <pre><code>&lt;label for="date"&gt;Date:&lt;/label&gt;
+&lt;input type="date" id="date" name="date"&gt;
+
+&lt;label for="time"&gt;Time:&lt;/label&gt;
+&lt;input type="time" id="time" name="time"&gt;
+
+&lt;label for="datetime-local"&gt;Date and Time:&lt;/label&gt;
+&lt;input type="datetime-local" id="datetime-local" name="datetime-local"&gt;</code></pre>
+
+      <h3>Color Input</h3>
+      <pre><code>&lt;label for="color"&gt;Favorite Color:&lt;/label&gt;
+&lt;input type="color" id="color" name="color"&gt;</code></pre>
+
+      <h3>Range Input</h3>
+      <pre><code>&lt;label for="range"&gt;Volume:&lt;/label&gt;
+&lt;input type="range" id="range" name="range" min="0" max="100"&gt;</code></pre>
+
+      <h3>Other Input Types</h3>
+      <pre><code>&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" name="email"&gt;
+
+&lt;label for="url"&gt;Website:&lt;/label&gt;
+&lt;input type="url" id="url" name="url"&gt;
+
+&lt;label for="tel"&gt;Phone Number:&lt;/label&gt;
+&lt;input type="tel" id="tel" name="tel"&gt;
+
+&lt;label for="number"&gt;Quantity:&lt;/label&gt;
+&lt;input type="number" id="number" name="number" min="1" max="10"&gt;</code></pre>
+    </section>
+
+    <section id="form-validation">
+      <h2>Form Validation</h2>
+      <p>
+        HTML5 provides built-in form validation attributes that help ensure
+        users provide the correct data:
+      </p>
+
+      <h3>Required Attribute</h3>
+      <pre><code>&lt;label for="username"&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="username" name="username" required&gt;</code></pre>
+
+      <h3>Pattern Attribute</h3>
+      <pre><code>&lt;label for="zipcode"&gt;Zip Code:&lt;/label&gt;
+&lt;input type="text" id="zipcode" name="zipcode" pattern="[0-9]{5}"&gt;</code></pre>
+
+      <h3>Min and Max Attributes</h3>
+      <pre><code>&lt;label for="age"&gt;Age:&lt;/label&gt;
+&lt;input type="number" id="age" name="age" min="18" max="100"&gt;</code></pre>
+
+      <h3>Step Attribute</h3>
+      <pre><code>&lt;label for="steps"&gt;Steps:&lt;/label&gt;
+&lt;input type="number" id="steps" name="steps" step="10"&gt;</code></pre>
+
+      <h3>Custom Error Messages</h3>
+      <pre><code>&lt;form onsubmit="return validateForm()"&gt;
+    &lt;label for="custom"&gt;Custom Field:&lt;/label&gt;
+    &lt;input type="text" id="custom" name="custom" required&gt;
+    &lt;span id="error-message" style="color: red;"&gt;&lt;/span&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+function validateForm() {
+    var customField = document.getElementById('custom');
+    var errorMessage = document.getElementById('error-message');
+    if (customField.value === '') {
+        errorMessage.textContent = 'This field is required.';
+        return false;
+    }
+    return true;
+}
+&lt;/script&gt;</code></pre>
+    </section>
+
+    <section id="datalist-output">
+      <h2>Datalist and Output Elements</h2>
+
+      <h3>Datalist Element</h3>
+      <p>
+        The datalist element provides autocomplete suggestions for input fields:
+      </p>
+      <pre><code>&lt;label for="browser"&gt;Choose your browser:&lt;/label&gt;
+&lt;input list="browsers" id="browser" name="browser"&gt;
+&lt;datalist id="browsers"&gt;
+    &lt;option value="Chrome"&gt;
+    &lt;option value="Firefox"&gt;
+    &lt;option value="Safari"&gt;
+    &lt;option value="Edge"&gt;
+    &lt;option value="Opera"&gt;
+&lt;/datalist&gt;</code></pre>
+
+      <h3>Output Element</h3>
+      <p>
+        The output element displays the result of a calculation or user action:
+      </p>
+      <pre><code>&lt;form oninput="result.value=parseInt(a.value)+parseInt(b.value)"&gt;
+    &lt;input type="range" id="a" name="a" value="50"&gt; +
+    &lt;input type="number" id="b" name="b" value="50"&gt; =
+    &lt;output name="result" for="a b"&gt;100&lt;/output&gt;
+&lt;/form&gt;</code></pre>
+    </section>
+
+    <section id="form-accessibility">
+      <h2>Form Accessibility</h2>
+      <p>
+        Creating accessible forms ensures that all users, including those with
+        disabilities, can interact with your forms.
+      </p>
+
+      <h3>ARIA Attributes</h3>
+      <pre><code>&lt;label for="username"&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="username" name="username" aria-required="true" aria-describedby="username-help"&gt;
+&lt;p id="username-help"&gt;Username must be at least 5 characters.&lt;/p&gt;</code></pre>
+
+      <h3>Focus Management</h3>
+      <pre><code>&lt;form onsubmit="return handleSubmit()"&gt;
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+function handleSubmit() {
+    var emailField = document.getElementById('email');
+    if (emailField.value === '') {
+        emailField.focus();
+        return false;
+    }
+    return true;
+}
+&lt;/script&gt;</code></pre>
+
+      <h3>Error Handling</h3>
+      <pre><code>&lt;form onsubmit="return validateForm()"&gt;
+    &lt;label for="password"&gt;Password:&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" required&gt;
+    &lt;span id="error-message" style="color: red;"&gt;&lt;/span&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+function validateForm() {
+    var passwordField = document.getElementById('password');
+    var errorMessage = document.getElementById('error-message');
+    if (passwordField.value.length < 8) {
+        errorMessage.textContent = 'Password must be at least 8 characters long.';
+        passwordField.focus();
+        return false;
+    }
+    return true;
+}
+&lt;/script&gt;</code></pre>
+    </section>
+
+    <section id="advanced-form-features">
+      <h2>Advanced Form Features</h2>
+
+      <h3>Autocomplete Attribute</h3>
+
+      <p>
+        The autocomplete attribute helps browsers fill out form fields based on
+        previous entries:
+      </p>
+
+      <pre><code>&lt;!-- Personal information --&gt;
+&lt;input type="text" name="name" autocomplete="name"&gt;
+&lt;input type="email" name="email" autocomplete="email"&gt;
+&lt;input type="tel" name="tel" autocomplete="tel"&gt;
+
+&lt;!-- Address information --&gt;
+&lt;input type="text" name="address" autocomplete="street-address"&gt;
+&lt;input type="text" name="city" autocomplete="address-level2"&gt;
+&lt;input type="text" name="state" autocomplete="address-level1"&gt;
+&lt;input type="text" name="zip" autocomplete="postal-code"&gt;</code></pre>
+
+      <div class="note">
+        <p>
+          Using appropriate autocomplete values improves user experience and
+          accessibility by reducing the amount of typing required.
+        </p>
+      </div>
+
+      <h3>Multiple Attribute</h3>
+
+      <p>
+        The multiple attribute allows users to select multiple files or options:
+      </p>
+
+      <pre><code>&lt;!-- Multiple file selection --&gt;
+&lt;input type="file" multiple&gt;
+
+&lt;!-- Multiple email addresses --&gt;
+&lt;input type="email" multiple&gt;
+
+&lt;!-- Multiple select options --&gt;
+&lt;select multiple&gt;
+    &lt;option value="option1"&gt;Option 1&lt;/option&gt;
+    &lt;option value="option2"&gt;Option 2&lt;/option&gt;
+    &lt;option value="option3"&gt;Option 3&lt;/select&gt;</code></pre>
+
+      <h3>Autofocus Attribute</h3>
+
+      <p>
+        The autofocus attribute automatically focuses a form control when the
+        page loads:
+      </p>
+
+      <pre><code>&lt;input type="text" name="search" autofocus&gt;</code></pre>
+
+      <div class="warning">
+        <p>
+          Use autofocus sparingly as it can interfere with accessibility and
+          user control.
+        </p>
+      </div>
+
+      <h3>Form Association</h3>
+
+      <p>
+        You can associate form controls with a form even if they're not inside
+        the form tag:
+      </p>
+
+      <pre><code>&lt;form id="myForm"&gt;
+    &lt;!-- Form content --&gt;
+&lt;/form&gt;
+
+&lt;!-- Located elsewhere in the document but still part of the form --&gt;
+&lt;input type="text" name="external-field" form="myForm"&gt;</code></pre>
+
+      <h3>Form Enctype</h3>
+
+      <p>
+        The enctype attribute specifies how form data is encoded when submitted:
+      </p>
+
+      <pre><code>&lt;!-- For most forms --&gt;
+&lt;form enctype="application/x-www-form-urlencoded"&gt;
+    &lt;!-- Default enctype --&gt;
+&lt;/form&gt;
+
+&lt;!-- For file uploads --&gt;
+&lt;form enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="upload"&gt;
+&lt;/form&gt;
+
+&lt;!-- For plain text --&gt;
+&lt;form enctype="text/plain"&gt;
+    &lt;!-- Less common --&gt;
+&lt;/form&gt;</code></pre>
+
+      <div class="note">
+        <p>
+          Always use <code>enctype="multipart/form-data"</code> when your form
+          includes file uploads.
+        </p>
+      </div>
+    </section>
+
+    <section id="advanced-techniques">
+      <h2>Advanced Form Techniques</h2>
+
+      <h3>Dynamic Form Controls</h3>
+
+      <p>
+        You can show or hide form controls based on user selections. While this
+        requires JavaScript for true interactivity, you can start with sensible
+        HTML structure:
+      </p>
+
+      <pre><code>&lt;div&gt;
+    &lt;input type="checkbox" id="has-account" name="has-account"&gt;
+    &lt;label for="has-account"&gt;I already have an account&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div id="account-information"&gt;
+    &lt;label for="username"&gt;Username:&lt;/label&gt;
+    &lt;input type="text" id="username" name="username"&gt;
+    
+    &lt;label for="password"&gt;Password:&lt;/label&gt;
+    &lt;input type="password" id="password" name="password"&gt;
+&lt;/div&gt;
+
+&lt;div id="new-user-information"&gt;
+    &lt;!-- New user fields --&gt;
+&lt;/div&gt;</code></pre>
+
+      <h3>Multi-step Forms</h3>
+
+      <p>
+        For long forms, breaking them into multiple steps can improve usability:
+      </p>
+
+      <pre><code>&lt;form id="multi-step-form"&gt;
+    &lt;!-- Step 1: Personal information --&gt;
+    &lt;div class="form-step" id="step-1"&gt;
+        &lt;h2&gt;Step 1: Personal Information&lt;/h2&gt;
+        &lt;!-- Step 1 fields --&gt;
+        &lt;button type="button" id="next-1"&gt;Next&lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Step 2: Account details --&gt;
+    &lt;div class="form-step" id="step-2"&gt;
+        &lt;h2&gt;Step 2: Account Details&lt;/h2&gt;
+        &lt;!-- Step 2 fields --&gt;
+        &lt;button type="button" id="prev-2"&gt;Previous&lt;/button&gt;
+        &lt;button type="button" id="next-2"&gt;Next&lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Step 3: Confirmation --&gt;
+    &lt;div class="form-step" id="step-3"&gt;
+        &lt;h2&gt;Step 3: Confirmation&lt;/h2&gt;
+        &lt;!-- Confirmation fields --&gt;
+        &lt;button type="button" id="prev-3"&gt;Previous&lt;/button&gt;
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+
+      <h3>Custom Form Styling</h3>
+
+      <p>
+        While we're focusing on HTML structure, it's important to understand
+        form elements can be styled with CSS:
+      </p>
+
+      <pre><code>&lt;!-- HTML with class names for styling --&gt;
+&lt;input type="text" class="form-control" name="username"&gt;
+
+&lt;select class="form-select" name="country"&gt;
+    &lt;option value=""&gt;Select country&lt;/option&gt;
+    &lt;!-- Options --&gt;
+&lt;/select&gt;
+
+&lt;button type="submit" class="primary-button"&gt;Submit&lt;/button&gt;</code></pre>
+    </section>
+
+    <section id="best-practices">
+      <h2>Form Design Best Practices</h2>
+
+      <h3>Form Structure Guidelines</h3>
+      <ul>
+        <li>Place labels above form fields for better readability</li>
+        <li>Group related fields with fieldsets and legends</li>
+        <li>Clearly indicate required fields</li>
+        <li>Provide clear instructions for complex inputs</li>
+        <li>Break long forms into logical sections or steps</li>
+        <li>Include progress indicators for multi-step forms</li>
+        <li>Provide helpful error messages near the relevant fields</li>
+        <li>Use appropriate input types for different data</li>
+      </ul>
+
+      <h3>User Experience Considerations</h3>
+      <ul>
+        <li>Minimize the number of form fields to reduce user burden</li>
+        <li>Pre-fill information when it's available (with user consent)</li>
+        <li>Show password requirements before users make errors</li>
+        <li>Enable browser autofill where appropriate</li>
+        <li>Provide confirmation when forms are successfully submitted</li>
+        <li>Support keyboard navigation (proper tabbing order)</li>
+        <li>Ensure mobile-friendly design with appropriate input types</li>
+      </ul>
+
+      <h3>Validation Best Practices</h3>
+      <ul>
+        <li>
+          Validate input as users type or leave a field (when appropriate)
+        </li>
+        <li>Use built-in HTML5 validation attributes where possible</li>
+        <li>Provide clear guidance before errors are made</li>
+        <li>Use color, icons, and text for error states (not just color)</li>
+        <li>
+          Allow flexible input formats where possible (e.g., phone numbers)
+        </li>
+        <li>Don't reset the form or clear all fields on validation errors</li>
+      </ul>
+    </section>
+
+    <section id="practice">
+      <h2>Practice and Resources</h2>
+
+      <p>
+        Complete the exercises in the exercises folder and build the Interactive
+        Form project to practice creating advanced forms.
+      </p>
+
+      <h3>Additional Resources</h3>
+      <ul>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"
+            >MDN: HTML input element</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
+            >MDN: HTML autocomplete attribute</a
+          >
+        </li>
+        <li>
+          <a href="https://www.w3.org/WAI/tutorials/forms/"
+            >W3C: Forms Tutorial</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation"
+            >MDN: Form Validation</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.smashingmagazine.com/2023/02/designing-better-forms/"
+            >Smashing Magazine: Designing Better Forms</a
+          >
+        </li>
+      </ul>
+
+      <div class="note">
+        <p>
+          Remember that while HTML forms provide structure and basic
+          functionality, more complex form interactions typically require
+          JavaScript. However, starting with a solid HTML foundation ensures
+          your forms are accessible and functional even before adding more
+          advanced features.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
