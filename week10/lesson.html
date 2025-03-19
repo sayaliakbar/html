@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 10: Interactive HTML</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2 {
+        color: #2c3e50;
+      }
+      h3 {
+        color: #3498db;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .note {
+        background-color: #ffffcc;
+        border-left: 5px solid #ffeb3b;
+        padding: 10px;
+        margin: 20px 0;
+      }
+      .example {
+        background-color: #e3f2fd;
+        border-left: 5px solid #2196f3;
+        padding: 10px;
+        margin: 20px 0;
+      }
+      .demo-section {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+      .draggable {
+        width: 100px;
+        height: 50px;
+        background-color: #3498db;
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        margin: 10px;
+        cursor: move;
+      }
+      .dropzone {
+        width: 300px;
+        height: 150px;
+        border: 2px dashed #ccc;
+        border-radius: 5px;
+        margin: 10px 0;
+        padding: 10px;
+        text-align: center;
+      }
+      .dropzone.active {
+        border-color: #3498db;
+        background-color: rgba(52, 152, 219, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 10: Interactive HTML</h1>
+
+    <section>
+      <h2>Introduction</h2>
+      <p>
+        Welcome to Week 10! This week, we'll explore advanced interactive
+        features in HTML that enable rich user experiences. You'll learn about
+        the Drag and Drop API for creating intuitive interfaces, Web Components
+        for building reusable UI elements, custom data attributes for storing
+        additional information, and advanced attribute selectors for precise
+        styling control.
+      </p>
+    </section>
+
+    <section>
+      <h2>Drag and Drop API</h2>
+      <p>
+        The HTML5 Drag and Drop API allows you to make elements draggable and
+        define drop targets, creating intuitive user interfaces that mimic
+        desktop interactions.
+      </p>
+
+      <h3>Making Elements Draggable</h3>
+      <p>
+        To make an element draggable, add the <code>draggable</code> attribute
+        and handle the drag events:
+      </p>
+
+      <pre><code>&lt;div draggable="true" id="draggable-item"&gt;Drag me&lt;/div&gt;
+
+&lt;script&gt;
+  const item = document.getElementById('draggable-item');
+  
+  item.addEventListener('dragstart', (event) => {
+    // Store the element's ID to identify what's being dragged
+    event.dataTransfer.setData('text/plain', event.target.id);
+    
+    // Add a class to change appearance during drag
+    event.target.classList.add('dragging');
+  });
+  
+  item.addEventListener('dragend', (event) => {
+    // Remove the class when drag ends
+    event.target.classList.remove('dragging');
+  });
+&lt;/script&gt;</code></pre>
+
+      <h3>Creating Drop Zones</h3>
+      <p>To create an area where dragged items can be dropped:</p>
+
+      <pre><code>&lt;div id="dropzone" class="dropzone"&gt;Drop here&lt;/div&gt;
+
+&lt;script&gt;
+  const dropzone = document.getElementById('dropzone');
+  
+  // Prevent default behavior to allow drops
+  dropzone.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dropzone.classList.add('active');
+  });
+  
+  dropzone.addEventListener('dragleave', () => {
+    dropzone.classList.remove('active');
+  });
+  
+  dropzone.addEventListener('drop', (event) => {
+    event.preventDefault();
+    dropzone.classList.remove('active');
+    
+    // Get the dragged element's ID from dataTransfer
+    const id = event.dataTransfer.getData('text/plain');
+    const draggedElement = document.getElementById(id);
+    
+    // Add the dragged element to the drop zone
+    dropzone.appendChild(draggedElement);
+  });
+&lt;/script&gt;</code></pre>
+
+      <h3>Drag Events Lifecycle</h3>
+      <ol>
+        <li>
+          <code>dragstart</code>: Fired when the user starts dragging an element
+        </li>
+        <li>
+          <code>drag</code>: Fired continuously while the element is being
+          dragged
+        </li>
+        <li>
+          <code>dragenter</code>: Fired when the dragged element enters a valid
+          drop target
+        </li>
+        <li>
+          <code>dragover</code>: Fired continuously when the dragged element is
+          over a drop target
+        </li>
+        <li>
+          <code>dragleave</code>: Fired when the dragged element leaves a valid
+          drop target
+        </li>
+        <li>
+          <code>drop</code>: Fired when the dragged element is dropped on a
+          valid target
+        </li>
+        <li>
+          <code>dragend</code>: Fired when the drag operation ends (by releasing
+          the mouse button or pressing Escape)
+        </li>
+      </ol>
+
+      <div class="demo-section">
+        <h3>Live Demo</h3>
+        <div class="draggable" draggable="true" id="demo-drag-1">Item 1</div>
+        <div class="draggable" draggable="true" id="demo-drag-2">Item 2</div>
+        <div class="dropzone" id="demo-drop">Drop items here</div>
+      </div>
+
+      <div class="note">
+        <p>
+          <strong>Note:</strong> The default behavior for most elements is not
+          to be draggable. Images, links, and selected text are draggable by
+          default in most browsers.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Web Components</h2>
+      <p>
+        Web Components is a suite of different technologies allowing you to
+        create reusable custom elements with encapsulated functionality.
+      </p>
+
+      <h3>Key Technologies</h3>
+      <ul>
+        <li>
+          <strong>Custom Elements</strong>: Define new HTML elements with custom
+          behavior
+        </li>
+        <li>
+          <strong>Shadow DOM</strong>: Encapsulated DOM and styling, separate
+          from the main document DOM
+        </li>
+        <li>
+          <strong>HTML Templates</strong>: Markup templates that aren't rendered
+          until activated
+        </li>
+      </ul>
+
+      <h3>Creating a Custom Element</h3>
+      <pre><code>// Define a new custom element
+class InfoCard extends HTMLElement {
+  constructor() {
+    super(); // Always call super() first in the constructor
+    
+    // Create a shadow root
+    const shadow = this.attachShadow({mode: 'open'});
+    
+    // Create the component structure
+    const wrapper = document.createElement('div');
+    wrapper.setAttribute('class', 'info-card');
+    
+    const title = document.createElement('h3');
+    title.textContent = this.getAttribute('title') || 'Info Card';
+    
+    const content = document.createElement('div');
+    content.setAttribute('class', 'content');
+    content.innerHTML = this.innerHTML;
+    
+    // Style the component
+    const style = document.createElement('style');
+    style.textContent = `
+      .info-card {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 16px;
+        margin: 16px 0;
+      }
+      h3 {
+        margin-top: 0;
+        color: #2c3e50;
+      }
+    `;
+    
+    // Attach elements to the shadow DOM
+    shadow.appendChild(style);
+    shadow.appendChild(wrapper);
+    wrapper.appendChild(title);
+    wrapper.appendChild(content);
+    
+    // Clear the original content since we've moved it to the shadow DOM
+    this.innerHTML = '';
+  }
+}
+
+// Define the new element
+customElements.define('info-card', InfoCard);</code></pre>
+
+      <h3>Using the Custom Element</h3>
+      <pre><code>&lt;info-card title="Important Information"&gt;
+  &lt;p&gt;This is content inside the custom element.&lt;/p&gt;
+  &lt;a href="#"&gt;Learn more&lt;/a&gt;
+&lt;/info-card&gt;</code></pre>
+
+      <h3>Using HTML Templates</h3>
+      <p>
+        Templates provide a more declarative way to define your component's
+        structure:
+      </p>
+
+      <pre><code>&lt;template id="info-card-template"&gt;
+  &lt;style&gt;
+    .info-card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+  &lt;/style&gt;
+  &lt;div class="info-card"&gt;
+    &lt;h3&gt;&lt;slot name="title"&gt;Info Card&lt;/slot&gt;&lt;/h3&gt;
+    &lt;div class="content"&gt;
+      &lt;slot&gt;No content provided&lt;/slot&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+class InfoCard extends HTMLElement {
+  constructor() {
+    super();
+    const shadow = this.attachShadow({mode: 'open'});
+    const template = document.getElementById('info-card-template');
+    const templateContent = template.content;
+    
+    shadow.appendChild(templateContent.cloneNode(true));
+  }
+}
+
+customElements.define('info-card', InfoCard);
+&lt;/script&gt;</code></pre>
+
+      <h3>Using the Template-Based Component</h3>
+      <pre><code>&lt;info-card&gt;
+  &lt;span slot="title"&gt;Important Information&lt;/span&gt;
+  &lt;p&gt;This is content inside the custom element.&lt;/p&gt;
+&lt;/info-card&gt;</code></pre>
+
+      <div class="note">
+        <p>
+          <strong>Note:</strong> Web Components are supported in all modern
+          browsers, but you may need polyfills for older browsers. The Shadow
+          DOM provides style encapsulation, preventing global styles from
+          affecting your component and vice versa.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Custom Data Attributes</h2>
+      <p>
+        Custom data attributes allow you to store extra information on standard
+        HTML elements without using non-standard attributes, extra properties,
+        or DOM node children.
+      </p>
+
+      <h3>Adding Custom Data Attributes</h3>
+      <p>
+        Any attribute that starts with <code>data-</code> is a custom data
+        attribute:
+      </p>
+
+      <pre><code>&lt;div id="user-card" 
+     data-user-id="123" 
+     data-role="admin" 
+     data-last-login="2023-07-15"&gt;
+  John Doe
+&lt;/div&gt;</code></pre>
+
+      <h3>Accessing Custom Data Attributes with JavaScript</h3>
+      <p>
+        You can access these attributes using the <code>dataset</code> property:
+      </p>
+
+      <pre><code>const userCard = document.getElementById('user-card');
+
+// Reading data attributes
+console.log(userCard.dataset.userId);       // "123"
+console.log(userCard.dataset.role);         // "admin"
+console.log(userCard.dataset.lastLogin);    // "2023-07-15"
+
+// Setting data attributes
+userCard.dataset.status = "active";         // Adds data-status="active"
+userCard.dataset.lastLogin = "2023-07-16";  // Updates existing attribute</code></pre>
+
+      <h3>Using Custom Data Attributes with CSS</h3>
+      <p>You can also select elements based on their data attributes:</p>
+
+      <pre><code>/* Select elements with specific data attribute */
+[data-role="admin"] {
+  background-color: #ffebee;
+}
+
+/* Select elements with data attribute containing specific value */
+[data-status*="active"] {
+  border-left: 3px solid green;
+}
+
+/* Select elements with data attribute starting with specific value */
+[data-user-id^="1"] {
+  font-weight: bold;
+}</code></pre>
+
+      <h3>Best Practices</h3>
+      <ul>
+        <li>
+          Use data attributes for data that should be associated with an element
+          but doesn't qualify as content
+        </li>
+        <li>
+          Keep data attribute values simple—they're always converted to strings
+        </li>
+        <li>Prefer JavaScript properties for complex data structures</li>
+        <li>
+          Remember that data attributes are visible in the HTML, so don't use
+          them for sensitive data
+        </li>
+        <li>
+          Use camelCase in JavaScript (dataset.userId) for kebab-case attributes
+          (data-user-id)
+        </li>
+      </ul>
+
+      <div class="example">
+        <h4>Example: Interactive Product List</h4>
+        <pre><code>&lt;ul id="product-list"&gt;
+  &lt;li data-product-id="1001" data-price="29.99" data-category="electronics"&gt;Wireless Headphones&lt;/li&gt;
+  &lt;li data-product-id="1002" data-price="49.99" data-category="electronics"&gt;Bluetooth Speaker&lt;/li&gt;
+  &lt;li data-product-id="2001" data-price="19.99" data-category="books"&gt;JavaScript Guide&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script&gt;
+  const productList = document.getElementById('product-list');
+  
+  productList.addEventListener('click', (event) => {
+    if (event.target.tagName === 'LI') {
+      const product = event.target;
+      const id = product.dataset.productId;
+      const price = parseFloat(product.dataset.price);
+      const category = product.dataset.category;
+      
+      console.log(`Selected product: ID ${id}, Price $${price}, Category: ${category}`);
+      
+      // Add to cart, show details, etc.
+    }
+  });
+&lt;/script&gt;</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Advanced Attribute Selectors</h2>
+      <p>
+        CSS attribute selectors provide powerful ways to select elements based
+        on their attributes and attribute values.
+      </p>
+
+      <h3>Basic Attribute Selectors</h3>
+      <pre><code>/* Select all elements with the specified attribute */
+[attribute] {
+  /* styles */
+}
+
+/* Select elements with attribute having exact value */
+[attribute="value"] {
+  /* styles */
+}
+
+/* Select elements with attribute containing specified value as part of whitespace-separated list */
+[attribute~="value"] {
+  /* styles */
+}</code></pre>
+
+      <h3>String-Matching Attribute Selectors</h3>
+      <pre><code>/* Select elements with attribute beginning with specified value */
+[attribute^="value"] {
+  /* styles */
+}
+
+/* Select elements with attribute ending with specified value */
+[attribute$="value"] {
+  /* styles */
+}
+
+/* Select elements with attribute containing specified value anywhere */
+[attribute*="value"] {
+  /* styles */
+}
+
+/* Select elements with attribute equal to value or beginning with value followed by hyphen */
+[attribute|="value"] {
+  /* styles */
+}</code></pre>
+
+      <h3>Practical Examples</h3>
+
+      <div class="example">
+        <h4>Styling Links Based on URL Type</h4>
+        <pre><code>/* External links */
+a[href^="http"] {
+  padding-right: 20px;
+  background: url('external-link-icon.png') no-repeat right center;
+}
+
+/* Email links */
+a[href^="mailto"] {
+  padding-right: 20px;
+  background: url('email-icon.png') no-repeat right center;
+}
+
+/* PDF document links */
+a[href$=".pdf"] {
+  padding-right: 20px;
+  background: url('pdf-icon.png') no-repeat right center;
+}</code></pre>
+      </div>
+
+      <div class="example">
+        <h4>Form Styling</h4>
+        <pre><code>/* Required fields */
+input[required] {
+  border-left: 3px solid red;
+}
+
+/* Read-only fields */
+input[readonly] {
+  background-color: #f9f9f9;
+}
+
+/* Specific input types */
+input[type="email"],
+input[type="url"] {
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding-right: 25px;
+}
+
+input[type="email"] {
+  background-image: url('email-icon.png');
+}
+
+input[type="url"] {
+  background-image: url('url-icon.png');
+}</code></pre>
+      </div>
+
+      <div class="example">
+        <h4>Custom Data Attribute Selectors</h4>
+        <pre><code>/* Users by role */
+[data-role="admin"] {
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+[data-role="editor"] {
+  background-color: rgba(0, 0, 255, 0.05);
+}
+
+/* Products by price range */
+[data-price^="1"] {  /* Products starting with 1 (e.g. $1-$19.99) */
+  color: green;
+}
+
+/* Items by status */
+[data-status="in-stock"] {
+  color: green;
+}
+
+[data-status="out-of-stock"] {
+  color: red;
+  text-decoration: line-through;
+}
+
+/* Multiple conditions */
+[data-category="electronics"][data-featured="true"] {
+  font-weight: bold;
+  border-left: 2px solid gold;
+}</code></pre>
+      </div>
+
+      <div class="note">
+        <p>
+          <strong>Note:</strong> Attribute selectors are case-sensitive by
+          default. To make them case-insensitive, add <code>i</code> after the
+          closing bracket: <code>[attribute="value" i]</code>. This is useful
+          for matching language codes, file extensions, etc.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Combining These Technologies</h2>
+      <p>
+        You can create powerful interactive experiences by combining these
+        features:
+      </p>
+
+      <ol>
+        <li>
+          <strong>Build a Component Library</strong>: Create reusable web
+          components that encapsulate common UI patterns
+        </li>
+        <li>
+          <strong>Add Interactivity</strong>: Implement drag and drop
+          functionality within and between components
+        </li>
+        <li>
+          <strong>Manage State with Data Attributes</strong>: Store UI state in
+          data attributes for easy access and styling
+        </li>
+        <li>
+          <strong>Style with Advanced Selectors</strong>: Use attribute
+          selectors for granular styling based on state or properties
+        </li>
+      </ol>
+
+      <div class="example">
+        <h4>Example: Interactive Task Board</h4>
+        <p>
+          A common use case combining all these technologies is a Kanban-style
+          task board:
+        </p>
+        <ul>
+          <li>
+            Custom task-card web component with encapsulated styling and
+            behavior
+          </li>
+          <li>Drag and drop API to move tasks between status columns</li>
+          <li>
+            Custom data attributes to store task state, priority, and metadata
+          </li>
+          <li>
+            Advanced selectors to style tasks based on their attributes
+            (priority, due date, etc.)
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Remember to complete this week's exercises and project to reinforce your
+        understanding of these interactive HTML features.
+      </p>
+    </footer>
+
+    <script>
+      // Demo for drag and drop functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        const draggables = document.querySelectorAll(".draggable");
+        const dropzone = document.getElementById("demo-drop");
+
+        draggables.forEach((draggable) => {
+          draggable.addEventListener("dragstart", (event) => {
+            event.dataTransfer.setData("text/plain", event.target.id);
+            setTimeout(() => {
+              event.target.classList.add("dragging");
+            }, 0);
+          });
+
+          draggable.addEventListener("dragend", (event) => {
+            event.target.classList.remove("dragging");
+          });
+        });
+
+        dropzone.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          dropzone.classList.add("active");
+        });
+
+        dropzone.addEventListener("dragleave", () => {
+          dropzone.classList.remove("active");
+        });
+
+        dropzone.addEventListener("drop", (event) => {
+          event.preventDefault();
+          dropzone.classList.remove("active");
+
+          const id = event.dataTransfer.getData("text/plain");
+          const draggedElement = document.getElementById(id);
+
+          dropzone.appendChild(draggedElement);
+        });
+      });
+    </script>
+  </body>
+</html>
