@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Additional Form Elements Exercise</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+      }
+      select {
+        width: 100%;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Working with Additional Form Elements</h1>
+
+    <form action="#" method="post">
+      <!-- Exercise 1: Create a textarea for comments -->
+      <div class="form-group">
+        <h2>Exercise 1: Textarea Element</h2>
+        <p>Create a properly labeled textarea for collecting user comments:</p>
+        <!-- Your code here -->
+      </div>
+
+      <!-- Exercise 2: Create a select dropdown -->
+      <div class="form-group">
+        <h2>Exercise 2: Select Menus</h2>
+        <p>
+          Create a select menu for choosing a country with at least 5 options:
+        </p>
+        <!-- Your code here -->
+      </div>
+
+      <!-- Exercise 3: Create a select with option groups -->
+      <div class="form-group">
+        <h2>Exercise 3: Option Groups</h2>
+        <p>
+          Create a select menu for car models, organized by manufacturer using
+          optgroup:
+        </p>
+        <!-- Your code here -->
+      </div>
+
+      <!-- Exercise 4: Form method and action -->
+      <div class="form-group">
+        <h2>Exercise 4: Form Attributes</h2>
+        <p>Explain what the form's method and action attributes do:</p>
+        <!-- Your explanation here -->
+      </div>
+
+      <button type="submit">Submit Form</button>
+    </form>
+
+    <h2>Reference Solution</h2>
+    <details>
+      <summary>Click to see the solution</summary>
+      <pre><code>
+&lt;!-- Exercise 1 Solution --&gt;
+&lt;div class="form-group"&gt;
+    &lt;label for="comments"&gt;Comments:&lt;/label&gt;
+    &lt;textarea id="comments" name="comments" placeholder="Enter your comments here..."&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;!-- Exercise 2 Solution --&gt;
+&lt;div class="form-group"&gt;
+    &lt;label for="country"&gt;Select Country:&lt;/label&gt;
+    &lt;select id="country" name="country"&gt;
+        &lt;option value=""&gt;-- Select a country --&lt;/option&gt;
+        &lt;option value="us"&gt;United States&lt;/option&gt;
+        &lt;option value="ca"&gt;Canada&lt;/option&gt;
+        &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+        &lt;option value="au"&gt;Australia&lt;/option&gt;
+        &lt;option value="jp"&gt;Japan&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- Exercise 3 Solution --&gt;
+&lt;div class="form-group"&gt;
+    &lt;label for="car-model"&gt;Select Car Model:&lt;/label&gt;
+    &lt;select id="car-model" name="car-model"&gt;
+        &lt;option value=""&gt;-- Select a car model --&lt;/option&gt;
+        &lt;optgroup label="Toyota"&gt;
+            &lt;option value="camry"&gt;Camry&lt;/option&gt;
+            &lt;option value="corolla"&gt;Corolla&lt;/option&gt;
+            &lt;option value="rav4"&gt;RAV4&lt;/option&gt;
+        &lt;/optgroup&gt;
+        &lt;optgroup label="Honda"&gt;
+            &lt;option value="civic"&gt;Civic&lt;/option&gt;
+            &lt;option value="accord"&gt;Accord&lt;/option&gt;
+            &lt;option value="crv"&gt;CR-V&lt;/option&gt;
+        &lt;/optgroup&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- Exercise 4 Solution --&gt;
+&lt;div class="form-group"&gt;
+    &lt;p&gt;The &lt;code&gt;method&lt;/code&gt; attribute specifies how form data should be sent to the server:
+       &lt;ul&gt;
+           &lt;li&gt;&lt;strong&gt;GET&lt;/strong&gt;: Data is appended to the URL as query parameters (visible in address bar)&lt;/li&gt;
+           &lt;li&gt;&lt;strong&gt;POST&lt;/strong&gt;: Data is sent in the HTTP request body (not visible in address bar)&lt;/li&gt;
+       &lt;/ul&gt;
+    &lt;/p&gt;
+    &lt;p&gt;The &lt;code&gt;action&lt;/code&gt; attribute specifies where the form data should be sent when submitted (URL).&lt;/p&gt;
+&lt;/div&gt;
+        </code></pre>
+    </details>
+  </body>
+</html>
