@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3: Adding Structured Data</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .instructions {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .task {
+        background-color: #e8eaf6;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      pre {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .example {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+      .tabs {
+        display: flex;
+        margin-bottom: 0;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab {
+        padding: 10px 15px;
+        cursor: pointer;
+        background-color: #f1f1f1;
+        border: 1px solid #ddd;
+        border-bottom: none;
+        border-radius: 5px 5px 0 0;
+        margin-right: 5px;
+      }
+      .tab.active {
+        background-color: white;
+        border-bottom: 1px solid white;
+        margin-bottom: -1px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 3: Adding Structured Data</h1>
+
+    <div class="instructions">
+      <h2>Instructions</h2>
+      <p>
+        In this exercise, you'll practice implementing structured data using
+        both Microdata and JSON-LD formats to enhance how search engines
+        understand and display your content.
+      </p>
+      <p>
+        You'll work with a recipe page and add appropriate structured data to
+        make it eligible for rich results in search engines.
+      </p>
+    </div>
+
+    <div class="task">
+      <h2>Tasks</h2>
+      <ol>
+        <li>Create a new HTML file named "structured-data.html"</li>
+        <li>Add the basic HTML structure with standard metadata</li>
+        <li>
+          Implement structured data for a recipe using both methods:
+          <ul>
+            <li>First, implement using Microdata directly in your HTML</li>
+            <li>Then, add the equivalent JSON-LD version in a script tag</li>
+          </ul>
+        </li>
+        <li>
+          Include the following properties in your structured data:
+          <ul>
+            <li>Recipe name</li>
+            <li>Author</li>
+            <li>Image</li>
+            <li>Description</li>
+            <li>Preparation time and cooking time</li>
+            <li>Recipe yield</li>
+            <li>Ingredients (at least 5)</li>
+            <li>Instructions (at least 3 steps)</li>
+            <li>Nutrition information</li>
+          </ul>
+        </li>
+        <li>Style your recipe page to look like a typical recipe blog post</li>
+      </ol>
+    </div>
+
+    <h2>Starting Template</h2>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Vegetable Stir Fry Recipe | Healthy Meals&lt;/title&gt;
+    &lt;meta name="description" content="A quick and healthy vegetable stir fry recipe ready in just 20 minutes. Perfect for busy weeknights!"&gt;
+    
+    &lt;!-- Add your structured data here --&gt;
+    
+    &lt;style&gt;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .recipe-meta {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .recipe-meta div {
+            text-align: center;
+        }
+        .recipe-image {
+            width: 100%;
+            height: 400px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .ingredients, .instructions {
+            margin-bottom: 30px;
+        }
+        .nutrition {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Vegetable Stir Fry&lt;/h1&gt;
+        &lt;p&gt;By Chef Maria Johnson&lt;/p&gt;
+    &lt;/header&gt;
+    
+    &lt;div class="recipe-image"&gt;
+        [Recipe Image]
+    &lt;/div&gt;
+    
+    &lt;p class="description"&gt;
+        This quick and flavorful vegetable stir fry is the perfect healthy meal when you're short on time.
+        Loaded with colorful vegetables and a savory sauce, it's both nutritious and delicious.
+    &lt;/p&gt;
+    
+    &lt;div class="recipe-meta"&gt;
+        &lt;div&gt;
+            &lt;strong&gt;Prep Time&lt;/strong&gt;
+            &lt;p&gt;10 minutes&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;strong&gt;Cook Time&lt;/strong&gt;
+            &lt;p&gt;10 minutes&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;strong&gt;Total Time&lt;/strong&gt;
+            &lt;p&gt;20 minutes&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;strong&gt;Servings&lt;/strong&gt;
+            &lt;p&gt;4 portions&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;section class="ingredients"&gt;
+        &lt;h2&gt;Ingredients&lt;/h2&gt;
+        &lt;ul&gt;
+            &lt;li&gt;2 tablespoons olive oil&lt;/li&gt;
+            &lt;li&gt;1 red bell pepper, sliced&lt;/li&gt;
+            &lt;li&gt;1 yellow bell pepper, sliced&lt;/li&gt;
+            &lt;li&gt;2 carrots, julienned&lt;/li&gt;
+            &lt;li&gt;1 cup broccoli florets&lt;/li&gt;
+            &lt;li&gt;1 cup sugar snap peas&lt;/li&gt;
+            &lt;li&gt;2 cloves garlic, minced&lt;/li&gt;
+            &lt;li&gt;1 tablespoon ginger, grated&lt;/li&gt;
+            &lt;li&gt;3 tablespoons soy sauce&lt;/li&gt;
+            &lt;li&gt;1 tablespoon sesame oil&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/section&gt;
+    
+    &lt;section class="instructions"&gt;
+        &lt;h2&gt;Instructions&lt;/h2&gt;
+        &lt;ol&gt;
+            &lt;li&gt;Heat olive oil in a large wok or skillet over medium-high heat.&lt;/li&gt;
+            &lt;li&gt;Add garlic and ginger, stir for 30 seconds until fragrant.&lt;/li&gt;
+            &lt;li&gt;Add carrots and cook for 2 minutes.&lt;/li&gt;
+            &lt;li&gt;Add bell peppers, broccoli, and snap peas. Stir-fry for 5-6 minutes until vegetables are crisp-tender.&lt;/li&gt;
+            &lt;li&gt;Pour in soy sauce and sesame oil, toss to combine and cook for an additional minute.&lt;/li&gt;
+            &lt;li&gt;Serve immediately, optionally over rice or noodles.&lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/section&gt;
+    
+    &lt;section class="nutrition"&gt;
+        &lt;h2&gt;Nutrition Information&lt;/h2&gt;
+        &lt;p&gt;Per serving:&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Calories: 180&lt;/li&gt;
+            &lt;li&gt;Protein: 5g&lt;/li&gt;
+            &lt;li&gt;Carbohydrates: 15g&lt;/li&gt;
+            &lt;li&gt;Fat: 12g&lt;/li&gt;
+            &lt;li&gt;Fiber: 6g&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>Example Solutions</h2>
+
+    <div class="tabs">
+      <div class="tab active">Microdata</div>
+      <div class="tab">JSON-LD</div>
+    </div>
+
+    <div class="example">
+      <h3>Microdata Implementation (Partial)</h3>
+      <pre><code>&lt;body&gt;
+    &lt;article itemscope itemtype="https://schema.org/Recipe"&gt;
+        &lt;header&gt;
+            &lt;h1 itemprop="name"&gt;Vegetable Stir Fry&lt;/h1&gt;
+            &lt;p&gt;By &lt;span itemprop="author"&gt;Chef Maria Johnson&lt;/span&gt;&lt;/p&gt;
+            &lt;meta itemprop="datePublished" content="2025-02-15"&gt;
+        &lt;/header&gt;
+        
+        &lt;div class="recipe-image"&gt;
+            &lt;img itemprop="image" src="vegetable-stir-fry.jpg" alt="Vegetable Stir Fry" /&gt;
+        &lt;/div&gt;
+        
+        &lt;p itemprop="description"&gt;
+            This quick and flavorful vegetable stir fry is the perfect healthy meal when you're short on time.
+            Loaded with colorful vegetables and a savory sauce, it's both nutritious and delicious.
+        &lt;/p&gt;
+        
+        &lt;div class="recipe-meta"&gt;
+            &lt;div&gt;
+                &lt;strong&gt;Prep Time&lt;/strong&gt;
+                &lt;p&gt;&lt;meta itemprop="prepTime" content="PT10M"&gt;10 minutes&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;!-- Continue adding microdata for other elements --&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- Continue with the rest of your implementation --&gt;
+    &lt;/article&gt;
+&lt;/body&gt;</code></pre>
+
+      <h3>JSON-LD Implementation (Partial)</h3>
+      <pre><code>&lt;script type="application/ld+json"&gt;
+{
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Vegetable Stir Fry",
+    "author": {
+        "@type": "Person",
+        "name": "Chef Maria Johnson"
+    },
+    "datePublished": "2025-02-15",
+    "image": "https://example.com/vegetable-stir-fry.jpg",
+    "description": "This quick and flavorful vegetable stir fry is the perfect healthy meal when you're short on time. Loaded with colorful vegetables and a savory sauce, it's both nutritious and delicious.",
+    "prepTime": "PT10M",
+    "cookTime": "PT10M",
+    "totalTime": "PT20M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+        "2 tablespoons olive oil",
+        "1 red bell pepper, sliced",
+        "1 yellow bell pepper, sliced",
+        "2 carrots, julienned",
+        "1 cup broccoli florets"
+        // Continue with remaining ingredients
+    ],
+    "recipeInstructions": [
+        {
+            "@type": "HowToStep",
+            "text": "Heat olive oil in a large wok or skillet over medium-high heat."
+        },
+        {
+            "@type": "HowToStep",
+            "text": "Add garlic and ginger, stir for 30 seconds until fragrant."
+        }
+        // Continue with remaining instructions
+    ],
+    "nutrition": {
+        "@type": "NutritionInformation",
+        "calories": "180 calories",
+        "proteinContent": "5g",
+        "carbohydrateContent": "15g"
+        // Continue with remaining nutrition info
+    }
+}
+&lt;/script&gt;</code></pre>
+    </div>
+
+    <h2>Submission</h2>
+    <p>
+      Save your completed file and validate your structured data using Google's
+      Structured Data Testing Tool or Schema.org Validator.
+    </p>
+  </body>
+</html>
