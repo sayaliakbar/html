@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 2: Implementing Basic Service Workers</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      .task {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-left: 4px solid #007bff;
+        margin-bottom: 20px;
+      }
+      code {
+        background-color: #f0f0f0;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 2: Implementing Basic Service Workers</h1>
+
+    <div class="task">
+      <h2>Objective</h2>
+      <p>
+        Learn to create, register, and use basic service workers to enable
+        offline functionality for a simple web application.
+      </p>
+    </div>
+
+    <h2>Instructions</h2>
+
+    <h3>Step 1: Create Your Project Structure</h3>
+    <p>Set up a simple project with the following files:</p>
+    <ul>
+      <li><code>index.html</code> - Main page</li>
+      <li><code>style.css</code> - Basic styles</li>
+      <li><code>app.js</code> - Main application code</li>
+      <li><code>service-worker.js</code> - Service worker file</li>
+      <li><code>images/</code> - Folder with at least 3 images</li>
+    </ul>
+
+    <h3>Step 2: Create the HTML File</h3>
+    <p>Create a simple HTML file that displays images and content:</p>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My PWA Demo&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;My PWA Demo&lt;/h1&gt;
+  &lt;/header&gt;
+  
+  &lt;main&gt;
+    &lt;p class="status"&gt;Online status: &lt;span id="status"&gt;Checking...&lt;/span&gt;&lt;/p&gt;
+    
+    &lt;div class="gallery"&gt;
+      &lt;!-- Add your images here --&gt;
+      &lt;img src="images/image1.jpg" alt="Image 1"&gt;
+      &lt;img src="images/image2.jpg" alt="Image 2"&gt;
+      &lt;img src="images/image3.jpg" alt="Image 3"&gt;
+    &lt;/div&gt;
+    
+    &lt;button id="refreshBtn"&gt;Refresh Content&lt;/button&gt;
+  &lt;/main&gt;
+  
+  &lt;footer&gt;
+    &lt;p&gt;PWA Exercise - Service Workers&lt;/p&gt;
+  &lt;/footer&gt;
+  
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre
+    >
+
+    <h3>Step 3: Add Basic Styling</h3>
+    <p>Create a simple CSS file:</p>
+    <pre>
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header, footer {
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.gallery img {
+  max-width: 30%;
+  height: auto;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.status {
+  padding: 10px;
+  background-color: #f0f0f0;
+}</pre
+    >
+
+    <h3>Step 4: Register the Service Worker</h3>
+    <p>Create an app.js file to register your service worker:</p>
+    <pre>
+// Check if service worker is supported
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('Service worker registered successfully:', registration.scope);
+      })
+      .catch(error => {
+        console.log('Service worker registration failed:', error);
+      });
+  });
+}
+
+// Update online status
+function updateOnlineStatus() {
+  const statusElement = document.getElementById('status');
+  const isOnline = navigator.onLine;
+  
+  statusElement.textContent = isOnline ? 'Online' : 'Offline';
+  statusElement.style.color = isOnline ? 'green' : 'red';
+}
+
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+updateOnlineStatus();
+
+// Refresh button functionality
+document.getElementById('refreshBtn').addEventListener('click', () => {
+  window.location.reload();
+});</pre
+    >
+
+    <h3>Step 5: Create a Basic Service Worker</h3>
+    <p>Create the service-worker.js file:</p>
+    <pre>
+const CACHE_NAME = 'pwa-demo-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/style.css',
+  '/app.js',
+  '/images/image1.jpg',
+  '/images/image2.jpg',
+  '/images/image3.jpg'
+];
+
+// Install event - cache assets
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('Cache opened');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+// Activate event - clean up old caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.filter(cacheName => {
+          return cacheName !== CACHE_NAME;
+        }).map(cacheName => {
+          return caches.delete(cacheName);
+        })
+      );
+    })
+  );
+});
+
+// Fetch event - respond with cache then network
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        // Cache hit - return the response from the cache
+        if (response) {
+          return response;
+        }
+        
+        // Clone the request because it's a one-time use stream
+        const fetchRequest = event.request.clone();
+        
+        // Make network request and cache the response
+        return fetch(fetchRequest).then(response => {
+          // Check if we received a valid response
+          if(!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+          
+          // Clone the response because it's a one-time use stream
+          const responseToCache = response.clone();
+          
+          caches.open(CACHE_NAME)
+            .then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+            
+          return response;
+        });
+      })
+  );
+});</pre
+    >
+
+    <h3>Step 6: Testing</h3>
+    <ol>
+      <li>
+        Host your project on a local server (you can use tools like Live Server
+        in VSCode)
+      </li>
+      <li>Open Chrome DevTools and navigate to the Application tab</li>
+      <li>Check the Service Workers section to verify registration</li>
+      <li>
+        Use the Network tab and enable "Offline" to test offline functionality
+      </li>
+      <li>
+        Reload the page and verify that your content still loads while offline
+      </li>
+    </ol>
+
+    <h3>Challenge Tasks</h3>
+    <ol>
+      <li>Add an "Install" button that uses the beforeinstallprompt event</li>
+      <li>
+        Implement a "Cache only" strategy for images and "Network first"
+        strategy for HTML
+      </li>
+      <li>Add a "Last updated" timestamp that works even when offline</li>
+    </ol>
+
+    <h2>Submission</h2>
+    <p>
+      Submit your entire project folder as a ZIP file, including all HTML, CSS,
+      JavaScript, and image files.
+    </p>
+
+    <h2>Resources</h2>
+    <ul>
+      <li>
+        <a
+          href="https://developers.google.com/web/fundamentals/primers/service-workers"
+          target="_blank"
+          >Service Worker Introduction</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://developers.google.com/web/tools/workbox"
+          target="_blank"
+          >Workbox - Service Worker Libraries</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook"
+          target="_blank"
+          >The Offline Cookbook</a
+        >
+      </li>
+    </ul>
+  </body>
+</html>
