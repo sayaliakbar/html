@@ -216,7 +216,7 @@ Start by creating a simple HTML document in the root directory called `index.htm
 - Content Manager
 - SEO Specialist
 
-## Author
+## Contact
 
 **Ali Akbar**
 
