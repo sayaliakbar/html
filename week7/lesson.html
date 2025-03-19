@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ...existing code... -->
+  </head>
+  <body>
+    <!-- ...existing code... -->
+
+    <section id="media-accessibility">
+      <h2>Media Accessibility</h2>
+
+      <!-- ...existing code... -->
+
+      <h3>Reducing Motion</h3>
+
+      <p>
+        Some users may have vestibular disorders or motion sensitivity. Respect
+        the user's motion preferences:
+      </p>
+
+      <pre><code>/* CSS to detect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    video, .animated {
+        animation: none;
+        transition: none;
+    }
+    
+    video {
+        animation-play-state: paused !important;
+    }
+}</code></pre>
+
+      <p>Or with HTML and JavaScript:</p>
+
+      <pre><code>&lt;video controls autoplay muted playsinline id="video"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;script&gt;
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+        const video = document.getElementById('video');
+        video.removeAttribute('autoplay');
+        video.pause();
+    }
+&lt;/script&gt;</code></pre>
+    </section>
+
+    <section id="best-practices">
+      <h2>Best Practices for Media</h2>
+
+      <h3>Image Best Practices</h3>
+      <ul>
+        <li>Use appropriate file formats for different types of images</li>
+        <li>
+          Optimize images for web (compress without significant quality loss)
+        </li>
+        <li>Provide responsive images using the picture element or srcset</li>
+        <li>Always include descriptive alt text</li>
+        <li>Consider lazy loading for improved performance</li>
+        <li>Specify width and height attributes to prevent layout shifts</li>
+      </ul>
+
+      <h3>Video Best Practices</h3>
+      <ul>
+        <li>Provide multiple video formats for cross-browser compatibility</li>
+        <li>Include closed captions and transcripts</li>
+        <li>Don't autoplay videos with sound</li>
+        <li>
+          Consider bandwidth limitations and provide different quality options
+        </li>
+        <li>Use poster images to provide a preview</li>
+        <li>Implement responsive containers for videos</li>
+      </ul>
+
+      <h3>Audio Best Practices</h3>
+      <ul>
+        <li>Provide multiple audio formats for cross-browser compatibility</li>
+        <li>Include transcripts for all audio content</li>
+        <li>Don't autoplay audio without user consent</li>
+        <li>Ensure audio controls are accessible via keyboard</li>
+        <li>Consider preload settings for bandwidth optimization</li>
+      </ul>
+
+      <h3>Embedding Best Practices</h3>
+      <ul>
+        <li>Only embed content from trusted sources</li>
+        <li>Use appropriate sandbox and allow attributes for security</li>
+        <li>Make embedded content responsive</li>
+        <li>
+          Provide fallback content for users who can't access the embedded
+          content
+        </li>
+        <li>Consider performance implications of embedded content</li>
+        <li>Use lazy loading for iframes when appropriate</li>
+      </ul>
+
+      <h3>Performance Considerations</h3>
+
+      <p>
+        Media files can significantly impact page load times and user
+        experience:
+      </p>
+
+      <ul>
+        <li>
+          <strong>Image optimization</strong>: Use tools like ImageOptim,
+          TinyPNG, or Sharp to optimize images
+        </li>
+        <li>
+          <strong>Video optimization</strong>: Compress videos, consider
+          streaming options for large files
+        </li>
+        <li>
+          <strong>Lazy loading</strong>: Load media assets only when they're
+          about to enter the viewport
+        </li>
+        <li>
+          <strong>CDN usage</strong>: Consider hosting media files on a Content
+          Delivery Network
+        </li>
+        <li>
+          <strong>Preload/prefetch</strong>: Use preload for critical media,
+          prefetch for likely-to-be-needed media
+        </li>
+        <li>
+          <strong>Adaptive loading</strong>: Serve different media quality based
+          on network conditions
+        </li>
+      </ul>
+
+      <pre><code>&lt;!-- Example of preloading critical video --&gt;
+&lt;link rel="preload" as="video" href="intro.mp4" type="video/mp4"&gt;
+
+&lt;!-- Example of lazy loading --&gt;
+&lt;img src="placeholder.jpg" data-src="actual-image.jpg" class="lazy" alt="Description"&gt;
+&lt;script&gt;
+    // Basic lazy loading example (consider using Intersection Observer in real code)
+    document.addEventListener('DOMContentLoaded', function() {
+        const lazyImages = document.querySelectorAll('img.lazy');
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src;
+        });
+    });
+&lt;/script&gt;</code></pre>
+
+      <div class="note">
+        <p>
+          While these techniques can significantly improve performance, remember
+          to balance optimization with accessibility and user experience.
+        </p>
+      </div>
+    </section>
+
+    <section id="legal-considerations">
+      <h2>Legal and Ethical Considerations</h2>
+
+      <h3>Copyright and Media Usage</h3>
+      <ul>
+        <li>
+          Always ensure you have the right to use media content on your website
+        </li>
+        <li>
+          Consider using royalty-free or Creative Commons licensed content
+        </li>
+        <li>Provide proper attribution when required by the license</li>
+        <li>
+          Be especially careful with embedded content from third-party sites
+        </li>
+        <li>Understand the difference between embedding and hosting content</li>
+      </ul>
+
+      <h3>Privacy Considerations</h3>
+      <ul>
+        <li>Be transparent about third-party content embedded on your site</li>
+        <li>
+          Consider GDPR and other privacy regulations when embedding content
+        </li>
+        <li>Obtain proper consent before embedding tracking media</li>
+        <li>Be aware that embedded content may set cookies or track users</li>
+      </ul>
+
+      <div class="warning">
+        <p>
+          When embedding content or using media from third parties, you are
+          responsible for ensuring compliance with legal requirements. When in
+          doubt, consult legal advice specific to your situation.
+        </p>
+      </div>
+    </section>
+
+    <section id="practice">
+      <h2>Practice and Resources</h2>
+
+      <p>
+        Complete the exercises in the exercises folder and build the Media
+        Gallery project to practice implementing different types of media on
+        your web pages.
+      </p>
+
+      <h3>Additional Resources</h3>
+      <ul>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding"
+            >MDN: Multimedia and embedding</a
+          >
+        </li>
+        <li>
+          <a href="https://web.dev/learn/images/"
+            >Web.dev: Image Optimization</a
+          >
+        </li>
+        <li>
+          <a href="https://www.w3.org/WAI/media/av/"
+            >W3C: Making Audio and Video Media Accessible</a
+          >
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats"
+            >MDN: Media file formats</a
+          >
+        </li>
+        <li>
+          <a href="https://web.dev/iframe-lazy-loading/"
+            >Web.dev: Lazy-loading iframes</a
+          >
+        </li>
+      </ul>
+
+      <div class="note">
+        <p>
+          Media implementation is an area where web standards and best practices
+          continue to evolve. Keep up with the latest recommendations and
+          browser support to ensure the best experience for your users.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
