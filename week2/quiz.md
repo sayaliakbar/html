@@ -1,112 +1,122 @@
 # Week 2 Quiz: Core HTML Elements
 
-Test your knowledge of the core HTML elements covered in Week 2. Answer the following questions to check your understanding.
+Answer the following questions to test your understanding of links, images, lists, and tables.
 
 ## Multiple Choice Questions
 
-1. **Which HTML tag is used to create a hyperlink?**
-
-   - A) `<link>`
-   - B) `<a>`
-   - C) `<href>`
-   - D) `<hyperlink>`
-
-2. **Which attribute is required in an image tag?**
-
-   - A) `title`
-   - B) `src`
-   - C) `alt`
-   - D) Both B and C
-
-3. **What is the correct HTML for creating an unordered list?**
-
-   - A) `<ul><li>Item</li></ul>`
-   - B) `<list><item>Item</item></list>`
-   - C) `<ol><li>Item</li></ol>`
-   - D) `<unordered><item>Item</item></unordered>`
-
-4. **Which HTML element defines a table header cell?**
-
-   - A) `<thead>`
-   - B) `<header>`
-   - C) `<th>`
-   - D) `<td>`
-
-5. **How do you create a link that opens the user's email program?**
-
-   - A) `<a href="mailto:example@example.com">Email me</a>`
-   - B) `<a href="email:example@example.com">Email me</a>`
-   - C) `<mail>example@example.com</mail>`
-   - D) `<a mail="example@example.com">Email me</a>`
-
-6. **Which attribute should be used to open a link in a new tab or window?**
+1. **Which attribute is required in the `<a>` element to create a hyperlink?**
+   - A) src
+   - B) href
+   - C) link
+   - D) url
+2. **What is the correct HTML for creating a link that opens in a new browser window/tab?**
 
    - A) `<a href="url" new>`
    - B) `<a href="url" target="new">`
    - C) `<a href="url" target="_blank">`
-   - D) `<a href="url" open="new">`
+   - D) `<a href="url" window="new">`
 
-7. **Which element is used to define a caption for a table?**
+3. **Which attribute is required in an `<img>` element for accessibility?**
 
-   - A) `<caption>`
-   - B) `<title>`
-   - C) `<heading>`
-   - D) `<tableinfo>`
+   - A) src
+   - B) alt
+   - C) title
+   - D) description
 
-8. **What is the purpose of the alt attribute in an image tag?**
-   - A) To specify alternative text if the image cannot be displayed
-   - B) To display a tooltip when hovering over the image
-   - C) To align the image to the text
-   - D) To define the alternative source for the image
+4. **Which of the following image formats is best for displaying photographs with many colors?**
 
-## True or False
+   - A) GIF
+   - B) PNG
+   - C) JPEG
+   - D) SVG
 
-9. **The `<img>` element requires a closing tag.**
+5. **Which HTML element is used to define a description list?**
 
-   - True
-   - False
+   - A) `<dl>`
+   - B) `<ol>`
+   - C) `<ul>`
+   - D) `<list>`
 
-10. **You can link to a specific part of a page using a bookmark.**
+6. **To make an ordered list start at number 5, which attribute would you use?**
 
-    - True
-    - False
+   - A) begin="5"
+   - B) start="5"
+   - C) first="5"
+   - D) init="5"
 
-11. **A definition list is created using the `<dl>`, `<dt>`, and `<dd>` tags.**
+7. **What is the correct HTML element for defining a table header cell?**
 
-    - True
-    - False
+   - A) `<td>`
+   - B) `<th>`
+   - C) `<thead>`
+   - D) `<header>`
 
-12. **The `colspan` attribute is used to make a table cell span multiple rows.**
-    - True
-    - False
+8. **Which attribute is used to make a table cell span multiple columns?**
+
+   - A) rowspan
+   - B) colspan
+   - C) cellspan
+   - D) span
+
+9. **Which HTML element is used to define an image map?**
+
+   - A) `<map>`
+   - B) `<area>`
+   - C) `<imagemap>`
+   - D) `<picture>`
+
+10. **Which of these is NOT a valid type value for an ordered list?**
+    - A) 1
+    - B) a
+    - C) i
+    - D) x
+
+## True or False Questions
+
+11. Relative URLs always start with "http://" or "https://".
+
+12. The `download` attribute in the anchor tag forces the linked resource to be downloaded.
+
+13. The `<figcaption>` element can be used without being inside a `<figure>` element.
+
+14. A definition list (`<dl>`) can have multiple terms (`<dt>`) for a single definition (`<dd>`).
+
+15. Table rows (`<tr>`) can be direct children of the `<table>` element without being inside `<thead>`, `<tbody>`, or `<tfoot>`.
 
 ## Short Answer Questions
 
-13. **Explain the difference between absolute and relative URLs in HTML links.**
+16. Name two benefits of using the `alt` attribute in images.
 
-14. **List three image formats commonly used on the web and describe when each one should be used.**
+17. What is the purpose of the `target` attribute in links? List at least two possible values and what they do.
 
-15. **What are the main semantic elements used in HTML tables, and what is their purpose?**
+18. Explain the difference between an unordered list and a definition list, including when you would use each.
 
-## Answer Key
+19. What is an image map and what are two real-world use cases for implementing one?
 
-(For instructor use only)
+20. Describe the semantic structure of a table and why it's important to use elements like `<thead>`, `<tbody>`, and `<tfoot>`.
 
-1. B
-2. D
-3. A
-4. C
-5. A
-6. C
-7. A
-8. A
-9. False
-10. True
-11. True
-12. False (it's for columns; `rowspan` is for rows)
-13. Absolute URLs contain the complete web address including protocol (https://), domain, and path. Relative URLs specify a location relative to the current page and don't include the protocol or domain.
-14. JPEG: Best for photographs with many colors; PNG: Best for images requiring transparency or with text/sharp edges; GIF: Supports animation, limited colors; SVG: Vector format for logos and icons that scale without quality loss
-15. `<thead>`: Groups the header content; `<tbody>`: Groups the body content; `<tfoot>`: Groups the footer content; `<caption>`: Defines a table caption or title; `<th>`: Defines header cells
+## Answers
+
+1. B) href
+2. C) `<a href="url" target="_blank">`
+3. B) alt
+4. C) JPEG
+5. A) `<dl>`
+6. B) start="5"
+7. B) `<th>`
+8. B) colspan
+9. A) `<map>`
+10. D) x
+11. False
+12. True
+13. False
+14. True
+15. True
+16. The `alt` attribute provides text alternatives for images, helping with accessibility for screen readers and displaying text if the image fails to load.
+17. The `target` attribute specifies where to open the linked document. Values include: `_blank` (opens in new tab/window), `_self` (opens in same frame), `_parent` (opens in parent frame), `_top` (opens in full body of window).
+18. An unordered list (`<ul>`) presents items in no particular order with bullet points and is used for groups of items where order doesn't matter. A definition list (`<dl>`) pairs terms (`<dt>`) with their definitions (`<dd>`) and is used for glossaries, metadata, or any name-value pairs.
+19. An image map is an image with clickable areas that act as links. Use cases include: interactive maps where different regions link to different pages, product diagrams where clicking different parts shows information about those components, or floor plans where different rooms link to detailed information.
+20. The semantic table structure includes `<thead>` for header rows, `<tbody>` for main content rows, and `<tfoot>` for footer rows. This structure improves accessibility, allows for separate styling of different table sections, and helps browsers render tables more efficiently, especially for large tables where the body might scroll while headers remain visible.
 
 ## Contact
 
