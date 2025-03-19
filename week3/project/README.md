@@ -1,71 +1,57 @@
-# Week 3 Project: Simple Form
+# Week 3 Project: Enhanced Registration Form
 
-## Project Overview
+## Objective
 
-For this week's project, you will create an interactive form for collecting user information. This project will demonstrate your understanding of HTML forms, input types, and form organization principles.
+Create a comprehensive registration form that demonstrates your understanding of various form elements and best practices for form structure and organization.
 
 ## Requirements
 
-Your simple form project should include:
+1. Create a registration form with the following sections:
 
-1. **A Registration Form** with:
+   - Personal Information
+   - Contact Details
+   - Account Preferences
+   - Additional Information
 
-   - A descriptive title and introduction
-   - Required personal information fields
-   - Preference selection options
-   - Terms and conditions acceptance
-   - Submit and reset buttons
-
-2. **Form Fields to Include:**
+2. Include the following form elements:
 
    - Text inputs (name, email, etc.)
-   - Password field with confirmation
-   - Radio buttons for single-choice options
-   - Checkboxes for multiple-choice options
-   - Select dropdown for options
-   - Textarea for comments/bio
-   - Date input
-   - File upload option
-   - Hidden field
+   - Password input with confirmation
+   - Radio buttons (for selecting options)
+   - Checkboxes (for agreement to terms, preferences, etc.)
+   - Select dropdown menus
+   - Textarea for additional information
+   - Submit and Reset buttons
 
-3. **Form Organization:**
+3. Apply proper form structure:
 
-   - Use fieldsets to group related form elements
-   - Include legends for each fieldset
-   - Properly associate labels with inputs
-   - Include placeholder text where appropriate
-   - Mark required fields
+   - Use appropriate form attributes (method, action)
+   - Group related inputs using fieldsets and legends
+   - Include proper labels for all form elements
+   - Apply appropriate input attributes (required, placeholder, etc.)
 
-4. **Validation Features:**
-   - Use HTML5 input types for built-in validation
-   - Set required attributes for mandatory fields
-   - Add min/max attributes where applicable
-   - Include pattern attributes for specific formats
+4. Style your form using basic CSS for better readability:
+   - Clear visual separation between form sections
+   - Consistent spacing and alignment
+   - Readable font sizes and colors
 
-## Implementation Requirements
+## Submission Guidelines
 
-1. **File Structure**
+- Create an index.html file with your form implementation
+- Include a styles.css file for your form styling
+- Add comments in your HTML explaining the purpose of different sections
 
-   - Create a file named `registration-form.html` in this project folder
-   - All form elements should be contained within a single HTML file
+## Bonus Challenges
 
-2. **Form Structure**
+- Implement a multi-step form using multiple fieldsets
+- Add basic client-side validation for email and password fields
+- Make your form responsive for both desktop and mobile viewing
+- Include a file upload input with accepted file types specified
 
-   - Implement a logical tab order for form navigation
-   - Group related fields using fieldsets
-   - Include clear instructions for form completion
+## Resources
 
-3. **Accessibility**
-
-   - Use proper labeling for all form controls
-   - Include ARIA attributes where appropriate
-   - Provide clear error messages and instructions
-   - Ensure keyboard navigation works properly
-
-4. **Design and Organization**
-   - Organize the form into logical sections
-   - Use appropriate input types for different data
-   - Include a clear submission process
+- [MDN Web Docs: HTML Forms Guide](https://developer.mozilla.org/en-US/docs/Learn/Forms)
+- [W3C HTML5 Forms Documentation](https://www.w3.org/TR/html52/sec-forms.html)
 
 ## Example Structure
 
