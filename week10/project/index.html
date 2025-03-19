@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Product Showcase</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <h1>Interactive Product Showcase</h1>
+        <div class="shopping-summary">
+          <button id="cart-toggle" aria-label="View Shopping Cart">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-count">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="showcase-layout">
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar">
+          <h2>Filters</h2>
+
+          <filter-control title="Categories" type="checkbox">
+            <div slot="options">
+              <label
+                ><input
+                  type="checkbox"
+                  data-filter="category"
+                  value="electronics"
+                />
+                Electronics</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  data-filter="category"
+                  value="clothing"
+                />
+                Clothing</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  data-filter="category"
+                  value="sportswear"
+                />
+                Sportswear</label
+              >
+              <label
+                ><input type="checkbox" data-filter="category" value="books" />
+                Books</label
+              >
+            </div>
+          </filter-control>
+
+          <filter-control title="Price Range" type="range">
+            <div slot="options">
+              <input
+                type="range"
+                id="price-range"
+                min="0"
+                max="200"
+                step="10"
+                value="200"
+              />
+              <div class="range-labels">
+                <span>$0</span>
+                <span id="price-value">$200</span>
+              </div>
+            </div>
+          </filter-control>
+
+          <filter-control title="Rating" type="radio">
+            <div slot="options">
+              <label
+                ><input
+                  type="radio"
+                  name="rating"
+                  data-filter="rating"
+                  value="4"
+                />
+                4★ & Above</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="rating"
+                  data-filter="rating"
+                  value="3"
+                />
+                3★ & Above</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="rating"
+                  data-filter="rating"
+                  value="2"
+                />
+                2★ & Above</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="rating"
+                  data-filter="rating"
+                  value="1"
+                />
+                1★ & Above</label
+              >
+            </div>
+          </filter-control>
+
+          <filter-control title="Features" type="checkbox">
+            <div slot="options">
+              <label
+                ><input
+                  type="checkbox"
+                  data-filter="feature"
+                  value="wireless"
+                />
+                Wireless</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  data-filter="feature"
+                  value="waterproof"
+                />
+                Waterproof</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  data-filter="feature"
+                  value="bluetooth"
+                />
+                Bluetooth</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  data-filter="feature"
+                  value="lightweight"
+                />
+                Lightweight</label
+              >
+            </div>
+          </filter-control>
+
+          <filter-control title="Availability" type="checkbox">
+            <div slot="options">
+              <label
+                ><input
+                  type="checkbox"
+                  data-filter="inStock"
+                  value="true"
+                  checked
+                />
+                In Stock</label
+              >
+            </div>
+          </filter-control>
+
+          <button id="clear-filters" class="clear-filters-btn">
+            Clear All Filters
+          </button>
+        </aside>
+
+        <!-- Product Grid -->
+        <section class="product-grid" id="product-grid">
+          <!-- Product cards will be generated here -->
+        </section>
+
+        <!-- Shopping Cart -->
+        <aside class="shopping-cart" id="shopping-cart">
+          <h2>Shopping Cart</h2>
+          <div id="cart-drop-zone" class="cart-drop-zone">
+            <p class="empty-cart-message">Drag products here to add to cart</p>
+            <div id="cart-items" class="cart-items">
+              <!-- Cart items will be added here -->
+            </div>
+          </div>
+          <div class="cart-summary">
+            <div class="cart-total">
+              <span>Total:</span>
+              <span id="cart-total-amount">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="checkout-btn" disabled>
+              Checkout
+            </button>
+            <button id="clear-cart-btn" class="clear-cart-btn" disabled>
+              Clear Cart
+            </button>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Product Comparison Bar (Hidden by Default) -->
+    <div id="comparison-bar" class="comparison-bar">
+      <div class="comparison-header">
+        <h3>Compare Products</h3>
+        <button id="close-comparison" aria-label="Close comparison">×</button>
+      </div>
+      <div id="comparison-items" class="comparison-items">
+        <!-- Comparison products will be added here -->
+      </div>
+      <button id="compare-btn" class="compare-btn" disabled>Compare</button>
+    </div>
+
+    <!-- Product Detail Modal (Hidden by Default) -->
+    <product-modal id="product-modal"></product-modal>
+
+    <!-- Templates -->
+    <template id="product-card-template">
+      <div class="product-card" draggable="true">
+        <div class="product-image">
+          <img src="" alt="" />
+          <div class="product-badges"></div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name"></h3>
+          <div class="product-rating"></div>
+          <p class="product-price"></p>
+          <div class="product-features"></div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="add-to-compare-btn">Compare</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="cart-item-template">
+      <div class="cart-item">
+        <img class="cart-item-image" src="" alt="" />
+        <div class="cart-item-details">
+          <h4 class="cart-item-name"></h4>
+          <p class="cart-item-price"></p>
+        </div>
+        <div class="cart-item-quantity">
+          <button class="quantity-decrease" aria-label="Decrease quantity">
+            -
+          </button>
+          <span class="quantity-value">1</span>
+          <button class="quantity-increase" aria-label="Increase quantity">
+            +
+          </button>
+        </div>
+        <button class="remove-item-btn" aria-label="Remove item">×</button>
+      </div>
+    </template>
+
+    <!-- Load JavaScript files -->
+    <script src="js/components.js"></script>
+    <script src="js/dragdrop.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
