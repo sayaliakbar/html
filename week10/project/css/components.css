@@ -1,0 +1,247 @@
+/* Styles for Custom Components */
+
+/* Product Card Component */
+.product-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    cursor: grab;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    height: 180px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-badges {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.product-badge {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.badge-sale {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.badge-new {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.badge-featured {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-name {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-rating {
+    color: var(--accent-color);
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.product-price {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.product-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.feature-tag {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    border-radius: 2px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.add-to-cart-btn,
+.add-to-compare-btn {
+    flex: 1;
+    padding: 6px 0;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.add-to-cart-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #27ae60;
+}
+
+.add-to-compare-btn {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.add-to-compare-btn:hover {
+    background-color: var(--border-color);
+}
+
+/* Product being dragged */
+.product-card.dragging {
+    opacity: 0.6;
+    transform: scale(0.95);
+}
+
+/* Filter Control Component */
+filter-control {
+    margin-bottom: 1rem;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+/* Modal Component */
+product-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+product-modal.open {
+    display: flex;
+}
+
+/* Status-based Styling with Data Attributes */
+/* Products on sale */
+[data-on-sale="true"] .product-price {
+    color: #e74c3c;
+}
+
+[data-on-sale="true"] .product-price::before {
+    content: 'Sale! ';
+    font-weight: normal;
+    font-size: 0.8rem;
+}
+
+/* Out of stock products */
+[data-in-stock="false"] {
+    opacity: 0.7;
+}
+
+[data-in-stock="false"] .product-name::after {
+    content: ' (Out of Stock)';
+    color: #e74c3c;
+    font-size: 0.8rem;
+}
+
+[data-in-stock="false"] .add-to-cart-btn {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Featured products */
+[data-featured="true"] {
+    border: 2px solid var(--accent-color);
+}
+
+/* Price range indicators */
+[data-price-range="budget"] {
+    border-left: 3px solid green;
+}
+
+[data-price-range="mid"] {
+    border-left: 3px solid blue;
+}
+
+[data-price-range="premium"] {
+    border-left: 3px solid purple;
+}
+
+/* Category-specific styling */
+[data-category="electronics"] .product-name {
+    color: #3498db;
+}
+
+[data-category="clothing"] .product-name {
+    color: #9b59b6;
+}
+
+[data-category="sportswear"] .product-name {
+    color: #2ecc71;
+}
+
+[data-category="books"] .product-name {
+    color: #f39c12;
+}
+
+/* Range slider styles */
+input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
