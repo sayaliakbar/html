@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1: Identifying Semantic Elements</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .task {
+        background-color: #f0f0f0;
+        padding: 15px;
+        border-left: 4px solid #333;
+        margin-bottom: 20px;
+      }
+      .hint {
+        background-color: #e6f7ff;
+        padding: 10px;
+        border-left: 4px solid #1890ff;
+        margin-top: 10px;
+      }
+      section {
+        margin-bottom: 30px;
+      }
+      .non-semantic {
+        background-color: #ffecec;
+        padding: 15px;
+        border: 1px solid #ffcccc;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 1: Identifying Semantic Elements</h1>
+
+    <div class="task">
+      <h2>Task:</h2>
+      <p>
+        Create a new HTML file called "semantic-conversion.html" in the
+        exercises folder. In this exercise, you'll practice converting
+        non-semantic HTML to semantic HTML.
+      </p>
+
+      <ol>
+        <li>Copy the non-semantic HTML code provided below into your file</li>
+        <li>
+          Convert the structure to use appropriate semantic HTML5 elements
+        </li>
+        <li>
+          Replace all <code>&lt;div&gt;</code> elements with appropriate
+          semantic elements such as <code>&lt;header&gt;</code>,
+          <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>,
+          <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>,
+          <code>&lt;aside&gt;</code>, and <code>&lt;footer&gt;</code>
+        </li>
+        <li>Add comments explaining your choices for each major section</li>
+      </ol>
+
+      <div class="hint">
+        <h3>Hint:</h3>
+        <p>
+          Think about the meaning and purpose of each section when choosing the
+          appropriate semantic element. Consider what the content represents,
+          not how it looks.
+        </p>
+      </div>
+    </div>
+
+    <h2>Non-Semantic HTML (Before):</h2>
+    <div class="non-semantic">
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Tech Blog&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="site-header"&gt;
+        &lt;h1&gt;Tech Blog&lt;/h1&gt;
+        &lt;p&gt;Your Source for Tech News and Tutorials&lt;/p&gt;
+        
+        &lt;div class="navigation"&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Articles&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Tutorials&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="main-content"&gt;
+        &lt;div class="blog-post"&gt;
+            &lt;h2&gt;Latest JavaScript Frameworks in 2025&lt;/h2&gt;
+            &lt;div class="post-meta"&gt;
+                Posted on January 15, 2025 by Admin
+            &lt;/div&gt;
+            &lt;div class="post-content"&gt;
+                &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus euismod, finibus est at, consectetur nisi. Nullam vel eros dui.&lt;/p&gt;
+                &lt;p&gt;Maecenas tincidunt ante ut risus mollis, nec fermentum diam aliquet. Sed venenatis erat sed erat scelerisque, a porta velit consequat.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="post-tags"&gt;
+                Tags: JavaScript, Frameworks, Web Development
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="blog-post"&gt;
+            &lt;h2&gt;Artificial Intelligence in Daily Life&lt;/h2&gt;
+            &lt;div class="post-meta"&gt;
+                Posted on January 10, 2025 by Admin
+            &lt;/div&gt;
+            &lt;div class="post-content"&gt;
+                &lt;p&gt;Curabitur sit amet orci pharetra, rutrum nunc id, ultrices ligula. Aliquam erat volutpat. Nunc interdum sem at ipsum aliquam, et mattis nisi gravida.&lt;/p&gt;
+                &lt;p&gt;Nam tincidunt justo vel mi convallis, auctor iaculis velit posuere. Donec dapibus velit ac nisi scelerisque euismod.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="post-tags"&gt;
+                Tags: AI, Technology, Innovation
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="sidebar"&gt;
+        &lt;div class="widget"&gt;
+            &lt;h3&gt;Popular Posts&lt;/h3&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;The Future of Web Development&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Machine Learning Basics&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;5G Technology Impact&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Cybersecurity Tips&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="widget"&gt;
+            &lt;h3&gt;Subscribe to Newsletter&lt;/h3&gt;
+            &lt;form&gt;
+                &lt;input type="email" placeholder="Your Email"&gt;
+                &lt;button type="submit"&gt;Subscribe&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="site-footer"&gt;
+        &lt;p&gt;&copy; 2025 Tech Blog. All rights reserved.&lt;/p&gt;
+        &lt;div class="footer-links"&gt;
+            &lt;a href="#"&gt;Privacy Policy&lt;/a&gt; | 
+            &lt;a href="#"&gt;Terms of Service&lt;/a&gt; | 
+            &lt;a href="#"&gt;Contact&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+
+    <h2>Expected Result</h2>
+    <p>Your semantic HTML version should:</p>
+    <ul>
+      <li>Use appropriate semantic elements for each content section</li>
+      <li>Include comments explaining your element choices</li>
+      <li>Maintain the same content and structure</li>
+      <li>Be properly indented and formatted</li>
+    </ul>
+
+    <h2>Check Your Work</h2>
+    <p>After completing the exercise:</p>
+    <ol>
+      <li>
+        Open your HTML file in a web browser to ensure it displays correctly
+      </li>
+      <li>
+        Check that you've replaced all non-semantic
+        <code>&lt;div&gt;</code> elements
+      </li>
+      <li>Ensure proper nesting of semantic elements</li>
+      <li>
+        Validate your HTML using the
+        <a href="https://validator.w3.org/#validate_by_upload"
+          >W3C Markup Validation Service</a
+        >
+      </li>
+    </ol>
+
+    <h2>Submission Guidelines</h2>
+    <p>When submitting your work, be prepared to:</p>
+    <ol>
+      <li>Explain your choices for each semantic element</li>
+      <li>
+        Discuss how the semantic structure improves the page's accessibility and
+        SEO
+      </li>
+      <li>Share any challenges you faced during the conversion process</li>
+    </ol>
+  </body>
+</html>
