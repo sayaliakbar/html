@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Mountain Explorer - Your guide to mountain adventures"
+    />
+    <title>Mountain Explorer - Navigation Hub</title>
+  </head>
+  <body>
+    <header id="top">
+      <h1>Mountain Explorer</h1>
+      <p>Your guide to mountain adventures around the world</p>
+
+      <!-- Main Navigation -->
+      <nav>
+        <ul>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#equipment">Equipment</a></li>
+          <li><a href="#guides">Trail Guides</a></li>
+          <li><a href="#gallery">Photo Gallery</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="destinations">
+        <h2>Popular Mountain Destinations</h2>
+        <p>
+          Discover some of the world's most beautiful mountain ranges and peaks.
+        </p>
+
+        <table>
+          <caption>
+            Top Mountain Destinations
+          </caption>
+          <thead>
+            <tr>
+              <th>Mountain Range</th>
+              <th>Location</th>
+              <th>Highest Peak</th>
+              <th>Best Time to Visit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Alps</td>
+              <td>Europe</td>
+              <td>Mont Blanc (4,809m)</td>
+              <td>June-September</td>
+            </tr>
+            <tr>
+              <td>Rocky Mountains</td>
+              <td>North America</td>
+              <td>Mount Elbert (4,401m)</td>
+              <td>July-August</td>
+            </tr>
+            <tr>
+              <td>Himalayas</td>
+              <td rowspan="2">Asia</td>
+              <td>Mount Everest (8,849m)</td>
+              <td>April-May, September-October</td>
+            </tr>
+            <tr>
+              <td>Karakoram</td>
+              <td>K2 (8,611m)</td>
+              <td>June-August</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">
+                Data collected from International Mountain Association, 2023
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <section id="equipment">
+        <h2>Essential Equipment</h2>
+        <p>
+          Before embarking on your mountain adventure, make sure you have these
+          essentials:
+        </p>
+
+        <figure>
+          <img
+            src="images/equipment.jpg"
+            alt="Hiking equipment laid out for packing"
+            width="600"
+            height="400"
+          />
+          <figcaption>Essential mountain hiking equipment</figcaption>
+        </figure>
+
+        <h3>Hiking Equipment Checklist</h3>
+        <ul>
+          <li>
+            Footwear
+            <ul>
+              <li>Hiking boots</li>
+              <li>Wool socks (multiple pairs)</li>
+              <li>Camp shoes/sandals</li>
+            </ul>
+          </li>
+          <li>
+            Clothing
+            <ul>
+              <li>Moisture-wicking base layers</li>
+              <li>Insulating mid layers</li>
+              <li>Waterproof outer layer</li>
+              <li>Hat and gloves</li>
+            </ul>
+          </li>
+          <li>
+            Equipment
+            <ul>
+              <li>Backpack (40-60L)</li>
+              <li>Trekking poles</li>
+              <li>Headlamp</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>
+          <a href="documents/equipment-checklist.pdf" download
+            >Download Complete Equipment Checklist</a
+          >
+        </p>
+      </section>
+
+      <section id="guides">
+        <h2>Expert Trail Guides</h2>
+        <p>
+          Our certified mountain guides can help you navigate the most
+          challenging terrains.
+        </p>
+
+        <img
+          src="images/map.jpg"
+          alt="Mountain trails map"
+          usemap="#trailmap"
+          width="600"
+          height="400"
+        />
+        <map name="trailmap">
+          <area
+            shape="rect"
+            coords="50,50,200,200"
+            alt="North Ridge Trail"
+            href="trails/north-ridge.html"
+          />
+          <area
+            shape="circle"
+            coords="350,150,80"
+            alt="Summit Loop"
+            href="trails/summit-loop.html"
+          />
+          <area
+            shape="poly"
+            coords="450,300,500,250,550,300,500,350"
+            alt="Valley Crossing"
+            href="trails/valley-crossing.html"
+          />
+        </map>
+
+        <h3>Guide Certification Levels</h3>
+        <dl>
+          <dt>Level 1 - Trail Guide</dt>
+          <dd>
+            Qualified to lead day hikes on marked trails in good weather
+            conditions.
+          </dd>
+
+          <dt>Level 2 - Mountain Guide</dt>
+          <dd>
+            Experienced in overnight trips and moderate technical terrain.
+          </dd>
+
+          <dt>Level 3 - Expedition Leader</dt>
+          <dd>
+            Certified for technical climbing, high altitude expeditions, and
+            rescue operations.
+          </dd>
+        </dl>
+      </section>
+
+      <section id="gallery">
+        <h2>Photo Gallery</h2>
+        <p>Explore stunning mountain landscapes from around the world.</p>
+
+        <figure>
+          <img
+            src="images/mountain1.jpg"
+            alt="Snow-capped mountain peak at sunrise"
+            width="300"
+            height="200"
+          />
+          <figcaption>Mount Rainier at sunrise</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="images/mountain2.jpg"
+            alt="Alpine lake surrounded by mountains"
+            width="300"
+            height="200"
+          />
+          <figcaption>Alpine lake in the Swiss Alps</figcaption>
+        </figure>
+
+        <ol>
+          <li><a href="gallery/alps.html">Alps Collection</a></li>
+          <li><a href="gallery/rockies.html">Rocky Mountains Collection</a></li>
+          <li><a href="gallery/himalayas.html">Himalayas Collection</a></li>
+          <li><a href="gallery/andes.html">Andes Collection</a></li>
+          <li><a href="gallery/appalachian.html">Appalachian Collection</a></li>
+        </ol>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions about mountain adventures? We're here to help!</p>
+
+        <ul>
+          <li>
+            Email:
+            <a
+              href="mailto:info@mountainexplorer.com?subject=Mountain Adventure Inquiry"
+              >info@mountainexplorer.com</a
+            >
+          </li>
+          <li>Phone: <a href="tel:+12345678900">+1 (234) 567-8900</a></li>
+          <li>Address: 123 Peak Street, Mountain View, CA 94043</li>
+        </ul>
+
+        <p>Follow us on social media:</p>
+        <ul>
+          <li>
+            <a href="https://instagram.com/mountainexplorer" rel="nofollow"
+              >Instagram</a
+            >
+          </li>
+          <li>
+            <a href="https://facebook.com/mountainexplorer" rel="nofollow"
+              >Facebook</a
+            >
+          </li>
+          <li>
+            <a href="https://twitter.com/mountainexplorer" rel="nofollow"
+              >Twitter</a
+            >
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p><a href="#top">Back to Top</a></p>
+
+      <nav>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
+      </nav>
+
+      <p>&copy; 2023 Mountain Explorer. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
