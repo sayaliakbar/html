@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1: Creating Canvas Elements</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      canvas {
+        border: 1px solid #ddd;
+        margin: 15px 0;
+      }
+      .task {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4caf50;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .tip {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 1: Creating Canvas Elements</h1>
+
+    <div class="task">
+      <h2>Task 1: Basic Shape Drawing</h2>
+      <p>Use the canvas element below to draw:</p>
+      <ul>
+        <li>A blue rectangle (position x:50, y:50, width:100, height:80)</li>
+        <li>A red circle (center x:200, y:90, radius:40)</li>
+        <li>A green line connecting the rectangle to the circle</li>
+      </ul>
+      <canvas id="task1" width="400" height="200"></canvas>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get the canvas element
+const canvas1 = document.getElementById('task1');
+const ctx1 = canvas1.getContext('2d');
+
+// Draw the rectangle
+// Your code here
+
+// Draw the circle
+// Your code here
+
+// Draw the connecting line
+// Your code here</code></pre>
+    </div>
+
+    <div class="task">
+      <h2>Task 2: Text and Gradients</h2>
+      <p>Create a canvas with:</p>
+      <ul>
+        <li>A linear gradient background from blue to white</li>
+        <li>
+          Text that says "HTML5 Canvas" in the center with a shadow effect
+        </li>
+      </ul>
+      <canvas id="task2" width="400" height="200"></canvas>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get the canvas element
+const canvas2 = document.getElementById('task2');
+const ctx2 = canvas2.getContext('2d');
+
+// Create the gradient background
+// Your code here
+
+// Add the text with shadow
+// Your code here</code></pre>
+    </div>
+
+    <div class="task">
+      <h2>Task 3: Basic Animation</h2>
+      <p>Create a bouncing ball animation:</p>
+      <ul>
+        <li>Draw a ball that moves across the canvas</li>
+        <li>Make it bounce off the walls of the canvas</li>
+        <li>Use requestAnimationFrame for smooth animation</li>
+      </ul>
+      <canvas id="task3" width="400" height="200"></canvas>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get the canvas element
+const canvas3 = document.getElementById('task3');
+const ctx3 = canvas3.getContext('2d');
+
+// Define ball properties
+let x = 50;
+let y = 100;
+let radius = 20;
+let dx = 2;  // x-axis velocity
+let dy = 1;  // y-axis velocity
+
+// Animation function
+function animateBall() {
+  // Clear the canvas
+  // Your code here
+  
+  // Draw the ball
+  // Your code here
+  
+  // Update position and handle bouncing
+  // Your code here
+  
+  // Request next animation frame
+  requestAnimationFrame(animateBall);
+}
+
+// Start animation
+animateBall();</code></pre>
+    </div>
+
+    <div class="tip">
+      <h3>Tips:</h3>
+      <ul>
+        <li>
+          Remember to use <code>beginPath()</code> before starting a new shape.
+        </li>
+        <li>
+          For circles, use <code>arc()</code> method with the ending angle set
+          to <code>Math.PI * 2</code> for a complete circle.
+        </li>
+        <li>
+          For text, set the <code>font</code> property before using
+          <code>fillText()</code> or <code>strokeText()</code>.
+        </li>
+        <li>
+          For the bouncing ball animation, check if the ball's position plus its
+          radius exceeds the canvas boundaries.
+        </li>
+      </ul>
+    </div>
+
+    <p>
+      When you've completed the exercises, check your work by opening the
+      browser console to see if there are any errors.
+    </p>
+  </body>
+</html>
