@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3: Implementing ARIA for Complex Widgets</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      .task {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4caf50;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .tip {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      .widget {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .accordion {
+        margin: 15px 0;
+      }
+      .accordion-header {
+        background-color: #f5f5f5;
+        padding: 10px 15px;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        border-radius: 4px 4px 0 0;
+      }
+      .accordion-panel {
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-top: none;
+        display: none;
+      }
+      .tabs {
+        margin-bottom: 15px;
+      }
+      .tab-list {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab {
+        padding: 10px 15px;
+        cursor: pointer;
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        margin-right: 5px;
+        border-radius: 4px 4px 0 0;
+      }
+      .tab.active {
+        background-color: white;
+        border-bottom-color: white;
+      }
+      .tab-panel {
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-top: none;
+        display: none;
+      }
+      .tab-panel.active {
+        display: block;
+      }
+      textarea {
+        width: 100%;
+        height: 150px;
+        margin: 10px 0;
+        padding: 8px;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 3: Implementing ARIA for Complex Widgets</h1>
+
+    <div class="task">
+      <h2>Introduction</h2>
+      <p>
+        In this exercise, you will practice applying WAI-ARIA attributes to make
+        complex interactive widgets more accessible. ARIA helps to communicate
+        the purpose, state, and functionality of custom UI components to
+        assistive technologies.
+      </p>
+      <p>For each widget, you will:</p>
+      <ol>
+        <li>Examine the existing HTML structure</li>
+        <li>Add appropriate ARIA roles, states, and properties</li>
+        <li>
+          Implement JavaScript to update ARIA states when the widget's state
+          changes
+        </li>
+      </ol>
+    </div>
+
+    <div class="task">
+      <h2>Task 1: Accessible Accordion</h2>
+      <p>
+        Make the accordion component accessible by adding appropriate ARIA
+        attributes:
+      </p>
+
+      <div class="widget">
+        <div class="accordion" id="accordion1">
+          <div class="accordion-header" id="accordion1-header1">Section 1</div>
+          <div class="accordion-panel" id="accordion1-panel1">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at
+              justo vel nisi sollicitudin tincidunt.
+            </p>
+          </div>
+
+          <div class="accordion-header" id="accordion1-header2">Section 2</div>
+          <div class="accordion-panel" id="accordion1-panel2">
+            <p>
+              Proin ac finibus magna. Integer tincidunt fringilla nunc, id
+              commodo dui dignissim id.
+            </p>
+          </div>
+
+          <div class="accordion-header" id="accordion1-header3">Section 3</div>
+          <div class="accordion-panel" id="accordion1-panel3">
+            <p>
+              Donec vestibulum enim ac nulla dictum, in cursus justo pharetra.
+              Nullam finibus metus non ante.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p>Add the following ARIA attributes:</p>
+      <ul>
+        <li>Appropriate roles for the accordion container and its parts</li>
+        <li>
+          State attributes to indicate which sections are expanded/collapsed
+        </li>
+        <li>Relationship attributes to connect headers with their panels</li>
+      </ul>
+
+      <textarea
+        id="task1-code"
+        placeholder="Modify the HTML with ARIA attributes here..."
+      ></textarea>
+
+      <p>
+        Now implement JavaScript to update ARIA states when sections are
+        toggled:
+      </p>
+
+      <textarea
+        id="task1-js"
+        placeholder="Write JavaScript code here..."
+      ></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Consider using attributes like
+          <code>role="region"</code>, <code>aria-expanded</code>,
+          <code>aria-controls</code>, and <code>aria-labelledby</code> to
+          establish relationships and communicate state.
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 2: Accessible Tabs</h2>
+      <p>
+        Make this tabbed interface accessible by adding appropriate ARIA
+        attributes:
+      </p>
+
+      <div class="widget">
+        <div class="tabs" id="tabs1">
+          <ul class="tab-list">
+            <li class="tab active" id="tab1">Tab 1</li>
+            <li class="tab" id="tab2">Tab 2</li>
+            <li class="tab" id="tab3">Tab 3</li>
+          </ul>
+
+          <div class="tab-panel active" id="panel1">
+            <p>This is the content for the first tab.</p>
+          </div>
+
+          <div class="tab-panel" id="panel2">
+            <p>This is the content for the second tab.</p>
+          </div>
+
+          <div class="tab-panel" id="panel3">
+            <p>This is the content for the third tab.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>Add the following ARIA attributes:</p>
+      <ul>
+        <li>Appropriate roles for the tablist, tabs, and tab panels</li>
+        <li>State attributes to indicate which tab is selected</li>
+        <li>Relationship attributes to connect tabs with their panels</li>
+        <li>Proper keyboard navigation attributes</li>
+      </ul>
+
+      <textarea
+        id="task2-code"
+        placeholder="Modify the HTML with ARIA attributes here..."
+      ></textarea>
+
+      <p>
+        Now implement JavaScript to handle tab switching and update ARIA states:
+      </p>
+
+      <textarea
+        id="task2-js"
+        placeholder="Write JavaScript code here..."
+      ></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Consider using <code>role="tablist"</code>,
+          <code>role="tab"</code>, <code>role="tabpanel"</code>,
+          <code>aria-selected</code>, <code>aria-controls</code>, and
+          <code>tabindex</code> attributes.
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 3: Dialog with Modal</h2>
+      <p>
+        Make this dialog component accessible by adding appropriate ARIA
+        attributes:
+      </p>
+
+      <div class="widget">
+        <button id="open-dialog">Open Dialog</button>
+
+        <div
+          id="dialog"
+          style="
+            display: none;
+            position: relative;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background: white;
+            max-width: 500px;
+            margin: 20px auto;
+          "
+        >
+          <div id="dialog-title">Important Information</div>
+          <div id="dialog-content">
+            <p>
+              This dialog contains important information that requires your
+              attention.
+            </p>
+          </div>
+          <div id="dialog-actions">
+            <button id="confirm-button">Confirm</button>
+            <button id="cancel-button">Cancel</button>
+          </div>
+          <button
+            id="close-dialog"
+            style="position: absolute; top: 10px; right: 10px"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+
+      <p>Add the following ARIA attributes:</p>
+      <ul>
+        <li>Appropriate role for the dialog</li>
+        <li>Labeling and description attributes</li>
+        <li>Modal state attributes</li>
+        <li>Focus management attributes</li>
+      </ul>
+
+      <textarea
+        id="task3-code"
+        placeholder="Modify the HTML with ARIA attributes here..."
+      ></textarea>
+
+      <p>
+        Now implement JavaScript to handle dialog opening/closing and focus
+        management:
+      </p>
+
+      <textarea
+        id="task3-js"
+        placeholder="Write JavaScript code here..."
+      ></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Consider using <code>role="dialog"</code> or
+          <code>role="alertdialog"</code>, <code>aria-labelledby</code>,
+          <code>aria-describedby</code>, <code>aria-modal</code>, and managing
+          focus properly.
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 4: Live Region Notifications</h2>
+      <p>Implement accessible notifications using ARIA live regions:</p>
+
+      <div class="widget">
+        <div id="notification-demo">
+          <button id="trigger-success">Show Success Message</button>
+          <button id="trigger-error">Show Error Message</button>
+          <button id="trigger-update">Show Update Message</button>
+
+          <div
+            id="notification-area"
+            style="margin-top: 15px; padding: 10px; border: 1px solid #ccc"
+          >
+            <!-- Notifications will appear here -->
+          </div>
+        </div>
+      </div>
+
+      <p>
+        Add appropriate ARIA live region attributes to make notifications
+        accessible to screen reader users:
+      </p>
+
+      <textarea
+        id="task4-code"
+        placeholder="Modify the HTML with ARIA attributes here..."
+      ></textarea>
+
+      <p>
+        Now implement JavaScript to display notifications in the live region:
+      </p>
+
+      <textarea
+        id="task4-js"
+        placeholder="Write JavaScript code here..."
+      ></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Consider using <code>aria-live</code> with
+          values like "polite" or "assertive", and attributes like
+          <code>aria-atomic</code> and <code>role="status"</code> or
+          <code>role="alert"</code>.
+        </p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <h3>General ARIA Tips:</h3>
+      <ul>
+        <li>
+          Always follow the first rule of ARIA: if you can use a native HTML
+          element with the semantics you need, prefer that over ARIA
+        </li>
+        <li>
+          ARIA doesn't change functionality; you still need JavaScript to
+          implement behavior
+        </li>
+        <li>
+          Only use ARIA when necessary—don't add it to elements that already
+          have appropriate semantics
+        </li>
+        <li>
+          Test your components with screen readers to ensure they're announcing
+          information correctly
+        </li>
+        <li>
+          When a component's state changes, be sure to update relevant ARIA
+          attributes
+        </li>
+        <li>
+          Be careful with keyboard navigation—ensure all interactive elements
+          are focusable and respond to appropriate key events
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
