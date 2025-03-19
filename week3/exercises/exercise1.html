@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1: Creating Basic Forms</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .task {
+        background-color: #f0f0f0;
+        padding: 15px;
+        border-left: 4px solid #333;
+        margin-bottom: 20px;
+      }
+      .hint {
+        background-color: #e6f7ff;
+        padding: 10px;
+        border-left: 4px solid #1890ff;
+        margin-top: 10px;
+      }
+      section {
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 1: Creating Basic Forms</h1>
+
+    <div class="task">
+      <h2>Task:</h2>
+      <p>
+        Create a new HTML file called "contact-form.html" in the exercises
+        folder and implement a basic contact form with the following elements:
+      </p>
+      <ol>
+        <li>A form with appropriate action and method attributes</li>
+        <li>Text inputs for name, email, and subject</li>
+        <li>A textarea for the message</li>
+        <li>
+          A dropdown menu for the contact reason (options: Question, Feedback,
+          Support, Other)
+        </li>
+        <li>A submit button</li>
+        <li>A reset button</li>
+      </ol>
+
+      <div class="hint">
+        <h3>Hint:</h3>
+        <p>
+          Remember to use appropriate name attributes for all form controls. Use
+          labels for each form element to improve accessibility, and organize
+          the form logically.
+        </p>
+      </div>
+    </div>
+
+    <h2>Expected Result</h2>
+    <p>
+      Your form should include all the required elements, be properly
+      structured, and have a logical tab order. All form controls should be
+      properly labeled.
+    </p>
+
+    <h2>Solution Template</h2>
+    <p>If you're stuck, here's a template to start with:</p>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Contact Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Contact Us&lt;/h1&gt;
+    
+    &lt;form action="/submit-form" method="post"&gt;
+        &lt;!-- Name input --&gt;
+        &lt;label for="name"&gt;Name:&lt;/label&gt;
+        &lt;!-- Add your input here --&gt;
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;!-- Email input --&gt;
+        &lt;label for="email"&gt;Email:&lt;/label&gt;
+        &lt;!-- Add your input here --&gt;
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;!-- Subject input --&gt;
+        &lt;label for="subject"&gt;Subject:&lt;/label&gt;
+        &lt;!-- Add your input here --&gt;
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;!-- Contact reason dropdown --&gt;
+        &lt;label for="reason"&gt;Contact Reason:&lt;/label&gt;
+        &lt;!-- Add your select element here --&gt;
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;!-- Message textarea --&gt;
+        &lt;label for="message"&gt;Message:&lt;/label&gt;
+        &lt;!-- Add your textarea here --&gt;
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;!-- Buttons --&gt;
+        &lt;!-- Add submit and reset buttons here --&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>Check Your Work</h2>
+    <p>After completing the exercise:</p>
+    <ol>
+      <li>Open your HTML file in a web browser</li>
+      <li>Test that all form elements appear correctly</li>
+      <li>Check that clicking on labels focuses the corresponding input</li>
+      <li>Test the tab order moves logically through the form</li>
+      <li>Try the reset button to ensure it clears the form</li>
+      <li>
+        Validate your HTML using the
+        <a href="https://validator.w3.org/#validate_by_upload"
+          >W3C Markup Validation Service</a
+        >
+      </li>
+    </ol>
+  </body>
+</html>
