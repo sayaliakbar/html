@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 4: Embedding Third-Party Widgets</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .instructions {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .task {
+        background-color: #e3f2fd;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      pre {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .tip {
+        background-color: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 10px 15px;
+        margin: 20px 0;
+      }
+      .widget-preview {
+        border: 1px dashed #ccc;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: center;
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 4: Embedding Third-Party Widgets</h1>
+
+    <div class="instructions">
+      <h2>Instructions</h2>
+      <p>
+        In this exercise, you'll practice embedding various third-party widgets
+        and APIs into a web page to enhance its functionality and content.
+      </p>
+      <p>
+        You'll create a "Local Business Page" for a fictional café that includes
+        multiple embedded widgets to provide visitors with useful information.
+      </p>
+    </div>
+
+    <div class="task">
+      <h2>Tasks</h2>
+      <ol>
+        <li>Create a new HTML file named "api-integration.html"</li>
+        <li>Add the basic HTML structure with appropriate metadata</li>
+        <li>
+          Implement the following embedded content:
+          <ul>
+            <li>A Google Map showing the café's location</li>
+            <li>
+              A weather widget showing current weather in the café's location
+            </li>
+            <li>A social media feed (Twitter, Instagram, or Facebook)</li>
+            <li>A YouTube video showcasing the café or a related topic</li>
+            <li>A contact form or reservation widget</li>
+          </ul>
+        </li>
+        <li>
+          Add appropriate error handling or fallback content for each widget
+        </li>
+        <li>Ensure all embedded content is responsive</li>
+        <li>Add a privacy notice about third-party content</li>
+      </ol>
+    </div>
+
+    <div class="tip">
+      <p>
+        <strong>Note:</strong> For this exercise, you can use placeholder API
+        keys or embed codes. In a real project, you would need actual API keys
+        from each service.
+      </p>
+    </div>
+
+    <h2>Starting Template</h2>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Urban Grove Café | Artisan Coffee &amp; Organic Food&lt;/title&gt;
+    &lt;meta name="description" content="Urban Grove Café serves artisan coffee, organic breakfast, and farm-to-table lunch in the heart of downtown."&gt;
+    
+    &lt;!-- Add any additional metadata or API script references here --&gt;
+    
+    &lt;style&gt;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        .embed-container {
+            position: relative;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .embed-fallback {
+            padding: 40px;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        .privacy-notice {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+        .responsive-iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+        }
+        @media (max-width: 768px) {
+            .responsive-iframe {
+                height: 350px;
+            }
+        }
+        @media (max-width: 480px) {
+            .responsive-iframe {
+                height: 250px;
+            }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Urban Grove Café&lt;/h1&gt;
+        &lt;p&gt;Artisan Coffee &amp; Organic Food&lt;/p&gt;
+    &lt;/header&gt;
+    
+    &lt;nav&gt;
+        &lt;a href="#about"&gt;About&lt;/a&gt;
+        &lt;a href="#location"&gt;Location&lt;/a&gt;
+        &lt;a href="#weather"&gt;Weather&lt;/a&gt;
+        &lt;a href="#social"&gt;Social&lt;/a&gt;
+        &lt;a href="#video"&gt;Video&lt;/a&gt;
+        &lt;a href="#reservations"&gt;Reservations&lt;/a&gt;
+    &lt;/nav&gt;
+    
+    &lt;main&gt;
+        &lt;section id="about"&gt;
+            &lt;h2&gt;About Urban Grove&lt;/h2&gt;
+            &lt;p&gt;
+                Urban Grove is a cozy café nestled in the heart of downtown that offers artisan coffee, 
+                organic breakfast options, and farm-to-table lunch. We source our ingredients locally 
+                and prepare everything fresh daily.
+            &lt;/p&gt;
+            &lt;p&gt;
+                Our comfortable atmosphere makes Urban Grove the perfect spot for morning meetings, 
+                afternoon work sessions, or casual gatherings with friends.
+            &lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="location"&gt;
+            &lt;h2&gt;Find Us&lt;/h2&gt;
+            &lt;p&gt;123 Main Street, Downtown, City, State 12345&lt;/p&gt;
+            
+            &lt;!-- Add Google Maps embed here --&gt;
+            &lt;div class="embed-container"&gt;
+                &lt;div class="embed-fallback"&gt;
+                    &lt;p&gt;Google Maps could not be loaded.&lt;/p&gt;
+                    &lt;p&gt;Our café is located at 123 Main Street, Downtown.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="weather"&gt;
+            &lt;h2&gt;Current Weather at Our Location&lt;/h2&gt;
+            
+            &lt;!-- Add Weather Widget here --&gt;
+            &lt;div class="embed-container"&gt;
+                &lt;div class="embed-fallback"&gt;
+                    &lt;p&gt;Weather information could not be loaded.&lt;/p&gt;
+                    &lt;p&gt;Call us at (555) 123-4567 for current patio availability.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="social"&gt;
+            &lt;h2&gt;Follow Us&lt;/h2&gt;
+            &lt;p&gt;Stay updated with our daily specials and events!&lt;/p&gt;
+            
+            &lt;!-- Add Social Media Feed here --&gt;
+            &lt;div class="embed-container"&gt;
+                &lt;div class="embed-fallback"&gt;
+                    &lt;p&gt;Social media feed could not be loaded.&lt;/p&gt;
+                    &lt;p&gt;Follow us on @urbangrove for daily updates.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="video"&gt;
+            &lt;h2&gt;Our Coffee Journey&lt;/h2&gt;
+            
+            &lt;!-- Add YouTube Video embed here --&gt;
+            &lt;div class="embed-container"&gt;
+                &lt;div class="embed-fallback"&gt;
+                    &lt;p&gt;Video could not be loaded.&lt;/p&gt;
+                    &lt;p&gt;Visit our website to watch our coffee sourcing journey.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        
+        &lt;section id="reservations"&gt;
+            &lt;h2&gt;Make a Reservation&lt;/h2&gt;
+            
+            &lt;!-- Add Reservation Form or Widget here --&gt;
+            &lt;div class="embed-container"&gt;
+                &lt;div class="embed-fallback"&gt;
+                    &lt;p&gt;Reservation form could not be loaded.&lt;/p&gt;
+                    &lt;p&gt;Please call (555) 123-4567 to make a reservation.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+        
+        &lt;div class="privacy-notice"&gt;
+            &lt;h3&gt;Privacy Notice&lt;/h3&gt;
+            &lt;p&gt;
+                This page uses third-party services that may collect data about your visit.
+                These include Google Maps, weather services, social media widgets, and YouTube.
+                By using this page, you acknowledge and accept the privacy policies of these services.
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2025 Urban Grove Café. All rights reserved.&lt;/p&gt;
+        &lt;p&gt;123 Main Street, Downtown, City, State 12345 | (555) 123-4567 | hello@urbangrove.example.com&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>Example Solution</h2>
+    <p>
+      Here's a partial solution showing how to implement some of the embedded
+      widgets:
+    </p>
+
+    <h3>Google Maps Embed</h3>
+    <pre><code>&lt;section id="location"&gt;
+    &lt;h2&gt;Find Us&lt;/h2&gt;
+    &lt;p&gt;123 Main Street, Downtown, City, State 12345&lt;/p&gt;
+    
+    &lt;div class="embed-container"&gt;
+        &lt;iframe 
+            class="responsive-iframe"
+            src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=123+Main+St,Downtown,City,State" 
+            allowfullscreen
+            loading="lazy"
+            title="Urban Grove Café Location"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        &gt;&lt;/iframe&gt;
+        &lt;div class="embed-fallback" style="display:none;"&gt;
+            &lt;p&gt;Google Maps could not be loaded.&lt;/p&gt;
+            &lt;p&gt;Our café is located at 123 Main Street, Downtown.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+    <h3>Weather Widget</h3>
+    <pre><code>&lt;section id="weather"&gt;
+    &lt;h2&gt;Current Weather at Our Location&lt;/h2&gt;
+    
+    &lt;div class="embed-container"&gt;
+        &lt;div id="weather-widget" class="responsive-iframe"&gt;&lt;/div&gt;
+        &lt;div class="embed-fallback" id="weather-fallback" style="display:none;"&gt;
+            &lt;p&gt;Weather information could not be loaded.&lt;/p&gt;
+            &lt;p&gt;Call us at (555) 123-4567 for current patio availability.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;script&gt;
+    // Example weather widget implementation
+    function loadWeatherWidget() {
+        try {
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=YourCity&appid=YOUR_API_KEY')
+                .then(response =&gt; {
+                    if (!response.ok) throw new Error('Weather data not available');
+                    return response.json();
+                })
+                .then(data =&gt; {
+                    document.getElementById('weather-widget').innerHTML = `
+                        &lt;div style="padding: 20px; text-align: center;"&gt;
+                            &lt;h3&gt;Weather in ${data.name}&lt;/h3&gt;
+                            &lt;p&gt;Temperature: ${Math.round(data.main.temp - 273.15)}°C&lt;/p&gt;
+                            &lt;p&gt;Condition: ${data.weather[0].description}&lt;/p&gt;
+                            &lt;p&gt;Humidity: ${data.main.humidity}%&lt;/p&gt;
+                        &lt;/div&gt;
+                    `;
+                })
+                .catch(error =&gt; {
+                    document.getElementById('weather-widget').style.display = 'none';
+                    document.getElementById('weather-fallback').style.display = 'block';
+                    console.error('Error loading weather:', error);
+                });
+        } catch (error) {
+            document.getElementById('weather-widget').style.display = 'none';
+            document.getElementById('weather-fallback').style.display = 'block';
+            console.error('Error in weather widget:', error);
+        }
+    }
+
+    // Call the function when the page loads
+    window.addEventListener('load', loadWeatherWidget);
+&lt;/script&gt;</code></pre>
+
+    <h3>YouTube Video Embed</h3>
+    <pre><code>&lt;section id="video"&gt;
+    &lt;h2&gt;Our Coffee Journey&lt;/h2&gt;
+    
+    &lt;div class="embed-container"&gt;
+        &lt;iframe 
+            class="responsive-iframe"
+            src="https://www.youtube.com/embed/VIDEO_ID" 
+            title="Urban Grove Coffee Journey"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        &gt;&lt;/iframe&gt;
+        &lt;div class="embed-fallback" style="display:none;"&gt;
+            &lt;p&gt;Video could not be loaded.&lt;/p&gt;
+            &lt;p&gt;Visit our website to watch our coffee sourcing journey.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+    <h2>Submission</h2>
+    <p>
+      Save your completed file and test it in different browsers and screen
+      sizes to ensure your embedded content is responsive and includes
+      appropriate fallbacks.
+    </p>
+  </body>
+</html>
