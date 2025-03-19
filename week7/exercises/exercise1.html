@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1: Responsive Images</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .task {
+        background-color: #f0f0f0;
+        padding: 15px;
+        border-left: 4px solid #333;
+        margin-bottom: 20px;
+      }
+      .hint {
+        background-color: #e6f7ff;
+        padding: 10px;
+        border-left: 4px solid #1890ff;
+        margin-top: 10px;
+      }
+      section {
+        margin-bottom: 30px;
+      }
+      img.demo {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px 0;
+        border: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 1: Responsive Images</h1>
+
+    <div class="task">
+      <h2>Task:</h2>
+      <p>
+        Create a new HTML file called "responsive-images.html" in the exercises
+        folder. In this exercise, you'll practice implementing responsive image
+        techniques to serve optimized images for different screen sizes and
+        resolutions.
+      </p>
+
+      <ol>
+        <li>
+          Find or create three versions of the same image in different
+          resolutions:
+          <ul>
+            <li>Small (400px width)</li>
+            <li>Medium (800px width)</li>
+            <li>Large (1200px width)</li>
+          </ul>
+        </li>
+        <li>
+          Implement the <code>&lt;picture&gt;</code> element to serve different
+          image sizes based on viewport width
+        </li>
+        <li>
+          Implement the <code>srcset</code> and <code>sizes</code> attributes on
+          a separate image
+        </li>
+        <li>
+          Create an art direction example where the image crop changes for
+          different screen sizes
+        </li>
+        <li>Implement lazy loading for at least one image</li>
+        <li>Include proper alt text for all images</li>
+      </ol>
+
+      <div class="hint">
+        <h3>Hint:</h3>
+        <p>
+          Remember that the <code>&lt;picture&gt;</code> element is best for art
+          direction (changing the image crop or completely different images
+          based on screen size), while <code>srcset</code> and
+          <code>sizes</code> attributes are better for resolution switching
+          (same image, different resolutions).
+        </p>
+      </div>
+    </div>
+
+    <h2>Expected Result</h2>
+    <p>
+      Your page should demonstrate three different responsive image techniques:
+    </p>
+    <ol>
+      <li>
+        Resolution switching with <code>srcset</code> and <code>sizes</code>
+      </li>
+      <li>Art direction with the <code>&lt;picture&gt;</code> element</li>
+      <li>Performance optimization with lazy loading</li>
+    </ol>
+
+    <h2>Solution Template</h2>
+    <p>If you're stuck, here's a template to start with:</p>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Responsive Images&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            margin: 40px 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Responsive Images Techniques&lt;/h1&gt;
+    
+    &lt;section&gt;
+        &lt;h2&gt;1. Resolution Switching with srcset and sizes&lt;/h2&gt;
+        &lt;p&gt;This image will load different resolutions based on screen width and device pixel density&lt;/p&gt;
+        
+        &lt;!-- Add your srcset and sizes implementation here --&gt;
+        &lt;img src="image-small.jpg" 
+             alt="Description of the image"
+             srcset="image-small.jpg 400w,
+                     image-medium.jpg 800w,
+                     image-large.jpg 1200w"
+             sizes="(max-width: 600px) 400px,
+                    (max-width: 1200px) 800px,
+                    1200px"&gt;
+    &lt;/section&gt;
+    
+    &lt;section&gt;
+        &lt;h2&gt;2. Art Direction with picture Element&lt;/h2&gt;
+        &lt;p&gt;This image will change the crop/composition based on screen size&lt;/p&gt;
+        
+        &lt;!-- Add your picture element implementation here --&gt;
+        &lt;picture&gt;
+            &lt;!-- Add source elements here --&gt;
+            &lt;img src="fallback-image.jpg" alt="Description of the image"&gt;
+        &lt;/picture&gt;
+    &lt;/section&gt;
+    
+    &lt;section&gt;
+        &lt;h2&gt;3. Lazy Loading&lt;/h2&gt;
+        &lt;p&gt;This image will load only when it's about to enter the viewport&lt;/p&gt;
+        
+        &lt;!-- Add your lazy loading implementation here --&gt;
+        &lt;img src="image.jpg" loading="lazy" alt="Description of the image"&gt;
+    &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>Check Your Work</h2>
+    <p>After completing the exercise:</p>
+    <ol>
+      <li>Open your HTML file in a web browser</li>
+      <li>Resize the browser window to test your responsive images</li>
+      <li>
+        Use the browser's developer tools to verify different images are being
+        loaded at different screen sizes
+      </li>
+      <li>
+        Check that lazy loading is working by scrolling down to the lazy-loaded
+        image
+      </li>
+      <li>
+        Validate your HTML using the
+        <a href="https://validator.w3.org/#validate_by_upload"
+          >W3C Markup Validation Service</a
+        >
+      </li>
+    </ol>
+
+    <h2>Submission Guidelines</h2>
+    <p>When submitting your work, be prepared to:</p>
+    <ol>
+      <li>Explain how each responsive image technique works</li>
+      <li>Discuss the benefits and use cases for each approach</li>
+      <li>
+        Demonstrate how your implementation performs on different screen sizes
+      </li>
+    </ol>
+  </body>
+</html>
