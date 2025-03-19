@@ -15,12 +15,12 @@
       h1,
       h2,
       h3 {
-        color: #333;
+        color: #2c3e50;
       }
       code {
         background-color: #f4f4f4;
-        padding: 2px 4px;
-        border-radius: 4px;
+        padding: 2px 5px;
+        border-radius: 3px;
       }
       pre {
         background-color: #f4f4f4;
@@ -63,12 +63,11 @@
   <body>
     <h1>Week 2: Core HTML Elements</h1>
 
-    <section id="links-anchors">
-      <h2>Links and Anchors</h2>
-
+    <section>
+      <h2>1. Links and Anchors</h2>
       <p>
-        Hyperlinks are one of the most important elements in HTML. They allow
-        users to navigate between web pages and resources.
+        Links are fundamental to the web, allowing users to navigate between
+        pages and resources.
       </p>
 
       <h3>Basic Link Syntax</h3>
@@ -76,44 +75,59 @@
         Links are created using the <code>&lt;a&gt;</code> (anchor) element with
         the <code>href</code> attribute:
       </p>
-
-      <pre><code>&lt;a href="https://www.example.com"&gt;Visit Example Website&lt;/a&gt;</code></pre>
+      <div class="example">
+        <code
+          >&lt;a href="https://www.example.com"&gt;Visit
+          Example.com&lt;/a&gt;</code
+        >
+      </div>
 
       <h3>Types of Links</h3>
-
-      <h4>Absolute URLs</h4>
-      <p>Absolute URLs point to resources using their complete web address:</p>
-      <pre><code>&lt;a href="https://www.example.com/about.html"&gt;About Page&lt;/a&gt;</code></pre>
-
-      <h4>Relative URLs</h4>
-      <p>Relative URLs point to resources relative to the current page:</p>
-      <pre><code>&lt;a href="about.html"&gt;About Page&lt;/a&gt;
-&lt;a href="../index.html"&gt;Home Page&lt;/a&gt;
-&lt;a href="./products/item1.html"&gt;Product 1&lt;/a&gt;</code></pre>
-
-      <h4>Email Links</h4>
-      <p>
-        Email links open the user's email client with a pre-addressed message:
-      </p>
-      <pre><code>&lt;a href="mailto:contact@example.com"&gt;Email Us&lt;/a&gt;</code></pre>
-
-      <h4>Phone Links</h4>
-      <p>Phone links can initiate calls on mobile devices:</p>
-      <pre><code>&lt;a href="tel:+1234567890"&gt;Call Us&lt;/a&gt;</code></pre>
-
-      <h4>Page Sections (Bookmarks)</h4>
-      <p>You can link to specific sections within a page using IDs:</p>
-      <pre><code>&lt;!-- Creating a bookmark target --&gt;
-&lt;h2 id="section1"&gt;Section 1&lt;/h2&gt;
-
-&lt;!-- Linking to that bookmark --&gt;
-&lt;a href="#section1"&gt;Go to Section 1&lt;/a&gt;
-
-&lt;!-- Linking to a bookmark on another page --&gt;
-&lt;a href="page.html#section1"&gt;Go to Section 1 on Page&lt;/a&gt;</code></pre>
+      <ul>
+        <li>
+          <strong>Absolute URLs:</strong> Point to external websites, include
+          the full URL
+          <div class="example">
+            <code
+              >&lt;a href="https://www.mozilla.org"&gt;Mozilla&lt;/a&gt;</code
+            >
+          </div>
+        </li>
+        <li>
+          <strong>Relative URLs:</strong> Point to pages within your website
+          <div class="example">
+            <code>&lt;a href="about.html"&gt;About Us&lt;/a&gt;</code><br />
+            <code
+              >&lt;a href="../products/index.html"&gt;Products&lt;/a&gt;</code
+            >
+          </div>
+        </li>
+        <li>
+          <strong>Email Links:</strong> Open the user's email client
+          <div class="example">
+            <code
+              >&lt;a href="mailto:example@example.com"&gt;Send
+              Email&lt;/a&gt;</code
+            >
+          </div>
+        </li>
+        <li>
+          <strong>Phone Links:</strong> For mobile devices to initiate calls
+          <div class="example">
+            <code>&lt;a href="tel:+1234567890"&gt;Call Us&lt;/a&gt;</code>
+          </div>
+        </li>
+        <li>
+          <strong>Page Anchors:</strong> Link to a specific part of a page
+          <div class="example">
+            <code>&lt;a href="#section2"&gt;Go to Section 2&lt;/a&gt;</code
+            ><br />
+            <code>&lt;h2 id="section2"&gt;Section 2&lt;/h2&gt;</code>
+          </div>
+        </li>
+      </ul>
 
       <h3>Link Attributes</h3>
-
       <table>
         <tr>
           <th>Attribute</th>
@@ -121,7 +135,7 @@
           <th>Example</th>
         </tr>
         <tr>
-          <td><code>target</code></td>
+          <td>target</td>
           <td>Specifies where to open the linked document</td>
           <td>
             <code
@@ -131,18 +145,8 @@
           </td>
         </tr>
         <tr>
-          <td><code>title</code></td>
-          <td>Provides additional information about the link</td>
-          <td>
-            <code
-              >&lt;a href="about.html" title="Learn more about our
-              company"&gt;About Us&lt;/a&gt;</code
-            >
-          </td>
-        </tr>
-        <tr>
-          <td><code>download</code></td>
-          <td>Indicates that the target will be downloaded</td>
+          <td>download</td>
+          <td>Indicates the link is for downloading a file</td>
           <td>
             <code
               >&lt;a href="report.pdf" download&gt;Download
@@ -151,70 +155,47 @@
           </td>
         </tr>
         <tr>
-          <td><code>rel</code></td>
+          <td>rel</td>
           <td>
-            Specifies the relationship between the current document and the
-            linked document
+            Describes the relationship between current and linked document
           </td>
           <td>
             <code
-              >&lt;a href="https://example.com" rel="noopener
-              noreferrer"&gt;External Link&lt;/a&gt;</code
+              >&lt;a href="https://partner.com" rel="nofollow"&gt;Partner
+              Site&lt;/a&gt;</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>title</td>
+          <td>Provides additional information (tooltip)</td>
+          <td>
+            <code
+              >&lt;a href="glossary.html" title="View our
+              glossary"&gt;Glossary&lt;/a&gt;</code
             >
           </td>
         </tr>
       </table>
-
-      <div class="note">
-        <p>
-          For security and performance reasons, use
-          <code>rel="noopener noreferrer"</code> when linking to external sites
-          with <code>target="_blank"</code>.
-        </p>
-      </div>
     </section>
 
-    <section id="images">
-      <h2>Images</h2>
-
+    <section>
+      <h2>2. Images and Image Maps</h2>
       <p>
-        Images make your web pages more engaging and informative. HTML uses the
-        <code>&lt;img&gt;</code> element to embed images.
+        Images enhance the visual appeal of web pages and convey information
+        effectively.
       </p>
 
       <h3>Basic Image Syntax</h3>
-      <pre><code>&lt;img src="image.jpg" alt="Description of the image"&gt;</code></pre>
-
       <p>
-        The <code>src</code> attribute specifies the path to the image, and the
-        <code>alt</code> attribute provides alternative text for accessibility.
+        Images are added using the <code>&lt;img&gt;</code> element with the
+        <code>src</code> attribute:
       </p>
+      <div class="example">
+        <code>&lt;img src="image.jpg" alt="Description of image"&gt;</code>
+      </div>
 
-      <h3>Image Formats</h3>
-      <ul>
-        <li>
-          <strong>JPEG (.jpg, .jpeg)</strong> - Best for photographs and complex
-          images with many colors
-        </li>
-        <li>
-          <strong>PNG (.png)</strong> - Best for images requiring transparency
-          or with text/sharp edges
-        </li>
-        <li>
-          <strong>GIF (.gif)</strong> - Supports animation, limited colors
-        </li>
-        <li>
-          <strong>SVG (.svg)</strong> - Vector format, scales without losing
-          quality, ideal for logos and icons
-        </li>
-        <li>
-          <strong>WebP (.webp)</strong> - Modern format with better compression
-          and quality
-        </li>
-      </ul>
-
-      <h3>Image Attributes</h3>
-
+      <h3>Important Image Attributes</h3>
       <table>
         <tr>
           <th>Attribute</th>
@@ -222,362 +203,221 @@
           <th>Example</th>
         </tr>
         <tr>
-          <td><code>alt</code></td>
-          <td>Alternative text for the image (required for accessibility)</td>
+          <td>alt</td>
+          <td>Alternative text for accessibility and if image fails to load</td>
           <td><code>&lt;img src="logo.png" alt="Company Logo"&gt;</code></td>
         </tr>
         <tr>
-          <td><code>width</code> / <code>height</code></td>
-          <td>Specifies the width/height of the image in pixels</td>
+          <td>width, height</td>
+          <td>Specify image dimensions (good for performance)</td>
           <td>
             <code
-              >&lt;img src="photo.jpg" alt="Beach" width="300"
-              height="200"&gt;</code
+              >&lt;img src="photo.jpg" width="300" height="200"
+              alt="Landscape"&gt;</code
             >
           </td>
         </tr>
         <tr>
-          <td><code>loading</code></td>
-          <td>
-            Specifies whether the image should be loaded immediately or when
-            needed
-          </td>
+          <td>loading</td>
+          <td>Lazy loading for performance optimization</td>
           <td>
             <code
-              >&lt;img src="large-image.jpg" alt="Landscape"
+              >&lt;img src="large-image.jpg" alt="Large image"
               loading="lazy"&gt;</code
             >
           </td>
         </tr>
       </table>
 
-      <div class="note">
-        <p>
-          Always specify the <code>alt</code> attribute for images. For
-          decorative images, use an empty alt attribute (<code>alt=""</code>).
-        </p>
-      </div>
+      <h3>Image Formats</h3>
+      <ul>
+        <li><strong>JPEG:</strong> Best for photographs with many colors</li>
+        <li><strong>PNG:</strong> Good for images needing transparency</li>
+        <li>
+          <strong>GIF:</strong> Simple animations and images with few colors
+        </li>
+        <li>
+          <strong>SVG:</strong> Vector graphics that scale without losing
+          quality
+        </li>
+        <li><strong>WebP:</strong> Modern format with better compression</li>
+      </ul>
 
       <h3>Image Maps</h3>
-      <p>Image maps allow you to create clickable areas within an image:</p>
-
-      <pre><code>&lt;img src="workplace.jpg" alt="Workplace" usemap="#workmap"&gt;
-
-&lt;map name="workmap"&gt;
-  &lt;area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.html"&gt;
-  &lt;area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.html"&gt;
-  &lt;area shape="circle" coords="337,300,44" alt="Coffee" href="coffee.html"&gt;
-&lt;/map&gt;</code></pre>
-
-      <h4>Area Shape Attributes</h4>
-      <ul>
-        <li>
-          <code>rect</code> - Defines a rectangular area (coords: x1,y1,x2,y2)
-        </li>
-        <li>
-          <code>circle</code> - Defines a circular area (coords: x,y,radius)
-        </li>
-        <li><code>poly</code> - Defines a polygon (coords: x1,y1,x2,y2,...)</li>
-      </ul>
+      <p>
+        Image maps allow different parts of an image to link to different
+        destinations:
+      </p>
+      <div class="example">
+        <code>
+          &lt;img src="map.jpg" alt="Navigation Map" usemap="#workmap"&gt;
+          &lt;map name="workmap"&gt; &lt;area shape="rect"
+          coords="34,44,270,350" alt="Computer" href="computer.html"&gt;
+          &lt;area shape="rect" coords="290,172,333,250" alt="Phone"
+          href="phone.html"&gt; &lt;area shape="circle" coords="337,300,44"
+          alt="Cup of coffee" href="coffee.html"&gt; &lt;/map&gt;
+        </code>
+      </div>
     </section>
 
-    <section id="lists">
-      <h2>Lists</h2>
-
+    <section>
+      <h2>3. Lists</h2>
       <p>
-        HTML provides three types of lists to organize content: unordered lists,
-        ordered lists, and definition lists.
+        Lists help organize content in a structured way, making information
+        easier to read.
       </p>
 
       <h3>Unordered Lists</h3>
-      <p>
-        Unordered lists create bulleted lists using the
-        <code>&lt;ul&gt;</code> element with <code>&lt;li&gt;</code> items:
-      </p>
-
-      <pre><code>&lt;ul&gt;
-  &lt;li&gt;Item 1&lt;/li&gt;
-  &lt;li&gt;Item 2&lt;/li&gt;
-  &lt;li&gt;Item 3&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-
+      <p>Use bullet points for items with no particular order:</p>
       <div class="example">
-        <h4>Example:</h4>
-        <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-        </ul>
+        <code>
+          &lt;ul&gt; &lt;li&gt;Item 1&lt;/li&gt; &lt;li&gt;Item 2&lt;/li&gt;
+          &lt;li&gt;Item 3&lt;/li&gt; &lt;/ul&gt;
+        </code>
       </div>
 
       <h3>Ordered Lists</h3>
-      <p>
-        Ordered lists create numbered lists using the
-        <code>&lt;ol&gt;</code> element with <code>&lt;li&gt;</code> items:
-      </p>
-
-      <pre><code>&lt;ol&gt;
-  &lt;li&gt;First step&lt;/li&gt;
-  &lt;li&gt;Second step&lt;/li&gt;
-  &lt;li&gt;Third step&lt;/li&gt;
-&lt;/ol&gt;</code></pre>
-
+      <p>Use numbers for items that follow a sequence:</p>
       <div class="example">
-        <h4>Example:</h4>
-        <ol>
-          <li>First step</li>
-          <li>Second step</li>
-          <li>Third step</li>
-        </ol>
+        <code>
+          &lt;ol&gt; &lt;li&gt;First step&lt;/li&gt; &lt;li&gt;Second
+          step&lt;/li&gt; &lt;li&gt;Third step&lt;/li&gt; &lt;/ol&gt;
+        </code>
       </div>
 
-      <h4>Ordered List Attributes</h4>
-      <pre><code>&lt;!-- Starting number --&gt;
-&lt;ol start="5"&gt;
-  &lt;li&gt;Item (will be numbered 5)&lt;/li&gt;
-  &lt;li&gt;Item (will be numbered 6)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;!-- Different numbering types --&gt;
-&lt;ol type="i"&gt;  &lt;!-- lowercase Roman numerals --&gt;
-  &lt;li&gt;Item (i)&lt;/li&gt;
-  &lt;li&gt;Item (ii)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ol type="A"&gt;  &lt;!-- uppercase letters --&gt;
-  &lt;li&gt;Item (A)&lt;/li&gt;
-  &lt;li&gt;Item (B)&lt;/li&gt;
-&lt;/ol&gt;</code></pre>
-
-      <h4>List Type Values</h4>
-      <ul>
-        <li><code>1</code> - Numbers (default)</li>
-        <li><code>A</code> - Uppercase letters</li>
-        <li><code>a</code> - Lowercase letters</li>
-        <li><code>I</code> - Uppercase Roman numerals</li>
-        <li><code>i</code> - Lowercase Roman numerals</li>
-      </ul>
-
       <h3>Definition Lists</h3>
-      <p>
-        Definition lists are used to display name-value pairs, such as terms and
-        their definitions:
-      </p>
-
-      <pre><code>&lt;dl&gt;
-  &lt;dt&gt;HTML&lt;/dt&gt;
-  &lt;dd&gt;HyperText Markup Language is the standard language for creating web pages.&lt;/dd&gt;
-  
-  &lt;dt&gt;CSS&lt;/dt&gt;
-  &lt;dd&gt;Cascading Style Sheets is used for styling web pages.&lt;/dd&gt;
-&lt;/dl&gt;</code></pre>
-
+      <p>Used for term-description pairs:</p>
       <div class="example">
-        <h4>Example:</h4>
-        <dl>
-          <dt>HTML</dt>
-          <dd>
-            HyperText Markup Language is the standard language for creating web
-            pages.
-          </dd>
-
-          <dt>CSS</dt>
-          <dd>Cascading Style Sheets is used for styling web pages.</dd>
-        </dl>
+        <code>
+          &lt;dl&gt; &lt;dt&gt;HTML&lt;/dt&gt; &lt;dd&gt;HyperText Markup
+          Language - the standard language for web pages&lt;/dd&gt;
+          &lt;dt&gt;CSS&lt;/dt&gt; &lt;dd&gt;Cascading Style Sheets - used for
+          styling web pages&lt;/dd&gt; &lt;/dl&gt;
+        </code>
       </div>
 
       <h3>Nested Lists</h3>
-      <p>Lists can be nested inside other lists:</p>
-
-      <pre><code>&lt;ul&gt;
-  &lt;li&gt;Main Item 1&lt;/li&gt;
-  &lt;li&gt;Main Item 2
-    &lt;ul&gt;
-      &lt;li&gt;Sub Item 2.1&lt;/li&gt;
-      &lt;li&gt;Sub Item 2.2&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Main Item 3&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-
+      <p>Lists can be nested inside each other:</p>
       <div class="example">
-        <h4>Example:</h4>
-        <ul>
-          <li>Main Item 1</li>
-          <li>
-            Main Item 2
-            <ul>
-              <li>Sub Item 2.1</li>
-              <li>Sub Item 2.2</li>
-            </ul>
-          </li>
-          <li>Main Item 3</li>
-        </ul>
+        <code>
+          &lt;ul&gt; &lt;li&gt;Main item 1 &lt;ul&gt; &lt;li&gt;Sub item
+          1.1&lt;/li&gt; &lt;li&gt;Sub item 1.2&lt;/li&gt; &lt;/ul&gt;
+          &lt;/li&gt; &lt;li&gt;Main item 2&lt;/li&gt; &lt;/ul&gt;
+        </code>
       </div>
+
+      <h3>List Attributes</h3>
+      <table>
+        <tr>
+          <th>Element</th>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>ol</td>
+          <td>type</td>
+          <td>Number type: 1, A, a, I, i</td>
+        </tr>
+        <tr>
+          <td>ol</td>
+          <td>start</td>
+          <td>Starting number for ordered list</td>
+        </tr>
+        <tr>
+          <td>ol</td>
+          <td>reversed</td>
+          <td>List in descending order</td>
+        </tr>
+        <tr>
+          <td>li</td>
+          <td>value</td>
+          <td>Set specific number for list item</td>
+        </tr>
+      </table>
     </section>
 
-    <section id="tables">
-      <h2>Tables</h2>
-
-      <p>HTML tables allow you to arrange data in rows and columns.</p>
+    <section>
+      <h2>4. Tables</h2>
+      <p>Tables are used to organize and present data in rows and columns.</p>
 
       <h3>Basic Table Structure</h3>
-
-      <pre><code>&lt;table&gt;
-  &lt;tr&gt;
-    &lt;th&gt;Header 1&lt;/th&gt;
-    &lt;th&gt;Header 2&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;Row 1, Cell 1&lt;/td&gt;
-    &lt;td&gt;Row 1, Cell 2&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;Row 2, Cell 1&lt;/td&gt;
-    &lt;td&gt;Row 2, Cell 2&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-
-      <h4>Basic Table Elements</h4>
-      <ul>
-        <li><code>&lt;table&gt;</code> - Defines the table</li>
-        <li><code>&lt;tr&gt;</code> - Defines a table row</li>
-        <li><code>&lt;th&gt;</code> - Defines a header cell</li>
-        <li><code>&lt;td&gt;</code> - Defines a standard cell</li>
-      </ul>
+      <div class="example">
+        <code>
+          &lt;table&gt; &lt;tr&gt; &lt;th&gt;Header 1&lt;/th&gt;
+          &lt;th&gt;Header 2&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Row 1,
+          Cell 1&lt;/td&gt; &lt;td&gt;Row 1, Cell 2&lt;/td&gt; &lt;/tr&gt;
+          &lt;tr&gt; &lt;td&gt;Row 2, Cell 1&lt;/td&gt; &lt;td&gt;Row 2, Cell
+          2&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;
+        </code>
+      </div>
 
       <h3>Semantic Table Elements</h3>
+      <table>
+        <tr>
+          <th>Element</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>&lt;caption&gt;</td>
+          <td>Table title or description</td>
+        </tr>
+        <tr>
+          <td>&lt;thead&gt;</td>
+          <td>Group of header rows</td>
+        </tr>
+        <tr>
+          <td>&lt;tbody&gt;</td>
+          <td>Group of content rows</td>
+        </tr>
+        <tr>
+          <td>&lt;tfoot&gt;</td>
+          <td>Group of footer rows</td>
+        </tr>
+        <tr>
+          <td>&lt;colgroup&gt;</td>
+          <td>Group of columns for formatting</td>
+        </tr>
+      </table>
 
-      <pre><code>&lt;table&gt;
-  &lt;caption&gt;Monthly Savings&lt;/caption&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Month&lt;/th&gt;
-      &lt;th&gt;Savings&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;January&lt;/td&gt;
-      &lt;td&gt;$100&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;February&lt;/td&gt;
-      &lt;td&gt;$80&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Total&lt;/th&gt;
-      &lt;td&gt;$180&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-&lt;/table&gt;</code></pre>
-
-      <h4>Semantic Table Elements</h4>
-      <ul>
-        <li><code>&lt;caption&gt;</code> - Defines a table caption or title</li>
-        <li><code>&lt;thead&gt;</code> - Groups header content</li>
-        <li><code>&lt;tbody&gt;</code> - Groups body content</li>
-        <li><code>&lt;tfoot&gt;</code> - Groups footer content</li>
-      </ul>
-
-      <h3>Table Cell Spanning</h3>
-
-      <pre><code>&lt;!-- Spanning columns --&gt;
-&lt;tr&gt;
-  &lt;td colspan="2"&gt;This cell spans two columns&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;!-- Spanning rows --&gt;
-&lt;tr&gt;
-  &lt;td rowspan="2"&gt;This cell spans two rows&lt;/td&gt;
-  &lt;td&gt;Cell 2&lt;/td&gt;
-&lt;/tr&gt;</code></pre>
-
+      <h3>Semantic Table Example</h3>
       <div class="example">
-        <h4>Example of Column Spanning:</h4>
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Country</th>
-          </tr>
-          <tr>
-            <td>John</td>
-            <td>25</td>
-            <td>USA</td>
-          </tr>
-          <tr>
-            <td colspan="3">This cell spans all three columns</td>
-          </tr>
-          <tr>
-            <td>Maria</td>
-            <td>28</td>
-            <td>Canada</td>
-          </tr>
-        </table>
+        <code>
+          &lt;table&gt; &lt;caption&gt;Monthly Savings&lt;/caption&gt;
+          &lt;thead&gt; &lt;tr&gt; &lt;th&gt;Month&lt;/th&gt;
+          &lt;th&gt;Savings&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt;
+          &lt;tr&gt; &lt;td&gt;January&lt;/td&gt; &lt;td&gt;$100&lt;/td&gt;
+          &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;February&lt;/td&gt;
+          &lt;td&gt;$80&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;tfoot&gt;
+          &lt;tr&gt; &lt;td&gt;Sum&lt;/td&gt; &lt;td&gt;$180&lt;/td&gt;
+          &lt;/tr&gt; &lt;/tfoot&gt; &lt;/table&gt;
+        </code>
       </div>
 
-      <h3>Accessibility Considerations</h3>
-
-      <p>
-        For better accessibility, add the <code>scope</code> attribute to header
-        cells:
-      </p>
-
-      <pre><code>&lt;table&gt;
-  &lt;tr&gt;
-    &lt;th scope="col"&gt;Name&lt;/th&gt;
-    &lt;th scope="col"&gt;Age&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;th scope="row"&gt;John&lt;/th&gt;
-    &lt;td&gt;25&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-
-      <div class="note">
-        <p>
-          Tables should only be used for tabular data, not for page layout. Use
-          CSS for layout purposes.
-        </p>
+      <h3>Cell Spanning</h3>
+      <p>Cells can span multiple rows or columns:</p>
+      <div class="example">
+        <code>
+          &lt;table&gt; &lt;tr&gt; &lt;th&gt;Name&lt;/th&gt; &lt;th
+          colspan="2"&gt;Contact&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
+          &lt;td&gt;John Doe&lt;/td&gt; &lt;td&gt;Phone: 555-1212&lt;/td&gt;
+          &lt;td&gt;Email: john@example.com&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;
+          &lt;td rowspan="2"&gt;Jane Smith&lt;/td&gt; &lt;td&gt;Phone:
+          555-3434&lt;/td&gt; &lt;td&gt;Email: jane@example.com&lt;/td&gt;
+          &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Alt Phone: 555-6789&lt;/td&gt;
+          &lt;td&gt;Work: jsmith@work.com&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;
+        </code>
       </div>
     </section>
 
-    <section id="practice">
-      <h2>Practice and Resources</h2>
-
+    <footer>
       <p>
-        Practice is essential for mastering these HTML elements. Complete the
-        exercises in the exercises folder and build the Navigation Page project.
+        Keep practicing these core HTML elements, and move on to the exercises
+        to reinforce your understanding.
       </p>
-
-      <h3>Additional Resources</h3>
-      <ul>
-        <li>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"
-            >MDN: HTML Links</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"
-            >MDN: HTML Images</a
-          >
-        </li>
-        <li>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"
-            >MDN: HTML Lists</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"
-            >MDN: HTML Tables</a
-          >
-        </li>
-      </ul>
-    </section>
+      <p>
+        <a href="exercises/">Go to Exercises</a> |
+        <a href="../">Back to Course Home</a>
+      </p>
+    </footer>
   </body>
 </html>
