@@ -1,112 +1,98 @@
 # Week 1 Quiz: HTML Fundamentals
 
-Test your knowledge of the HTML fundamentals covered in Week 1. Answer the following questions to check your understanding.
+Answer the following questions to test your knowledge of this week's material.
 
 ## Multiple Choice Questions
 
-1. **What does HTML stand for?**
+1. What does HTML stand for?
 
-   - A) Hyper Text Markup Language
-   - B) High Tech Modern Language
-   - C) Hyper Transfer Markup Language
-   - D) Home Tool Markup Language
+   - a) Hyper Text Markup Language
+   - b) High Technical Modern Language
+   - c) Hyper Technical Meta Language
+   - d) Home Tool Markup Language
 
-2. **Which element is used to define the title of an HTML document?**
+2. Which tag is used to define the main heading of an HTML document?
 
-   - A) `<head>`
-   - B) `<title>`
-   - C) `<h1>`
-   - D) `<header>`
+   - a) `<heading>`
+   - b) `<h1>`
+   - c) `<head>`
+   - d) `<main>`
 
-3. **Which tag is used to create a paragraph in HTML?**
+3. Which element is used to specify the character encoding for an HTML document?
 
-   - A) `<paragraph>`
-   - B) `<p>`
-   - C) `<para>`
-   - D) `<text>`
+   - a) `<charset>`
+   - b) `<meta charset="UTF-8">`
+   - c) `<encoding>`
+   - d) `<character-set>`
 
-4. **What is the correct HTML element for the most important heading?**
+4. What is the correct HTML element for inserting a line break?
 
-   - A) `<h6>`
-   - B) `<heading>`
-   - C) `<head>`
-   - D) `<h1>`
+   - a) `<br>`
+   - b) `<break>`
+   - c) `<lb>`
+   - d) `<newline>`
 
-5. **Which HTML element is used to define emphasized text?**
+5. Which doctype declaration is correct for HTML5?
+   - a) `<!DOCTYPE html>`
+   - b) `<!DOCTYPE HTML5>`
+   - c) `<DOCTYPE html>`
+   - d) `<DOCTYPE HTML PUBLIC>`
 
-   - A) `<bold>`
-   - B) `<i>`
-   - C) `<em>`
-   - D) `<italic>`
+## True/False Questions
 
-6. **How do you create a comment in HTML?**
-
-   - A) `// This is a comment`
-   - B) `/* This is a comment */`
-   - C) `<!-- This is a comment -->`
-   - D) `# This is a comment`
-
-7. **Which of the following is NOT a valid HTML element?**
-
-   - A) `<section>`
-   - B) `<paragraph>`
-   - C) `<br>`
-   - D) `<hr>`
-
-8. **What is the purpose of the DOCTYPE declaration?**
-   - A) To specify the document author
-   - B) To tell the browser which version of HTML the page is written in
-   - C) To set the document title
-   - D) To link to external resources
-
-## True or False
-
-9. **HTML tags are case-sensitive. For example, `<P>` and `<p>` are treated differently.**
+6. The `<head>` element is where the main content of your webpage is placed.
 
    - True
    - False
 
-10. **Every HTML element must have a closing tag.**
+7. HTML comments are visible to users viewing the webpage in a browser.
 
-    - True
-    - False
+   - True
+   - False
 
-11. **The `<br>` element is used to create a line break within text.**
+8. The `<p>` tag is used to create paragraphs in HTML.
 
-    - True
-    - False
+   - True
+   - False
 
-12. **The `<strong>` element makes text bold, while the `<b>` element emphasizes text semantically.**
+9. The `lang` attribute in the HTML tag is used to specify the language of the document.
+
+   - True
+   - False
+
+10. In HTML5, all tags must be closed with a closing tag.
     - True
     - False
 
 ## Short Answer Questions
 
-13. **What is the difference between the `<head>` and `<body>` elements in an HTML document?**
+11. Name at least three elements that should be included in the `<head>` section of an HTML document.
 
-14. **Explain the difference between semantic and non-semantic HTML elements and provide an example of each.**
+12. What is the purpose of the `viewport` meta tag?
 
-15. **What is the purpose of HTML comments and when should you use them?**
+13. Explain the difference between block-level elements and inline elements. Provide one example of each.
 
-## Answer Key
+14. What is the purpose of the `<!DOCTYPE html>` declaration?
 
-(For instructor use only)
+15. How do you create an HTML comment? Provide an example.
 
-1. A
-2. B
-3. B
-4. D
-5. C
-6. C
-7. B
-8. B
-9. False
-10. False (self-closing tags like `<br>` and `<img>` don't require closing tags)
-11. True
-12. False (it's the opposite - `<strong>` is semantic, `<b>` is presentational)
-13. The `<head>` contains metadata about the document not displayed on the page, while the `<body>` contains all visible content.
-14. Semantic elements clearly describe their meaning (e.g., `<article>`, `<nav>`). Non-semantic elements don't describe their content (e.g., `<div>`, `<span>`).
-15. HTML comments are used to add notes to code that aren't displayed in the browser. They help document code, temporarily disable sections, or leave notes for other developers.
+## Answer Key (For instructor use)
+
+1. a
+2. b
+3. b
+4. a
+5. a
+6. False
+7. False
+8. True
+9. True
+10. False
+11. title tag, meta tags (charset, viewport, description), link tags for CSS, script tags for JavaScript
+12. To control viewport dimensions and scaling on mobile devices, ensuring responsive design
+13. Block elements take full width available and create a new line. Example: `<p>`. Inline elements only take necessary width and don't create new lines. Example: `<span>`.
+14. To tell the browser which version of HTML the page is using (HTML5 in this case)
+15. `<!-- This is an HTML comment -->`
 
 ## Contact
 
