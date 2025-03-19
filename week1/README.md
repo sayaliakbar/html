@@ -55,3 +55,11 @@ By the end of this week, you will be able to:
 - Use the validator frequently to check your code
 - Practice viewing your HTML files in different browsers
 - Don't worry about design yet - focus on structure
+
+## Contact
+
+**Ali Akbar**
+
+- GitHub: [@sayaliakbar](https://github.com/sayaliakbar)
+- LinkedIn: [sayaliakbar](https://linkedin.com/in/sayaliakbar)
+- Instagram: [@ialiakbarhazara](https://instagram.com/ialiakbarhazara)
