@@ -107,3 +107,11 @@ Test your knowledge of the HTML fundamentals covered in Week 1. Answer the follo
 13. The `<head>` contains metadata about the document not displayed on the page, while the `<body>` contains all visible content.
 14. Semantic elements clearly describe their meaning (e.g., `<article>`, `<nav>`). Non-semantic elements don't describe their content (e.g., `<div>`, `<span>`).
 15. HTML comments are used to add notes to code that aren't displayed in the browser. They help document code, temporarily disable sections, or leave notes for other developers.
+
+## Contact
+
+**Ali Akbar**
+
+- GitHub: [@sayaliakbar](https://github.com/sayaliakbar)
+- LinkedIn: [sayaliakbar](https://linkedin.com/in/sayaliakbar)
+- Instagram: [@ialiakbarhazara](https://instagram.com/ialiakbarhazara)
