@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3: Implementing Caching Strategies</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      .task {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-left: 4px solid #007bff;
+        margin-bottom: 20px;
+      }
+      code {
+        background-color: #f0f0f0;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+      .table-container {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 3: Implementing Caching Strategies</h1>
+
+    <div class="task">
+      <h2>Objective</h2>
+      <p>
+        Learn to implement different caching strategies using service workers
+        and create a Web App Manifest for installability.
+      </p>
+    </div>
+
+    <h2>Instructions</h2>
+
+    <h3>Part 1: Caching Strategies</h3>
+    <p>
+      In this exercise, you'll modify the service worker from Exercise 2 to
+      implement multiple caching strategies for different types of resources.
+    </p>
+
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Resource Type</th>
+          <th>Caching Strategy</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>HTML files</td>
+          <td>Network First</td>
+          <td>Try the network first, fall back to cache if offline</td>
+        </tr>
+        <tr>
+          <td>CSS and JavaScript</td>
+          <td>Stale While Revalidate</td>
+          <td>
+            Use cached version immediately while fetching an updated version
+          </td>
+        </tr>
+        <tr>
+          <td>Images</td>
+          <td>Cache First</td>
+          <td>Check cache first, only go to network if not in cache</td>
+        </tr>
+        <tr>
+          <td>API/Dynamic Data</td>
+          <td>Network Only</td>
+          <td>Always fetch from network, don't cache</td>
+        </tr>
+      </table>
+    </div>
+
+    <p>Create a new service-worker.js that implements these strategies:</p>
+
+    <pre>
+// Updated service worker with multiple caching strategies
+const CACHE_NAME = 'pwa-demo-v2';
+const STATIC_CACHE = 'static-cache-v1';
+const IMAGES_CACHE = 'images-cache-v1';
+const PAGES_CACHE = 'pages-cache-v1';
+
+// Resources to pre-cache
+const filesToCache = {
+  static: [
+    '/style.css',
+    '/app.js',
+    '/manifest.json'
+  ],
+  images: [
+    '/images/image1.jpg',
+    '/images/image2.jpg',
+    '/images/image3.jpg',
+    '/icons/icon-192x192.png',
+    '/icons/icon-512x512.png'
+  ],
+  pages: [
+    '/',
+    '/index.html',
+    '/offline.html'  // Create this page for offline fallback
+  ]
+};
+
+// Install event - cache resources by category
+self.addEventListener('install', event => {
+  event.waitUntil(
+    Promise.all([
+      // Cache static resources
+      caches.open(STATIC_CACHE)
+        .then(cache => cache.addAll(filesToCache.static)),
+      
+      // Cache images
+      caches.open(IMAGES_CACHE)
+        .then(cache => cache.addAll(filesToCache.images)),
+      
+      // Cache pages
+      caches.open(PAGES_CACHE)
+        .then(cache => cache.addAll(filesToCache.pages))
+    ])
+    .then(() => self.skipWaiting())
+  );
+});
+
+// Activate event - clean up old caches
+self.addEventListener('activate', event => {
+  const currentCaches = [STATIC_CACHE, IMAGES_CACHE, PAGES_CACHE];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames
+          .filter(cacheName => !currentCaches.includes(cacheName))
+          .map(cacheName => caches.delete(cacheName))
+      );
+    })
+    .then(() => self.clients.claim())
+  );
+});
+
+// Fetch event with different strategies per resource type
+self.addEventListener('fetch', event => {
+  const requestURL = new URL(event.request.url);
+  
+  // Handle API requests (network only)
+  if (requestURL.pathname.startsWith('/api')) {
+    event.respondWith(networkOnly(event.request));
+    return;
+  }
+  
+  // Handle image requests (cache first)
+  if (
+    requestURL.pathname.startsWith('/images') ||
+    requestURL.pathname.startsWith('/icons') ||
+    requestURL.pathname.endsWith('.jpg') ||
+    requestURL.pathname.endsWith('.png') ||
+    requestURL.pathname.endsWith('.gif') ||
+    requestURL.pathname.endsWith('.svg')
+  ) {
+    event.respondWith(cacheFirst(event.request, IMAGES_CACHE));
+    return;
+  }
+  
+  // Handle CSS and JS (stale while revalidate)
+  if (
+    requestURL.pathname.endsWith('.css') ||
+    requestURL.pathname.endsWith('.js')
+  ) {
+    event.respondWith(staleWhileRevalidate(event.request, STATIC_CACHE));
+    return;
+  }
+  
+  // Handle HTML pages (network first)
+  if (
+    requestURL.pathname === '/' ||
+    requestURL.pathname.endsWith('.html')
+  ) {
+    event.respondWith(networkFirst(event.request, PAGES_CACHE));
+    return;
+  }
+  
+  // Default handler for everything else
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+      .catch(() => caches.match('/offline.html'))
+  );
+});
+
+// Cache-first strategy
+function cacheFirst(request, cacheName) {
+  return caches.match(request)
+    .then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      
+      return fetch(request)
+        .then(networkResponse => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseToCache = networkResponse.clone();
+            caches.open(cacheName)
+              .then(cache => cache.put(request, responseToCache));
+          }
+          return networkResponse;
+        })
+        .catch(error => {
+          console.error('Fetch failed:', error);
+          // You could return a default image here
+        });
+    });
+}
+
+// Network-first strategy
+function networkFirst(request, cacheName) {
+  return fetch(request)
+    .then(networkResponse => {
+      if (networkResponse && networkResponse.status === 200) {
+        const responseToCache = networkResponse.clone();
+        caches.open(cacheName)
+          .then(cache => cache.put(request, responseToCache));
+      }
+      return networkResponse;
+    })
+    .catch(() => {
+      return caches.match(request)
+        .then(cachedResponse => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          // If not in cache, return the offline page
+          return caches.match('/offline.html');
+        });
+    });
+}
+
+// Stale while revalidate strategy
+function staleWhileRevalidate(request, cacheName) {
+  return caches.match(request)
+    .then(cachedResponse => {
+      const fetchPromise = fetch(request)
+        .then(networkResponse => {
+          if (networkResponse && networkResponse.status === 200) {
+            caches.open(cacheName)
+              .then(cache => cache.put(request, networkResponse.clone()));
+          }
+          return networkResponse;
+        });
+      
+      // Return the cached response immediately,
+      // or wait for network response if nothing cached
+      return cachedResponse || fetchPromise;
+    });
+}
+
+// Network only strategy
+function networkOnly(request) {
+  return fetch(request);
+}</pre
+    >
+
+    <h3>Part 2: Creating a Web App Manifest</h3>
+    <p>Create a manifest.json file to make your application installable:</p>
+
+    <pre>
+{
+  "name": "PWA Weather Demo",
+  "short_name": "Weather",
+  "description": "A simple Progressive Web App demo",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "portrait",
+  "categories": ["weather", "demo"]
+}</pre
+    >
+
+    <h3>Part 3: Create an Offline Page</h3>
+    <p>
+      Create an offline.html file that will be shown when the user is offline:
+    </p>
+
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Offline - My PWA Demo&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;style&gt;
+    .offline-message {
+      text-align: center;
+      padding: 2rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      margin: 2rem auto;
+      max-width: 600px;
+    }
+    
+    .offline-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;My PWA Demo&lt;/h1&gt;
+  &lt;/header&gt;
+  
+  &lt;main&gt;
+    &lt;div class="offline-message"&gt;
+      &lt;div class="offline-icon"&gt;📶&lt;/div&gt;
+      &lt;h2&gt;You're offline&lt;/h2&gt;
+      &lt;p&gt;The page you're trying to access isn't available offline.&lt;/p&gt;
+      &lt;p&gt;Please check your internet connection and try again.&lt;/p&gt;
+      &lt;button onclick="window.location.reload()"&gt;Retry&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+  
+  &lt;footer&gt;
+    &lt;p&gt;PWA Exercise - Service Workers&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre
+    >
+
+    <h3>Part 4: Update Your Index.html</h3>
+    <p>Update your index.html file to include the manifest:</p>
+
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My PWA Demo&lt;/title&gt;
+  
+  &lt;!-- Web App Manifest --&gt;
+  &lt;link rel="manifest" href="manifest.json"&gt;
+  
+  &lt;!-- Theme color --&gt;
+  &lt;meta name="theme-color" content="#007bff"&gt;
+  
+  &lt;!-- iOS support --&gt;
+  &lt;link rel="apple-touch-icon" href="icons/icon-192x192.png"&gt;
+  &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+  &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;
+  
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Rest of your HTML content --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre
+    >
+
+    <h3>Testing Your Implementation</h3>
+    <ol>
+      <li>
+        Create the necessary icon files (you can use online generators if
+        needed)
+      </li>
+      <li>
+        Test your application with different network conditions in DevTools
+      </li>
+      <li>Verify that different resources use different caching strategies</li>
+      <li>
+        Check if the manifest enables the install prompt (look for the install
+        icon in Chrome)
+      </li>
+    </ol>
+
+    <h2>Challenge Tasks</h2>
+    <ol>
+      <li>
+        Create a custom install button that appears when the beforeinstallprompt
+        event fires
+      </li>
+      <li>
+        Add a mechanism to clear the cache and fetch fresh resources on demand
+      </li>
+      <li>
+        Implement a "sync" feature that queues requests when offline and sends
+        them when online
+      </li>
+    </ol>
+
+    <h2>Submission</h2>
+    <p>
+      Submit your entire project folder as a ZIP file, including all HTML, CSS,
+      JavaScript, manifest, and icon files.
+    </p>
+
+    <h2>Resources</h2>
+    <ul>
+      <li>
+        <a href="https://web.dev/learn/pwa/serving/" target="_blank"
+          >PWA Caching Strategies</a
+        >
+      </li>
+      <li>
+        <a href="https://web.dev/learn/pwa/web-app-manifest/" target="_blank"
+          >Web App Manifest Guide</a
+        >
+      </li>
+      <li>
+        <a href="https://web.dev/learn/pwa/installation-prompt/" target="_blank"
+          >Installation Prompt</a
+        >
+      </li>
+    </ul>
+  </body>
+</html>
