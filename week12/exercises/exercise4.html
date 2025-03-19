@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 4: Implementing Push Notifications</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      .task {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-left: 4px solid #007bff;
+        margin-bottom: 20px;
+      }
+      code {
+        background-color: #f0f0f0;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+      .note {
+        background-color: #e6f7ff;
+        padding: 10px;
+        border-left: 4px solid #1890ff;
+        margin: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 4: Implementing Push Notifications</h1>
+
+    <div class="task">
+      <h2>Objective</h2>
+      <p>
+        Learn to implement push notifications in a Progressive Web App using the
+        Notifications API and Push API.
+      </p>
+    </div>
+
+    <div class="note">
+      <p>
+        <strong>Note:</strong> This exercise requires a secure context (HTTPS or
+        localhost) to work properly. You'll need to either use localhost for
+        testing or deploy to a secure hosting environment.
+      </p>
+    </div>
+
+    <h2>Instructions</h2>
+
+    <h3>Part 1: Request Notification Permissions</h3>
+    <p>
+      First, you'll need to request permission from the user to display
+      notifications:
+    </p>
+
+    <pre>
+// In your app.js file
+document.addEventListener('DOMContentLoaded', () => {
+  // Check for notification support
+  if (!('Notification' in window)) {
+    console.log('This browser does not support notifications');
+    document.getElementById('notificationStatus').textContent = 'Not Supported';
+    document.getElementById('notificationStatus').style.color = 'red';
+    return;
+  }
+
+  // Add event listener to the notification permission button
+  document.getElementById('notificationBtn').addEventListener('click', () => {
+    requestNotificationPermission();
+  });
+
+  // Check existing permission and update UI
+  updateNotificationPermissionStatus();
+});
+
+// Request notification permission
+function requestNotificationPermission() {
+  Notification.requestPermission()
+    .then((permission) => {
+      console.log('Notification permission:', permission);
+      updateNotificationPermissionStatus();
+      
+      // If the user accepts, we might as well show a notification
+      if (permission === 'granted') {
+        showTestNotification();
+      }
+    });
+}
+
+// Update notification permission status in UI
+function updateNotificationPermissionStatus() {
+  const status = document.getElementById('notificationStatus');
+  const button = document.getElementById('notificationBtn');
+  
+  switch (Notification.permission) {
+    case 'granted':
+      status.textContent = 'Granted';
+      status.style.color = 'green';
+      button.textContent = 'Send Test Notification';
+      button.removeEventListener('click', requestNotificationPermission);
+      button.addEventListener('click', showTestNotification);
+      break;
+    case 'denied':
+      status.textContent = 'Denied';
+      status.style.color = 'red';
+      button.disabled = true;
+      button.textContent = 'Permission Denied';
+      break;
+    case 'default':
+      status.textContent = 'Not Requested';
+      status.style.color = 'orange';
+      button.textContent = 'Enable Notifications';
+      break;
+  }
+}
+
+// Show a test notification
+function showTestNotification() {
+  const options = {
+    body: 'This is a test notification from your PWA',
+    icon: '/icons/notification-icon.png',
+    badge: '/icons/notification-badge.png',
+    vibrate: [100, 50, 100],
+    data: { url: window.location.href },
+    actions: [
+      { action: 'explore', title: 'View App' },
+      { action: 'close', title: 'Close' }
+    ]
+  };
+  
+  const notification = new Notification('Test Notification', options);
+  
+  notification.onclick = function(event) {
+    event.preventDefault();
+    window.focus();
+    notification.close();
+  };
+}</pre
+    >
+
+    <h3>Part 2: Add HTML Elements for Notifications</h3>
+    <p>
+      Update your index.html to include UI elements for controlling
+      notifications:
+    </p>
+
+    <pre>
+&lt;!-- Add this within the &lt;main&gt; section of your index.html --&gt;
+&lt;section class="notification-section"&gt;
+  &lt;h2&gt;Push Notification Demo&lt;/h2&gt;
+  &lt;div class="notification-status"&gt;
+    &lt;p&gt;Notification Permission: &lt;span id="notificationStatus"&gt;Checking...&lt;/span&gt;&lt;/p&gt;
+    &lt;button id="notificationBtn"&gt;Enable Notifications&lt;/button&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="notification-actions"&gt;
+    &lt;h3&gt;Notification Actions&lt;/h3&gt;
+    &lt;button id="weatherNotificationBtn" disabled&gt;Send Weather Alert&lt;/button&gt;
+    &lt;button id="reminderNotificationBtn" disabled&gt;Set Reminder (10 sec)&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre
+    >
+
+    <h3>Part 3: Enable Custom Notification Types</h3>
+    <p>Add custom notification types to demonstrate different use cases:</p>
+
+    <pre>
+// Add these functions to your app.js file
+
+// Enable additional notification buttons when permission is granted
+function enableNotificationButtons() {
+  if (Notification.permission === 'granted') {
+    document.getElementById('weatherNotificationBtn').disabled = false;
+    document.getElementById('reminderNotificationBtn').disabled = false;
+    
+    // Add event listeners for custom notification buttons
+    document.getElementById('weatherNotificationBtn').addEventListener('click', showWeatherNotification);
+    document.getElementById('reminderNotificationBtn').addEventListener('click', scheduleReminderNotification);
+  }
+}
+
+// Call this in your DOMContentLoaded event handler
+document.addEventListener('DOMContentLoaded', () => {
+  // ... existing code ...
+  enableNotificationButtons();
+});
+
+// Show a weather-themed notification
+function showWeatherNotification() {
+  const options = {
+    body: 'Heavy rain expected in your area in the next hour',
+    icon: '/icons/weather-icon.png',
+    badge: '/icons/notification-badge.png',
+    vibrate: [100, 50, 100],
+    data: { weatherAlert: true },
+    actions: [
+      { action: 'view-forecast', title: 'View Forecast' },
+      { action: 'dismiss', title: 'Dismiss' }
+    ]
+  };
+  
+  const notification = new Notification('Weather Alert ⛈️', options);
+  
+  notification.onclick = function(event) {
+    event.preventDefault();
+    window.focus();
+    
+    // You could navigate to a forecast page
+    console.log('Weather notification clicked');
+    
+    notification.close();
+  };
+}
+
+// Schedule a reminder notification after a delay
+function scheduleReminderNotification() {
+  // Disable the button temporarily
+  const button = document.getElementById('reminderNotificationBtn');
+  button.disabled = true;
+  button.textContent = 'Reminder set...';
+  
+  // Show a countdown in the button
+  let secondsLeft = 10;
+  
+  const countdownInterval = setInterval(() => {
+    secondsLeft--;
+    button.textContent = `Reminder in ${secondsLeft}s`;
+    
+    if (secondsLeft <= 0) {
+      clearInterval(countdownInterval);
+      showReminderNotification();
+      button.disabled = false;
+      button.textContent = 'Set Reminder (10 sec)';
+    }
+  }, 1000);
+}
+
+// Show the reminder notification
+function showReminderNotification() {
+  const options = {
+    body: 'This is your scheduled reminder',
+    icon: '/icons/reminder-icon.png',
+    badge: '/icons/notification-badge.png',
+    vibrate: [200, 100, 200, 100, 200],
+    requireInteraction: true, // Notification persists until user interacts with it
+    data: { timestamp: Date.now() },
+    actions: [
+      { action: 'snooze', title: 'Snooze' },
+      { action: 'complete', title: 'Mark Done' }
+    ]
+  };
+  
+  const notification = new Notification('Reminder ⏰', options);
+  
+  notification.onclick = function(event) {
+    event.preventDefault();
+    window.focus();
+    notification.close();
+  };
+}</pre
+    >
+
+    <h3>Part 4: Add CSS for Notification UI</h3>
+    <p>Add the following CSS to your style.css file:</p>
+
+    <pre>
+/* Notification section styles */
+.notification-section {
+  margin: 30px 0;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.notification-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.notification-actions {
+  margin-top: 20px;
+}
+
+.notification-actions button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}</pre
+    >
+
+    <h3>Part 5: Advanced - Service Worker Notification Handling</h3>
+    <p>Update your service worker to handle notification clicks:</p>
+
+    <pre>
+// Add this to your service-worker.js file
+
+// Handle notification clicks in the service worker
+self.addEventListener('notificationclick', event => {
+  const notification = event.notification;
+  const action = event.action;
+  
+  // Close the notification
+  notification.close();
+  
+  // Handle different notification actions
+  if (notification.data && notification.data.weatherAlert) {
+    // Weather alert notification
+    if (action === 'view-forecast') {
+      // Open the forecast page
+      clients.openWindow('/forecast.html');
+    }
+  } else if (action === 'explore') {
+    // Generic explore action
+    clients.openWindow('/');
+  }
+  
+  // You could add more custom handling based on notification type
+});</pre
+    >
+
+    <h3>Part 6: Testing Notifications</h3>
+    <ol>
+      <li>Ensure you're running on a secure context (localhost or HTTPS)</li>
+      <li>Request notification permissions</li>
+      <li>Test different types of notifications</li>
+      <li>Test notification actions and clicking behavior</li>
+      <li>
+        Check how notifications appear when the app is in different states
+        (focused, background, closed)
+      </li>
+    </ol>
+
+    <h2>Challenge Tasks</h2>
+    <ol>
+      <li>
+        Implement a true push notification using a push server (Firebase Cloud
+        Messaging or other service)
+      </li>
+      <li>Add notification badges for unread notifications</li>
+      <li>
+        Store notification preferences in localStorage and respect user settings
+      </li>
+      <li>
+        Implement a notification center within your app that shows notification
+        history
+      </li>
+    </ol>
+
+    <h2>Submission</h2>
+    <p>
+      Submit your entire project folder as a ZIP file, including all
+      notification-related code.
+    </p>
+
+    <h2>Resources</h2>
+    <ul>
+      <li>
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API"
+          target="_blank"
+          >Using the Notifications API</a
+        >
+      </li>
+      <li>
+        <a href="https://web.dev/push-notifications-overview/" target="_blank"
+          >Push Notifications Overview</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://developers.google.com/web/fundamentals/push-notifications"
+          target="_blank"
+          >Web Push Notifications</a
+        >
+      </li>
+    </ul>
+  </body>
+</html>
