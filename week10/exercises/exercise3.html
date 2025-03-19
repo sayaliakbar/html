@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3: Using Custom Data Attributes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      .task {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4caf50;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .tip {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .demo {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+      }
+      button {
+        padding: 8px 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .product {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+      .active {
+        background-color: #f0f7ff;
+        border-left: 3px solid #2196f3;
+      }
+      .featured {
+        background-color: #fff8e1;
+        border-left: 3px solid #ffc107;
+      }
+      .sale {
+        background-color: #ffebee;
+        border-left: 3px solid #f44336;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      #tooltip {
+        position: absolute;
+        background-color: #333;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 3px;
+        display: none;
+        z-index: 100;
+        font-size: 14px;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 3: Using Custom Data Attributes</h1>
+
+    <div class="task">
+      <h2>Task 1: Product Filtering System</h2>
+      <p>
+        Create a filtering system that uses data attributes to filter a list of
+        products:
+      </p>
+
+      <div class="demo" id="task1-demo">
+        <div id="category-filters">
+          <button data-filter="all">All Products</button>
+          <button data-filter="electronics">Electronics</button>
+          <button data-filter="clothing">Clothing</button>
+          <button data-filter="books">Books</button>
+        </div>
+
+        <div id="product-list">
+          <div
+            class="product"
+            data-category="electronics"
+            data-price="299.99"
+            data-stock="10"
+          >
+            <h3>Wireless Headphones</h3>
+            <p>Price: $299.99 | In Stock: 10</p>
+          </div>
+          <div
+            class="product"
+            data-category="electronics"
+            data-price="599.99"
+            data-stock="5"
+          >
+            <h3>Smartphone</h3>
+            <p>Price: $599.99 | In Stock: 5</p>
+          </div>
+          <div
+            class="product"
+            data-category="clothing"
+            data-price="49.99"
+            data-stock="20"
+          >
+            <h3>Jeans</h3>
+            <p>Price: $49.99 | In Stock: 20</p>
+          </div>
+          <div
+            class="product"
+            data-category="clothing"
+            data-price="29.99"
+            data-stock="15"
+          >
+            <h3>T-Shirt</h3>
+            <p>Price: $29.99 | In Stock: 15</p>
+          </div>
+          <div
+            class="product"
+            data-category="books"
+            data-price="19.99"
+            data-stock="8"
+          >
+            <h3>JavaScript Guide</h3>
+            <p>Price: $19.99 | In Stock: 8</p>
+          </div>
+        </div>
+      </div>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get references to DOM elements
+const categoryFilters = document.getElementById('category-filters');
+const productList = document.getElementById('product-list');
+const products = document.querySelectorAll('#product-list .product');
+
+// Add click event to category filters
+categoryFilters.addEventListener('click', event => {
+  // Your code here:
+  // 1. Check if a filter button was clicked
+  // 2. Get the filter value from the data attribute
+  // 3. Loop through all products and show/hide based on their category
+  // 4. Use dataset to access data attributes
+});</code></pre>
+    </div>
+
+    <div class="task">
+      <h2>Task 2: Interactive Tooltips</h2>
+      <p>
+        Create tooltips that appear when hovering over elements with tooltip
+        data:
+      </p>
+
+      <div class="demo" id="task2-demo">
+        <div id="tooltip"></div>
+
+        <p>Hover over the items below to see their tooltips:</p>
+
+        <ul>
+          <li>
+            <span
+              data-tooltip="HTML is the standard markup language for documents designed to be displayed in a web browser."
+              >HTML</span
+            >
+          </li>
+          <li>
+            <span
+              data-tooltip="CSS is a style sheet language used for describing the presentation of a document written in a markup language such as HTML."
+              >CSS</span
+            >
+          </li>
+          <li>
+            <span
+              data-tooltip="JavaScript is a programming language that conforms to the ECMAScript specification."
+              >JavaScript</span
+            >
+          </li>
+        </ul>
+      </div>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get reference to tooltip element
+const tooltip = document.getElementById('tooltip');
+const tooltipItems = document.querySelectorAll('[data-tooltip]');
+
+// Add event listeners for tooltip items
+tooltipItems.forEach(item => {
+  // Your code here:
+  // 1. Add mouseover event to show tooltip
+  // 2. Add mousemove event to position tooltip near cursor
+  // 3. Add mouseout event to hide tooltip
+  // 4. Use dataset to get tooltip text
+});</code></pre>
+    </div>
+
+    <div class="task">
+      <h2>Task 3: Dynamic Content Loader</h2>
+      <p>
+        Create a system that loads content based on data attributes when buttons
+        are clicked:
+      </p>
+
+      <div class="demo" id="task3-demo">
+        <div id="content-buttons">
+          <button data-content-id="about">About</button>
+          <button data-content-id="services">Services</button>
+          <button data-content-id="contact">Contact</button>
+        </div>
+
+        <div id="content-display">
+          <p>Click a button to load content</p>
+        </div>
+
+        <!-- Hidden content templates -->
+        <template id="about">
+          <h3>About Us</h3>
+          <p>
+            We are a web development company specializing in HTML, CSS, and
+            JavaScript.
+          </p>
+        </template>
+
+        <template id="services">
+          <h3>Our Services</h3>
+          <ul>
+            <li>Web Design</li>
+            <li>Front-end Development</li>
+            <li>Responsive Layouts</li>
+          </ul>
+        </template>
+
+        <template id="contact">
+          <h3>Contact Us</h3>
+          <p>Email: info@example.com</p>
+          <p>Phone: (123) 456-7890</p>
+        </template>
+      </div>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get references to DOM elements
+const contentButtons = document.getElementById('content-buttons');
+const contentDisplay = document.getElementById('content-display');
+
+// Add click event to content buttons
+contentButtons.addEventListener('click', event => {
+  // Your code here:
+  // 1. Check if a button was clicked
+  // 2. Get the content ID from the data attribute
+  // 3. Find the template with matching ID
+  // 4. Clone the template content
+  // 5. Replace the content display with the cloned content
+});</code></pre>
+    </div>
+
+    <div class="task">
+      <h2>Task 4: Product Status Updates</h2>
+      <p>
+        Create a system that uses data attributes to store and update product
+        status:
+      </p>
+
+      <div class="demo" id="task4-demo">
+        <div id="product-controls">
+          <button data-action="feature">Toggle Featured</button>
+          <button data-action="sale">Toggle Sale</button>
+          <button data-action="stock">Decrease Stock</button>
+        </div>
+
+        <div id="product-displays">
+          <div
+            class="product"
+            data-product-id="1001"
+            data-featured="false"
+            data-on-sale="false"
+            data-stock="10"
+            data-price="499.99"
+          >
+            <h3>Laptop</h3>
+            <p>Price: $<span class="product-price">499.99</span></p>
+            <p>In Stock: <span class="product-stock">10</span></p>
+            <p>Status: <span class="product-status"></span></p>
+          </div>
+          <div
+            class="product"
+            data-product-id="1002"
+            data-featured="true"
+            data-on-sale="false"
+            data-stock="5"
+            data-price="299.99"
+          >
+            <h3>Tablet</h3>
+            <p>Price: $<span class="product-price">299.99</span></p>
+            <p>In Stock: <span class="product-stock">5</span></p>
+            <p>Status: <span class="product-status">Featured</span></p>
+          </div>
+        </div>
+      </div>
+
+      <p>Complete the JavaScript code below:</p>
+      <pre><code>// Get references to DOM elements
+const productControls = document.getElementById('product-controls');
+const productDisplays = document.querySelectorAll('#product-displays .product');
+
+// Add click event to product controls
+productControls.addEventListener('click', event => {
+  if (event.target.matches('button')) {
+    const action = event.target.dataset.action;
+    const selectedProduct = document.querySelector('.product.active') || productDisplays[0];
+    
+    // Your code here:
+    // 1. Handle "feature" action: toggle data-featured attribute and styling
+    // 2. Handle "sale" action: toggle data-on-sale attribute and apply discount
+    // 3. Handle "stock" action: decrease stock value in data-stock attribute
+    // 4. Update product display (status text and stock count)
+  }
+});
+
+// Add click event to select products
+productDisplays.forEach(product => {
+  product.addEventListener('click', event => {
+    // Your code here:
+    // 1. Remove active class from all products
+    // 2. Add active class to clicked product
+  });
+});</code></pre>
+    </div>
+
+    <div class="tip">
+      <h3>Tips:</h3>
+      <ul>
+        <li>
+          Access data attributes in JavaScript using the
+          <code>dataset</code> property (e.g.,
+          <code>element.dataset.category</code>).
+        </li>
+        <li>
+          Remember that all dataset values are stored as strings. Convert them
+          to numbers when needed.
+        </li>
+        <li>
+          Use <code>getAttribute()</code> and <code>setAttribute()</code> as
+          alternatives to <code>dataset</code> for older browsers.
+        </li>
+        <li>
+          Custom data attributes are perfect for storing UI state that doesn't
+          need to be visible in the rendered output.
+        </li>
+        <li>
+          When updating data attributes that affect visual appearance, remember
+          to update both the attribute and the corresponding visual element.
+        </li>
+      </ul>
+    </div>
+
+    <p>
+      When you've completed the exercises, test each task to ensure the data
+      attributes are working correctly.
+    </p>
+  </body>
+</html>
