@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 8 Project: Metadata-Enhanced Website</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      header {
+        background-color: #f5f5f5;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 30px;
+      }
+      h1,
+      h2 {
+        color: #2c3e50;
+      }
+      .project-info {
+        background-color: #f9f9f9;
+        border-left: 4px solid #2196f3;
+        padding: 15px;
+        margin-bottom: 30px;
+      }
+      .requirements {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        margin-bottom: 30px;
+      }
+      .steps {
+        background-color: #e8f5e9;
+        border-left: 4px solid #4caf50;
+        padding: 15px;
+        margin-bottom: 30px;
+      }
+      .resources {
+        background-color: #e3f2fd;
+        padding: 15px;
+        margin-bottom: 30px;
+      }
+      .tips {
+        background-color: #f3e5f5;
+        border-left: 4px solid #9c27b0;
+        padding: 15px;
+        margin-bottom: 30px;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      pre {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+      footer {
+        margin-top: 50px;
+        text-align: center;
+        color: #777;
+        font-size: 0.9em;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+      }
+      .example {
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Week 8 Project: Metadata-Enhanced Website</h1>
+      <p>Apply what you've learned about metadata and API integration</p>
+    </header>
+
+    <main>
+      <div class="project-info">
+        <h2>Project Overview</h2>
+        <p>
+          In this project, you'll create a small website (3-5 pages) for a
+          fictional business or organization that implements comprehensive
+          metadata and third-party API integrations. The focus is on optimizing
+          your website for search engines, social sharing, and enhanced
+          functionality through embedded content.
+        </p>
+        <p>
+          This project will synthesize the concepts learned throughout Week 8,
+          giving you practical experience implementing metadata strategies and
+          integrating external services.
+        </p>
+      </div>
+
+      <div class="requirements">
+        <h2>Project Requirements</h2>
+        <h3>Basic Requirements:</h3>
+        <ol>
+          <li>
+            Create a multi-page website (minimum 3 pages) with consistent
+            navigation
+          </li>
+          <li>
+            Implement proper HTML document structure and semantic elements
+          </li>
+          <li>
+            Include a responsive design that works on different screen sizes
+          </li>
+          <li>Add appropriate metadata to improve SEO and social sharing</li>
+          <li>
+            Integrate at least two different third-party APIs or embedded
+            widgets
+          </li>
+        </ol>
+
+        <h3>Metadata Requirements:</h3>
+        <ol>
+          <li>
+            Each page must include:
+            <ul>
+              <li>Unique and descriptive title (under 60 characters)</li>
+              <li>Meta description (under 160 characters)</li>
+              <li>Open Graph metadata for Facebook and other platforms</li>
+              <li>Twitter Card metadata</li>
+              <li>Favicon information</li>
+            </ul>
+          </li>
+          <li>
+            At least one page must include Schema.org structured data (using
+            either Microdata or JSON-LD) appropriate to the page content (e.g.,
+            local business, product, article, event)
+          </li>
+          <li>Include canonical URLs for all pages</li>
+          <li>Implement appropriate robots meta tags</li>
+        </ol>
+
+        <h3>API Integration Requirements:</h3>
+        <ol>
+          <li>
+            Implement at least two of the following:
+            <ul>
+              <li>Google Maps or other mapping service</li>
+              <li>Social media feed or sharing buttons</li>
+              <li>Weather widget</li>
+              <li>YouTube or other video embed</li>
+              <li>Calendar or event integration</li>
+              <li>Contact form</li>
+              <li>Other appropriate API integration</li>
+            </ul>
+          </li>
+          <li>
+            All embedded content must:
+            <ul>
+              <li>Include appropriate error handling or fallbacks</li>
+              <li>Be responsive and work on different screen sizes</li>
+              <li>
+                Load efficiently (e.g., using lazy loading where appropriate)
+              </li>
+              <li>Include proper attribution if required</li>
+            </ul>
+          </li>
+          <li>Add a privacy notice about third-party content</li>
+        </ol>
+      </div>
+
+      <div class="steps">
+        <h2>Project Steps</h2>
+        <ol>
+          <li>
+            <strong>Planning:</strong>
+            <ul>
+              <li>
+                Choose a business or organization type (restaurant, retail
+                store, nonprofit, etc.)
+              </li>
+              <li>Determine the purpose and content for each page</li>
+              <li>Select which APIs or embedded content you'll integrate</li>
+              <li>Plan your metadata strategy for each page</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Building the Basic Structure:</strong>
+            <ul>
+              <li>
+                Create the HTML files for each page with proper document
+                structure
+              </li>
+              <li>Implement navigation between pages</li>
+              <li>Add basic CSS styling for layout and responsiveness</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Adding Content:</strong>
+            <ul>
+              <li>
+                Add text content, placeholder images, and other basic page
+                elements
+              </li>
+              <li>Structure content using semantic HTML elements</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Implementing Metadata:</strong>
+            <ul>
+              <li>
+                Add basic metadata (title, description, charset, viewport) to
+                all pages
+              </li>
+              <li>Implement Open Graph and Twitter Card metadata</li>
+              <li>Add structured data to appropriate pages</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Integrating APIs:</strong>
+            <ul>
+              <li>Add your chosen API integrations to the appropriate pages</li>
+              <li>Implement error handling and fallback content</li>
+              <li>Ensure embedded content is responsive</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Testing and Refinement:</strong>
+            <ul>
+              <li>Validate your HTML using the W3C Validator</li>
+              <li>
+                Test your metadata using tools like the Facebook Sharing
+                Debugger and Twitter Card Validator
+              </li>
+              <li>
+                Verify your structured data using Google's Rich Results Test or
+                Schema.org Validator
+              </li>
+              <li>Test your website on different devices and screen sizes</li>
+              <li>Ensure all embedded content has proper fallbacks</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="resources">
+        <h2>Project Resources</h2>
+        <h3>Metadata Tools:</h3>
+        <ul>
+          <li>
+            <a
+              href="https://developers.facebook.com/tools/debug/"
+              target="_blank"
+              >Facebook Sharing Debugger</a
+            >
+          </li>
+          <li>
+            <a href="https://cards-dev.twitter.com/validator" target="_blank"
+              >Twitter Card Validator</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://search.google.com/test/rich-results"
+              target="_blank"
+              >Google Rich Results Test</a
+            >
+          </li>
+          <li>
+            <a href="https://validator.schema.org/" target="_blank"
+              >Schema.org Validator</a
+            >
+          </li>
+          <li>
+            <a href="https://validator.w3.org/" target="_blank"
+              >W3C HTML Validator</a
+            >
+          </li>
+        </ul>
+
+        <h3>API Documentation:</h3>
+        <ul>
+          <li>
+            <a
+              href="https://developers.google.com/maps/documentation/embed/get-started"
+              target="_blank"
+              >Google Maps Embed API</a
+            >
+          </li>
+          <li>
+            <a href="https://openweathermap.org/api" target="_blank"
+              >OpenWeather API</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://developers.facebook.com/docs/plugins/"
+              target="_blank"
+              >Facebook Social Plugins</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://developer.twitter.com/en/docs/twitter-for-websites"
+              target="_blank"
+              >Twitter for Websites</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://developers.google.com/youtube/iframe_api_reference"
+              target="_blank"
+              >YouTube IFrame Player API</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="tips">
+        <h2>Project Tips</h2>
+        <ul>
+          <li>
+            <strong>For metadata:</strong> Create a template for your metadata
+            to ensure consistency across pages, then customize the specific
+            values for each page.
+          </li>
+          <li>
+            <strong>For images:</strong> Prepare properly sized images for Open
+            Graph and Twitter Cards in advance.
+          </li>
+          <li>
+            <strong>For APIs:</strong> Start with sample code from the API
+            documentation and modify it to fit your needs.
+          </li>
+          <li>
+            <strong>For testing:</strong> Test frequently during development,
+            especially after adding new APIs or metadata.
+          </li>
+          <li>
+            <strong>For structured data:</strong> Use a tool like the Google
+            Structured Data Markup Helper to get started, then refine your
+            implementation.
+          </li>
+          <li>
+            <strong>For error handling:</strong> Always implement fallbacks for
+            API content in case the external service is unavailable.
+          </li>
+        </ul>
+      </div>
+
+      <div class="example">
+        <h2>Project Example</h2>
+        <p>
+          Here's an example of a meta section for a page about a local bakery:
+        </p>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Artisan Breads & Pastries | Sweet Morning Bakery&lt;/title&gt;
+    &lt;meta name="description" content="Discover our handcrafted artisan breads and freshly baked pastries made with locally sourced organic ingredients at Sweet Morning Bakery."&gt;
+    &lt;link rel="canonical" href="https://sweetmorningbakery.example.com/products.html"&gt;
+    
+    &lt;!-- Open Graph Metadata --&gt;
+    &lt;meta property="og:title" content="Artisan Breads & Pastries | Sweet Morning Bakery" /&gt;
+    &lt;meta property="og:description" content="Handcrafted artisan breads and pastries made with locally sourced organic ingredients. Visit our bakery today!" /&gt;
+    &lt;meta property="og:image" content="https://sweetmorningbakery.example.com/images/bakery-products-social.jpg" /&gt;
+    &lt;meta property="og:url" content="https://sweetmorningbakery.example.com/products.html" /&gt;
+    &lt;meta property="og:type" content="website" /&gt;
+    &lt;meta property="og:site_name" content="Sweet Morning Bakery" /&gt;
+    
+    &lt;!-- Twitter Card Metadata --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image" /&gt;
+    &lt;meta name="twitter:site" content="@sweetmorningbakery" /&gt;
+    &lt;meta name="twitter:title" content="Artisan Breads & Pastries | Sweet Morning Bakery" /&gt;
+    &lt;meta name="twitter:description" content="Handcrafted artisan breads and pastries made with locally sourced organic ingredients. Visit our bakery today!" /&gt;
+    &lt;meta name="twitter:image" content="https://sweetmorningbakery.example.com/images/bakery-products-social.jpg" /&gt;
+    
+    &lt;!-- Favicon --&gt;
+    &lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+    &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+    &lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+    &lt;link rel="manifest" href="/site.webmanifest"&gt;
+    
+    &lt;!-- Robots --&gt;
+    &lt;meta name="robots" content="index, follow"&gt;
+&lt;/head&gt;</code></pre>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        HTML Mastery Course &copy; 2025 | Week 8: Metadata and API Integration
+      </p>
+      <p><a href="../README.md">Return to Week 8 Overview</a></p>
+    </footer>
+  </body>
+</html>
