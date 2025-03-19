@@ -149,14 +149,6 @@ Throughout the course, you'll build:
 5. Multimedia Portfolio
 6. Interactive Web Application
 
-## Assessment
-
-Assessment is based on:
-
-- Weekly quizzes (30%)
-- Mini-projects (30%)
-- Final project (40%)
-
 ## Resources
 
 - Official HTML Living Standard: [WHATWG HTML](https://html.spec.whatwg.org/)
