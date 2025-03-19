@@ -8,6 +8,8 @@ By the end of this week, you will be able to:
 - Implement various input types for collecting user data
 - Add buttons and submit controls for form interaction
 - Use labels and fieldsets to improve form organization and accessibility
+- **Implement select menus, textareas, and option groups**
+- **Understand form submission methods and attributes**
 
 ## Resources
 
@@ -29,6 +31,8 @@ By the end of this week, you will be able to:
 - Read the input types section in lesson.html
 - Complete Exercise 2: Working with Different Input Types
 - Practice with text, password, radio, and checkbox inputs
+- **Learn about textarea elements for multi-line text input**
+- **Explore the select element and option groups**
 
 ### Day 3: Buttons and Submit Controls
 
