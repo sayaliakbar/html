@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 3: Forms and Input Basics</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+      .note {
+        background-color: #ffffd9;
+        border-left: 4px solid #e7dc8c;
+        padding: 10px;
+        margin: 15px 0;
+      }
+      .example {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 15px 0;
+        background-color: #f9f9f9;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 15px 0;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .form-example {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+      .form-example label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .form-example input,
+      .form-example select,
+      .form-example textarea {
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 3: Forms and Input Basics</h1>
+
+    <section id="form-structure">
+      <h2>Form Structure</h2>
+
+      <p>
+        HTML forms are used to collect user input. The data can be sent to a
+        server for processing or handled by JavaScript on the client side.
+      </p>
+
+      <h3>Basic Form Syntax</h3>
+      <p>Forms are created using the <code>&lt;form&gt;</code> element:</p>
+
+      <pre><code>&lt;form action="/submit-form" method="post"&gt;
+  &lt;!-- Form elements go here --&gt;
+  &lt;input type="text" name="username"&gt;
+  &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</code></pre>
+
+      <h3>Form Attributes</h3>
+
+      <table>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><code>action</code></td>
+          <td>Specifies where to send the form data when submitted</td>
+          <td><code>action="/process-form.php"</code></td>
+        </tr>
+        <tr>
+          <td><code>method</code></td>
+          <td>Specifies the HTTP method to use when sending form data</td>
+          <td><code>method="post"</code> or <code>method="get"</code></td>
+        </tr>
+        <tr>
+          <td><code>name</code></td>
+          <td>Specifies a name for the form (for DOM manipulation)</td>
+          <td><code>name="registration-form"</code></td>
+        </tr>
+        <tr>
+          <td><code>autocomplete</code></td>
+          <td>Specifies whether form should have autocomplete on or off</td>
+          <td>
+            <code>autocomplete="on"</code> or <code>autocomplete="off"</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>target</code></td>
+          <td>Specifies where to display the response after submitting</td>
+          <td>
+            <code>target="_blank"</code> (new tab) or
+            <code>target="_self"</code> (default)
+          </td>
+        </tr>
+      </table>
+
+      <h3>GET vs POST Methods</h3>
+      <ul>
+        <li>
+          <strong>GET</strong>:
+          <ul>
+            <li>Appends form data to the URL as query parameters</li>
+            <li>Limited to about 2000 characters</li>
+            <li>Not secure (data is visible in the URL)</li>
+            <li>Can be bookmarked</li>
+            <li>Best for non-sensitive data and search forms</li>
+          </ul>
+        </li>
+        <li>
+          <strong>POST</strong>:
+          <ul>
+            <li>Sends form data in the HTTP request body</li>
+            <li>No size limitations</li>
+            <li>More secure (data not visible in the URL)</li>
+            <li>Cannot be bookmarked</li>
+            <li>Best for sensitive data and large amounts of data</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="note">
+        <p>
+          When a form is submitted, each form control with a
+          <code>name</code> attribute will have its value sent to the server.
+        </p>
+      </div>
+    </section>
+
+    <section id="input-types">
+      <h2>Input Types</h2>
+
+      <p>
+        The <code>&lt;input&gt;</code> element is the most commonly used form
+        element. Its behavior changes significantly depending on the
+        <code>type</code> attribute.
+      </p>
+
+      <h3>Basic Input Types</h3>
+
+      <h4>Text Input</h4>
+      <pre><code>&lt;input type="text" name="username" placeholder="Enter your username"&gt;</code></pre>
+      <div class="form-example">
+        <input type="text" name="username" placeholder="Enter your username" />
+      </div>
+
+      <h4>Password Input</h4>
+      <pre><code>&lt;input type="password" name="password" placeholder="Enter your password"&gt;</code></pre>
+      <div class="form-example">
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <h4>Radio Buttons</h4>
+      <p>
+        Radio buttons allow users to select one option from a group. All radio
+        buttons in the same group must have the same
+        <code>name</code> attribute.
+      </p>
+      <pre><code>&lt;input type="radio" name="gender" id="male" value="male"&gt;
+&lt;label for="male"&gt;Male&lt;/label&gt;
+
+&lt;input type="radio" name="gender" id="female" value="female"&gt;
+&lt;label for="female"&gt;Female&lt;/label&gt;
+
+&lt;input type="radio" name="gender" id="other" value="other"&gt;
+&lt;label for="other"&gt;Other&lt;/label&gt;</code></pre>
+      <div class="form-example">
+        <input type="radio" name="gender" id="male" value="male" />
+        <label for="male">Male</label><br />
+
+        <input type="radio" name="gender" id="female" value="female" />
+        <label for="female">Female</label><br />
+
+        <input type="radio" name="gender" id="other" value="other" />
+        <label for="other">Other</label>
+      </div>
+
+      <h4>Checkboxes</h4>
+      <p>Checkboxes allow users to select multiple options.</p>
+      <pre><code>&lt;input type="checkbox" name="hobby" id="reading" value="reading"&gt;
+&lt;label for="reading"&gt;Reading&lt;/label&gt;
+
+&lt;input type="checkbox" name="hobby" id="sports" value="sports"&gt;
+&lt;label for="sports"&gt;Sports&lt;/label&gt;
+
+&lt;input type="checkbox" name="hobby" id="music" value="music"&gt;
+&lt;label for="music"&gt;Music&lt;/label&gt;</code></pre>
+      <div class="form-example">
+        <input type="checkbox" name="hobby" id="reading" value="reading" />
+        <label for="reading">Reading</label><br />
+
+        <input type="checkbox" name="hobby" id="sports" value="sports" />
+        <label for="sports">Sports</label><br />
+
+        <input type="checkbox" name="hobby" id="music" value="music" />
+        <label for="music">Music</label>
+      </div>
+
+      <h4>Email Input</h4>
+      <pre><code>&lt;input type="email" name="email" placeholder="Enter your email"&gt;</code></pre>
+      <div class="form-example">
+        <input type="email" name="email" placeholder="Enter your email" />
+      </div>
+
+      <h4>Number Input</h4>
+      <pre><code>&lt;input type="number" name="age" min="18" max="100" placeholder="Enter your age"&gt;</code></pre>
+      <div class="form-example">
+        <input
+          type="number"
+          name="age"
+          min="18"
+          max="100"
+          placeholder="Enter your age"
+        />
+      </div>
+
+      <h3>Input Attributes</h3>
+
+      <table>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><code>name</code></td>
+          <td>Specifies the name of the input (sent with the form data)</td>
+          <td><code>name="username"</code></td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td>Specifies the default value of the input</td>
+          <td><code>value="John"</code></td>
+        </tr>
+        <tr>
+          <td><code>placeholder</code></td>
+          <td>Provides a hint about what to enter in the input</td>
+          <td><code>placeholder="Enter your username"</code></td>
+        </tr>
+        <tr>
+          <td><code>required</code></td>
+          <td>Indicates that the input must be filled out</td>
+          <td><code>required</code></td>
+        </tr>
+        <tr>
+          <td><code>disabled</code></td>
+          <td>Makes the input non-interactive and not submitted</td>
+          <td><code>disabled</code></td>
+        </tr>
+        <tr>
+          <td><code>readonly</code></td>
+          <td>Makes the input non-editable but still submitted</td>
+          <td><code>readonly</code></td>
+        </tr>
+        <tr>
+          <td><code>min</code>/<code>max</code></td>
+          <td>Sets minimum and maximum values for number inputs</td>
+          <td><code>min="0" max="100"</code></td>
+        </tr>
+      </table>
+
+      <h3>Text Area</h3>
+      <p>
+        For multi-line text input, use the
+        <code>&lt;textarea&gt;</code> element:
+      </p>
+      <pre><code>&lt;textarea name="message" rows="5" cols="30" placeholder="Enter your message"&gt;&lt;/textarea&gt;</code></pre>
+      <div class="form-example">
+        <textarea
+          name="message"
+          rows="5"
+          cols="30"
+          placeholder="Enter your message"
+        ></textarea>
+      </div>
+
+      <h3>Select Dropdown</h3>
+      <p>The <code>&lt;select&gt;</code> element creates a dropdown list:</p>
+      <pre><code>&lt;select name="country"&gt;
+  &lt;option value=""&gt;Select a country&lt;/option&gt;
+  &lt;option value="usa"&gt;United States&lt;/option&gt;
+  &lt;option value="canada"&gt;Canada&lt;/option&gt;
+  &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+      <div class="form-example">
+        <select name="country">
+          <option value="">Select a country</option>
+          <option value="usa">United States</option>
+          <option value="canada">Canada</option>
+          <option value="uk">United Kingdom</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="buttons-controls">
+      <h2>Buttons and Submit Controls</h2>
+
+      <p>
+        Buttons are interactive elements that allow users to submit forms or
+        trigger actions.
+      </p>
+
+      <h3>Submit Button</h3>
+      <p>The submit button sends the form data to the server:</p>
+      <pre><code>&lt;input type="submit" value="Submit Form"&gt;</code></pre>
+      <div class="form-example">
+        <input type="submit" value="Submit Form" />
+      </div>
+
+      <p>
+        Alternatively, you can use the <code>&lt;button&gt;</code> element with
+        <code>type="submit"</code>:
+      </p>
+      <pre><code>&lt;button type="submit"&gt;Submit Form&lt;/button&gt;</code></pre>
+      <div class="form-example">
+        <button type="submit">Submit Form</button>
+      </div>
+
+      <h3>Reset Button</h3>
+      <p>The reset button clears all form inputs to their default values:</p>
+      <pre><code>&lt;input type="reset" value="Reset Form"&gt;</code></pre>
+      <div class="form-example">
+        <input type="reset" value="Reset Form" />
+      </div>
+
+      <p>Or with the button element:</p>
+      <pre><code>&lt;button type="reset"&gt;Reset Form&lt;/button&gt;</code></pre>
+      <div class="form-example">
+        <button type="reset">Reset Form</button>
+      </div>
+
+      <h3>Button Element</h3>
+      <p>
+        The <code>&lt;button&gt;</code> element is more flexible than
+        <code>&lt;input type="button"&gt;</code> because it can contain HTML
+        content:
+      </p>
+      <pre><code>&lt;button type="button" onclick="alert('Button clicked!')"&gt;
+  &lt;strong&gt;Click Me&lt;/strong&gt;
+  &lt;span&gt;I am a custom button&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+      <div class="form-example">
+        <button type="button" onclick="alert('Button clicked!')">
+          <strong>Click Me</strong>
+          <span>I am a custom button</span>
+        </button>
+      </div>
+
+      <h3>Button Types</h3>
+      <ul>
+        <li><code>type="submit"</code> - Submits the form</li>
+        <li><code>type="reset"</code> - Resets the form</li>
+        <li>
+          <code>type="button"</code> - No default behavior (used with
+          JavaScript)
+        </li>
+      </ul>
+
+      <div class="note">
+        <p>
+          If you don't specify a <code>type</code> for a
+          <code>&lt;button&gt;</code> element, it defaults to
+          <code>type="submit"</code> when inside a form.
+        </p>
+      </div>
+
+      <h3>Image Button</h3>
+      <p>You can also use an image as a submit button:</p>
+      <pre><code>&lt;input type="image" src="submit-button.png" alt="Submit" width="48" height="48"&gt;</code></pre>
+    </section>
+
+    <section id="labels-fieldsets">
+      <h2>Labels and Fieldsets</h2>
+
+      <p>Labels and fieldsets improve form organization and accessibility.</p>
+
+      <h3>Labels</h3>
+      <p>
+        The <code>&lt;label&gt;</code> element associates text with a specific
+        form control:
+      </p>
+
+      <pre><code>&lt;!-- Method 1: Using the 'for' attribute --&gt;
+&lt;label for="username"&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="username" name="username"&gt;
+
+&lt;!-- Method 2: Wrapping the input --&gt;
+&lt;label&gt;
+  Password:
+  &lt;input type="password" name="password"&gt;
+&lt;/label&gt;</code></pre>
+
+      <div class="form-example">
+        <label for="username_ex">Username:</label>
+        <input type="text" id="username_ex" name="username" /><br /><br />
+
+        <label>
+          Password:
+          <input type="password" name="password" />
+        </label>
+      </div>
+
+      <h4>Benefits of Labels</h4>
+      <ul>
+        <li>Clicking the label focuses or activates the associated input</li>
+        <li>Improves accessibility for screen readers</li>
+        <li>Makes radio buttons and checkboxes easier to click</li>
+        <li>Provides a semantic connection between the label and input</li>
+      </ul>
+
+      <h3>Fieldsets and Legends</h3>
+      <p>
+        The <code>&lt;fieldset&gt;</code> element groups related form controls,
+        and the <code>&lt;legend&gt;</code> element provides a caption for the
+        fieldset:
+      </p>
+
+      <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Contact Information&lt;/legend&gt;
+  
+  &lt;label for="fname"&gt;First name:&lt;/label&gt;
+  &lt;input type="text" id="fname" name="fname"&gt;&lt;br&gt;&lt;br&gt;
+  
+  &lt;label for="lname"&gt;Last name:&lt;/label&gt;
+  &lt;input type="text" id="lname" name="lname"&gt;&lt;br&gt;&lt;br&gt;
+  
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email"&gt;
+&lt;/fieldset&gt;</code></pre>
+
+      <div class="form-example">
+        <fieldset>
+          <legend>Contact Information</legend>
+
+          <label for="fname">First name:</label>
+          <input type="text" id="fname" name="fname" /><br /><br />
+
+          <label for="lname">Last name:</label>
+          <input type="text" id="lname" name="lname" /><br /><br />
+
+          <label for="email_ex">Email:</label>
+          <input type="email" id="email_ex" name="email" />
+        </fieldset>
+      </div>
+
+      <h4>Benefits of Fieldsets</h4>
+      <ul>
+        <li>Groups related form controls visually and semantically</li>
+        <li>Improves screen reader navigation</li>
+        <li>Makes complex forms more organized and user-friendly</li>
+        <li>Can be styled as a group</li>
+      </ul>
+
+      <div class="note">
+        <p>
+          Fieldsets are especially useful for grouping related radio buttons and
+          checkboxes, as well as dividing long forms into logical sections.
+        </p>
+      </div>
+    </section>
+
+    <section id="form-accessibility">
+      <h2>Form Accessibility</h2>
+
+      <p>
+        Creating accessible forms ensures that all users, including those with
+        disabilities, can interact with your forms.
+      </p>
+
+      <h3>Accessibility Best Practices</h3>
+      <ul>
+        <li>
+          Associate labels with form controls using the
+          <code>for</code> attribute
+        </li>
+        <li>
+          Use descriptive labels that clearly explain the purpose of the input
+        </li>
+        <li>Group related form elements with fieldsets and legends</li>
+        <li>Provide clear instructions and error messages</li>
+        <li>Use the <code>required</code> attribute for mandatory fields</li>
+        <li>Ensure keyboard navigation works correctly</li>
+        <li>Maintain a logical tab order</li>
+        <li>Provide feedback when a form is submitted successfully</li>
+      </ul>
+
+      <h3>ARIA Attributes</h3>
+      <p>
+        ARIA (Accessible Rich Internet Applications) attributes can enhance form
+        accessibility:
+      </p>
+
+      <pre><code>&lt;label for="username"&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="username" name="username" aria-required="true" aria-describedby="username-help"&gt;
+&lt;p id="username-help"&gt;Username must be at least 5 characters.&lt;/p&gt;</code></pre>
+
+      <div class="note">
+        <p>
+          When designing forms, always consider accessibility from the
+          beginning, not as an afterthought.
+        </p>
+      </div>
+    </section>
+
+    <section id="practice">
+      <h2>Practice and Resources</h2>
+
+      <p>
+        Complete the exercises in the exercises folder and build the Simple Form
+        project to practice creating forms.
+      </p>
+
+      <h3>Additional Resources</h3>
+      <ul>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"
+            >MDN: HTML Form Element</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"
+            >MDN: HTML Input Element</a
+          >
+        </li>
+        <li>
+          <a href="https://www.w3.org/WAI/tutorials/forms/"
+            >W3C: Forms Tutorial</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA"
+            >MDN: ARIA</a
+          >
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
