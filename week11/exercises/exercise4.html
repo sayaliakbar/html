@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 4: Creating Keyboard-Accessible Components</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      .task {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4caf50;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .tip {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      code {
+        background-color: #f5f5f5;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      .widget {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      textarea {
+        width: 100%;
+        height: 150px;
+        margin: 10px 0;
+        padding: 8px;
+        font-family: monospace;
+      }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-button {
+        padding: 8px 15px;
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .dropdown-menu {
+        position: absolute;
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        display: none;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .dropdown-item {
+        padding: 8px 15px;
+        cursor: pointer;
+      }
+      .dropdown-item:hover {
+        background-color: #f5f5f5;
+      }
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+        background: #2c3e50;
+        color: white;
+        padding: 8px;
+        z-index: 100;
+      }
+      .custom-checkbox {
+        display: inline-block;
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #3498db;
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+      }
+      .custom-checkbox.checked::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #3498db;
+      }
+      .checkbox-label {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exercise 4: Creating Keyboard-Accessible Components</h1>
+
+    <div class="task">
+      <h2>Introduction</h2>
+      <p>
+        In this exercise, you will practice making interactive components
+        accessible to keyboard-only users. Many people with motor disabilities,
+        as well as screen reader users, rely on keyboards for navigation.
+        Ensuring keyboard accessibility is crucial for creating inclusive web
+        experiences.
+      </p>
+      <p>For each component, you will:</p>
+      <ol>
+        <li>Implement keyboard navigation</li>
+        <li>Add appropriate focus management</li>
+        <li>Ensure visible focus indicators</li>
+        <li>Handle key events to match expected behavior</li>
+      </ol>
+    </div>
+
+    <div class="task">
+      <h2>Task 1: Skip Link</h2>
+      <p>
+        Implement a working skip link that allows keyboard users to bypass
+        navigation:
+      </p>
+
+      <div class="widget">
+        <div id="skip-link-demo">
+          <!-- Add your skip link here -->
+
+          <header
+            style="
+              padding: 15px;
+              background-color: #f5f5f5;
+              margin-bottom: 15px;
+            "
+          >
+            <h2>Website Header</h2>
+            <nav>
+              <ul
+                style="list-style: none; padding: 0; display: flex; gap: 15px"
+              >
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </nav>
+          </header>
+
+          <main id="main-content">
+            <h2>Main Content</h2>
+            <p>
+              This is the main content area that users should be able to skip
+              to.
+            </p>
+          </main>
+        </div>
+      </div>
+
+      <textarea
+        id="task1-code"
+        placeholder="Write HTML for the skip link here..."
+      ></textarea>
+
+      <p>
+        Write CSS to make the skip link initially hidden, but visible when
+        focused:
+      </p>
+
+      <textarea
+        id="task1-css"
+        placeholder="Write CSS for the skip link here..."
+      ></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> The skip link should become visible when it
+          receives keyboard focus. Don't forget to make the target element
+          focusable using tabindex="-1".
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 2: Keyboard-Accessible Dropdown Menu</h2>
+      <p>Make this dropdown menu accessible for keyboard users:</p>
+
+      <div class="widget">
+        <div class="dropdown" id="dropdown1">
+          <button class="dropdown-button">Select an Option</button>
+          <div class="dropdown-menu">
+            <div class="dropdown-item">Option 1</div>
+            <div class="dropdown-item">Option 2</div>
+            <div class="dropdown-item">Option 3</div>
+          </div>
+        </div>
+      </div>
+
+      <p>Update the HTML structure to enhance keyboard accessibility:</p>
+
+      <textarea
+        id="task2-code"
+        placeholder="Modify the HTML with appropriate attributes here..."
+      ></textarea>
+
+      <p>Implement JavaScript to handle keyboard interactions:</p>
+
+      <textarea
+        id="task2-js"
+        placeholder="Write JavaScript code for keyboard navigation here..."
+      ></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Consider managing focus within the dropdown,
+          handling arrow keys for navigation, using Escape to close the
+          dropdown, and using Enter/Space to select items.
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 3: Custom Checkbox Component</h2>
+      <p>Create a keyboard-accessible custom checkbox component:</p>
+
+      <div class="widget">
+        <div id="custom-checkbox-demo">
+          <div class="custom-checkbox" id="checkbox1"></div>
+          <span class="checkbox-label"
+            >I agree to the terms and conditions</span
+          >
+        </div>
+      </div>
+
+      <p>Update the HTML to make the custom checkbox keyboard-accessible:</p>
+
+      <textarea
+        id="task3-code"
+        placeholder="Modify the HTML with appropriate attributes here..."
+      ></textarea>
+
+      <p>Implement JavaScript to handle keyboard interactions and focus:</p>
+
+      <textarea
+        id="task3-js"
+        placeholder="Write JavaScript code for keyboard interaction here..."
+      ></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> Custom interactive components should mimic the
+          behavior of their native counterparts. For a checkbox, this means
+          toggling on Space key press and being tabbable.
+        </p>
+      </div>
+    </div>
+
+    <div class="task">
+      <h2>Task 4: Modal Focus Management</h2>
+      <p>Implement proper focus management for this modal dialog:</p>
+
+      <div class="widget">
+        <div id="modal-demo">
+          <button id="open-modal">Open Modal</button>
+
+          <div
+            id="modal"
+            style="
+              display: none;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: rgba(0, 0, 0, 0.5);
+              z-index: 100;
+            "
+          >
+            <div
+              style="
+                position: relative;
+                width: 500px;
+                margin: 100px auto;
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+              "
+            >
+              <h3>Modal Title</h3>
+              <p>
+                This is a modal dialog. Focus should be trapped inside it when
+                open.
+              </p>
+              <input type="text" placeholder="Enter your name" />
+              <div style="margin-top: 15px">
+                <button id="modal-save">Save</button>
+                <button id="modal-cancel">Cancel</button>
+              </div>
+              <button
+                id="close-modal"
+                style="position: absolute; top: 10px; right: 10px"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        Implement JavaScript to manage focus when the modal opens and closes:
+      </p>
+
+      <textarea
+        id="task4-js"
+        placeholder="Write JavaScript code for focus management here..."
+      ></textarea>
+
+      <div class="tip">
+        <p>
+          <strong>Tip:</strong> When a modal opens, save the current focus
+          position, move focus to the modal, trap focus within the modal, and
+          restore focus when the modal closes. Handle the Escape key to close
+          the modal.
+        </p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <h3>Keyboard Accessibility Tips:</h3>
+      <ul>
+        <li>
+          All interactive elements should be focusable and operable with a
+          keyboard
+        </li>
+        <li>
+          Focus order should be logical and follow the visual layout of the page
+        </li>
+        <li>
+          Focus indicators should be clearly visible (don't remove outlines
+          without alternatives)
+        </li>
+        <li>
+          Follow standard keyboard interaction patterns: Enter/Space for
+          activation, arrow keys for navigation, Escape for cancellation
+        </li>
+        <li>
+          Use tabindex="0" to make non-interactive elements focusable, and
+          tabindex="-1" for programmatic focus
+        </li>
+        <li>
+          Avoid using positive tabindex values as they disrupt the natural tab
+          order
+        </li>
+        <li>Test your components using only keyboard navigation</li>
+      </ul>
+    </div>
+
+    <p>
+      After completing these exercises, you'll have gained valuable experience
+      in creating keyboard-accessible components, which is a crucial aspect of
+      web accessibility.
+    </p>
+  </body>
+</html>
